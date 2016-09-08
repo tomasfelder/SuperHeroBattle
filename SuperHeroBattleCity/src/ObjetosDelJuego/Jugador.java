@@ -12,6 +12,16 @@ public class Jugador extends Tanque{
 		velocidadDisparo=1;
 	}
 
+	public void mover(int Direccion){
+		
+		switch (Direccion){
+		case 0:
+			this.moverArriba();
+			break;
+		
+		}
+		
+	}
 	public boolean colision(gameObject o){
 		
 		return false;
