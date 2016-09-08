@@ -18,7 +18,15 @@ public class Jugador extends Tanque{
 		case 0:
 			this.moverArriba();
 			break;
-		
+		case 1:
+			this.moverAbajo();
+			break;
+		case 2:
+			this.moverIzquierda();
+			break;
+		case 3:
+			this.moverDerecha();
+			break;
 		}
 		
 	}
