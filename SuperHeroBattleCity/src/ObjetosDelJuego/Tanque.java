@@ -22,6 +22,10 @@ public abstract class Tanque extends gameObject {
 	
 	//Metodos
 	
+	public ImageIcon getImagen(){
+		return imagen;
+	}
+	
 	public void mover(int Direccion){
 		
 		this.imagen=iconos[Direccion];

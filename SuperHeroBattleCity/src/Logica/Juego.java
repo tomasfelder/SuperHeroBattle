@@ -6,14 +6,18 @@ import java.awt.event.KeyEvent;
 
 public class Juego {
 
-	private Jugador j;
+	private Jugador jugador;
 	
 	public Juego(GUI gui){
 	
-		j=new Jugador(10,10);
+		jugador=new Jugador(10,10);
 		
 	}
 	
+	public Jugador getJugador(){
+		
+		return jugador;
+	}
 	public void mover(int dir){		
 		int direccion = 0;
 		
@@ -32,6 +36,6 @@ public class Juego {
 				break;
 		}
 		
-		j.mover(direccion);
+		jugador.mover(direccion);
 	}
 }

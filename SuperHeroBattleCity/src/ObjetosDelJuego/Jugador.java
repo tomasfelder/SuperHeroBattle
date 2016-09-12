@@ -11,8 +11,11 @@ public class Jugador extends Tanque{
 		golpesQueResiste=1;
 		velocidadDisparo=1;
 		
-		imagen=new ImageIcon(this.getClass().getResource("/imagenes/giphy.gif"));
-		
+		imagen=new ImageIcon(this.getClass().getResource("/imagenes/batmanUP.png"));
+		iconos[0]=new ImageIcon(this.getClass().getResource("/imagenes/batmanUP.png"));
+		iconos[1]=new ImageIcon(this .getClass().getResource("/imagenes/batmanUP.png"));
+		iconos[2]=new ImageIcon(this.getClass().getResource("/imagenes/batmanUP.png"));
+		iconos[3]=new ImageIcon(this.getClass().getResource("/imagenes/batmanUP.png"));
 	}
 
 	
