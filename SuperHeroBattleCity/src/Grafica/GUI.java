@@ -1,13 +1,17 @@
 package Grafica;
 
+import java.awt.Color;
 import java.awt.EventQueue;
 
-import javax.swing.JFrame;
+import javax.swing.*;
+
+import Mapa.*;
 
 public class GUI {
 
 	private JFrame frame;
-
+	private Mapa mapa;
+	
 	/**
 	 * Launch the application.
 	 */
@@ -28,7 +32,32 @@ public class GUI {
 	 * Create the application.
 	 */
 	public GUI() {
+		mapa=new Mapa(12,13,"Mapa1.txt");
 		initialize();
+		ponerObstaculos();
+	}
+
+	private void ponerObstaculos() {
+		int pos1,pos2;
+		pos1=pos2=0;
+		for(int i=0;i<mapa.getLargo();i++){
+			for(int j=0;j<mapa.getAncho();j++){
+				if(mapa.obtenerCelda(i, j)!=null){
+					JLabel etiqueta = new JLabel(mapa.obtenerCelda(i, j).getImagen());
+					etiqueta.setBounds(pos1, pos2, 16, 16);
+					frame.add(etiqueta);
+				}
+				else{
+					JLabel etiqueta = new JLabel();
+					etiqueta.setBackground(Color.BLACK);
+					etiqueta.setBounds(pos1, pos2, 16, 16);
+					frame.add(etiqueta);
+				}
+				pos2+=16;
+			}
+			pos2=0;
+			pos1+=16;
+		}
 	}
 
 	/**
@@ -36,7 +65,8 @@ public class GUI {
 	 */
 	private void initialize() {
 		frame = new JFrame();
-		frame.setBounds(100, 100, 450, 300);
+		frame.setSize(400, 300);
+		frame.setLayout(null);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
 
