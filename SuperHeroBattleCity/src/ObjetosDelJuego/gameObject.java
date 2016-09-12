@@ -17,4 +17,8 @@ public abstract class gameObject {
 		return y;
 	}
 	
+	public ImageIcon getImagen(){
+		return imagen;
+	}
+	
 }

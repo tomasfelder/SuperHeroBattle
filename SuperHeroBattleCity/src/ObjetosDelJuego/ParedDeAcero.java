@@ -2,14 +2,14 @@ package ObjetosDelJuego;
 
 import javax.swing.ImageIcon;
 
-public class ParedDeLadrillo extends Pared {
+public class ParedDeAcero extends Pared {
 	
 	/**
 	 * Constructor
 	 */
-	public ParedDeLadrillo(){
+	public ParedDeAcero(){
 		vida=4;
-		imagen = new ImageIcon(this.getClass().getResource("imagenes/ParedDeLadrillo.png"));
+		imagen = new ImageIcon(this.getClass().getResource("imagenes/ParedDeAcero.png"));
 	}
 	
 	@Override
