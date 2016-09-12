@@ -44,17 +44,19 @@ public class GUI {
 			for(int j=0;j<mapa.getAncho();j++){
 				if(mapa.obtenerCelda(i, j)!=null){
 					JLabel etiqueta = new JLabel(mapa.obtenerCelda(i, j).getImagen());
-					etiqueta.setBounds(pos1, pos2, 16, 16);
-					frame.add(etiqueta);
+					etiqueta.setBounds(pos2, pos1, 16, 16);
+					frame.getContentPane().add(etiqueta);
 				}
 				else{
 					JLabel etiqueta = new JLabel();
 					etiqueta.setBackground(Color.BLACK);
-					etiqueta.setBounds(pos1, pos2, 16, 16);
-					frame.add(etiqueta);
+					etiqueta.setOpaque(true);
+					etiqueta.setBounds(pos2, pos1, 16, 16);
+					frame.getContentPane().add(etiqueta);
 				}
 				pos2+=16;
 			}
+			System.out.println();
 			pos2=0;
 			pos1+=16;
 		}
@@ -65,9 +67,8 @@ public class GUI {
 	 */
 	private void initialize() {
 		frame = new JFrame();
-		frame.setSize(400, 300);
-		frame.setLayout(null);
+		frame.setSize(1280, 720);
+		frame.getContentPane().setLayout(null);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
-
 }
