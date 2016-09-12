@@ -9,7 +9,7 @@ public class ParedDeAcero extends Pared {
 	 */
 	public ParedDeAcero(){
 		vida=4;
-		imagen = new ImageIcon(this.getClass().getResource("imagenes/ParedDeAcero.png"));
+		imagen = new ImageIcon(this.getClass().getResource("/imagenes/ParedDeAcero.png"));
 	}
 	
 	@Override

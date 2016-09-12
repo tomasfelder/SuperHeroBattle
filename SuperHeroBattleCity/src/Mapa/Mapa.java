@@ -8,29 +8,40 @@ public class Mapa {
 	//Atributos de instancia
 	protected gameObject[][] matriz;
 	protected String linea;
-	BufferedReader br;
+	protected BufferedReader br;
 	
 	//Constructor
-	public Mapa(int x,int y,File archivo){
+	public Mapa(int x,int y,String archivo){
 		matriz=new gameObject[x][y];
 		try {
 			br= new BufferedReader(new FileReader(archivo));
-			int j=0;
+			int nroLinea=0;
 			 while ((linea = br.readLine()) != null) {
+				 	int j=0;
 	            	for(int i = 0; i < linea.length(); i++){
 	            		char letra = linea.charAt(i);
 	            		switch (letra) {
 	            		case 'x' :
-	            			matriz[i][j]=null;
+	            			//System.out.print(letra+" "+j);
+	            			matriz[nroLinea][j]=null;
+	            			j++;
 	            			break;
 	            		case 'p' :
-	            			matriz[i][j]=new ParedDeLadrillo();
+	            			System.out.print(letra);
+	            			matriz[nroLinea][j]=new ParedDeLadrillo();
+	            			j++;
 	            			break;
 	            		case 'P' :
-	            			matriz[i][j]=new ParedDeAcero();
+	            			System.out.print(letra);
+	            			matriz[nroLinea][i]=new ParedDeAcero();
+	            			j++;
+	            			break;
+	            		case ' ' :
 	            			break;
 	            		}
 	            	}
+	            	System.out.println();
+	            	nroLinea++;
 			 }
 		}catch (IOException e){
 				e.printStackTrace();
@@ -43,6 +54,14 @@ public class Mapa {
 				e.printStackTrace();
 			}
 		}
+	}
+	
+	public int getAncho(){
+		return matriz[0].length;
+	}
+	
+	public int getLargo(){
+		return matriz.length;
 	}
 	
 	public gameObject obtenerCelda(int x, int y){
