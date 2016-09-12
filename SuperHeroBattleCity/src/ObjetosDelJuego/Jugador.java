@@ -1,5 +1,6 @@
 package ObjetosDelJuego;
-
+ import javax.swing.*;
+ 
 public class Jugador extends Tanque{
 	
 	
@@ -10,26 +11,11 @@ public class Jugador extends Tanque{
 		velocidadMovimiento=2;
 		golpesQueResiste=1;
 		velocidadDisparo=1;
+		iconos=new ImageIcon[4];
+		
 	}
 
-	public void mover(int Direccion){
-		
-		switch (Direccion){
-		case 0:
-			this.moverArriba();
-			break;
-		case 1:
-			this.moverAbajo();
-			break;
-		case 2:
-			this.moverIzquierda();
-			break;
-		case 3:
-			this.moverDerecha();
-			break;
-		}
-		
-	}
+	
 	public boolean colision(gameObject o){
 		
 		return false;
