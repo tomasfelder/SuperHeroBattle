@@ -24,6 +24,7 @@ public abstract class Tanque extends gameObject {
 	
 	public void mover(int Direccion){
 		
+		this.imagen=iconos[Direccion];
 		switch (Direccion){
 		case 0:
 			this.moverArriba();
@@ -46,16 +47,27 @@ public abstract class Tanque extends gameObject {
 		return new Disparo(x,y);
 	}
 	
-	public void moverDerecha(){
+	private void moverDerecha(){
+		
+		
+		this.x=this.x+5+velocidadMovimiento;
 		
 	}
-	public void moverIzquierda(){
+	private void moverIzquierda(){
+		
+		
+		this.x=this.x-5-velocidadMovimiento;
+	}
+	private void moverArriba(){
+		
+		
+		this.y=this.y+5+velocidadMovimiento;
 		
 	}
-	public void moverArriba(){
+	private void moverAbajo(){
 		
-	}
-	public void moverAbajo(){
+		
+		this.y=this.y-5-velocidadMovimiento;
 		
 	}
 	
