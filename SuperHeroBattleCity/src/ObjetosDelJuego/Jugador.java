@@ -6,12 +6,12 @@ public class Jugador extends Tanque{
 	
 	public Jugador(int x,int y){
 		
-		this.x=x;
-		this.y=y;
+		super(x,y);
 		velocidadMovimiento=2;
 		golpesQueResiste=1;
 		velocidadDisparo=1;
-		iconos=new ImageIcon[4];
+		
+		imagen=new ImageIcon(this.getClass().getResource("/imagenes/giphy.gif"));
 		
 	}
 

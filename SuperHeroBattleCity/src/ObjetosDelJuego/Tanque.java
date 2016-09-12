@@ -12,7 +12,13 @@ public abstract class Tanque extends gameObject {
 	protected int velocidadDisparo;
 	
 	
-	
+	public Tanque(int x,int y){
+		
+		this.x=x;
+		this.y=y;
+		iconos=new ImageIcon[4];
+		
+	}
 	
 	//Metodos
 	
