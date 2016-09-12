@@ -22,17 +22,14 @@ public class Mapa {
 	            		char letra = linea.charAt(i);
 	            		switch (letra) {
 	            		case 'x' :
-	            			//System.out.print(letra+" "+j);
 	            			matriz[nroLinea][j]=null;
 	            			j++;
 	            			break;
 	            		case 'p' :
-	            			System.out.print(letra);
 	            			matriz[nroLinea][j]=new ParedDeLadrillo();
 	            			j++;
 	            			break;
 	            		case 'P' :
-	            			System.out.print(letra);
 	            			matriz[nroLinea][i]=new ParedDeAcero();
 	            			j++;
 	            			break;

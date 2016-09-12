@@ -1,5 +1,6 @@
 package Grafica;
 
+import java.awt.Color;
 import java.awt.EventQueue;
 
 import javax.swing.*;
@@ -46,9 +47,16 @@ public class GUI {
 					etiqueta.setBounds(pos1, pos2, 16, 16);
 					frame.add(etiqueta);
 				}
+				else{
+					JLabel etiqueta = new JLabel();
+					etiqueta.setBackground(Color.BLACK);
+					etiqueta.setBounds(pos1, pos2, 16, 16);
+					frame.add(etiqueta);
+				}
 				pos2+=16;
 			}
 			pos2=0;
+			pos1+=16;
 		}
 	}
 
@@ -57,6 +65,7 @@ public class GUI {
 	 */
 	private void initialize() {
 		frame = new JFrame();
+		frame.setSize(400, 300);
 		frame.setLayout(null);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
