@@ -30,7 +30,7 @@ public class Mapa {
 	            			j++;
 	            			break;
 	            		case 'z' :
-	            			matriz[nroLinea][i]=new ParedDeAcero();
+	            			matriz[nroLinea][j]=new ParedDeAcero();
 	            			j++;
 	            			break;
 	            		case ' ' :

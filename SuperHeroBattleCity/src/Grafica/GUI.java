@@ -10,6 +10,7 @@ import javax.swing.*;
 
 
 import Mapa.*;
+import ObjetosDelJuego.gameObject;
 
 public class GUI {
 
@@ -48,8 +49,8 @@ public class GUI {
 				mover(arg0);
 			}*/
 			public void keyPressed(KeyEvent arg0){
-				
-				mover(arg0);
+			
+					mover(arg0);
 			}
 		});
 		iniciarJugador();
@@ -69,22 +70,24 @@ public class GUI {
 		for(int i=0;i<mapa.getLargo();i++){
 			for(int j=0;j<mapa.getAncho();j++){
 				if(mapa.obtenerCelda(i, j)!=null){
-					JLabel etiqueta = new JLabel(mapa.obtenerCelda(i, j).getImagen());
-					etiqueta.setBounds(pos2, pos1, 16, 16);
+					gameObject aux=mapa.obtenerCelda(i, j);
+					aux.setX(pos2); aux.setY(pos1);
+					JLabel etiqueta = new JLabel(aux.getIcon());
+					etiqueta.setBounds(pos2, pos1, 32, 32);
 					frame.getContentPane().add(etiqueta);
 				}
 				else{
 					JLabel etiqueta = new JLabel();
 					etiqueta.setBackground(Color.BLACK);
 					etiqueta.setOpaque(true);
-					etiqueta.setBounds(pos2, pos1, 16, 16);
+					etiqueta.setBounds(pos2, pos1, 32, 32);
 					frame.getContentPane().add(etiqueta);
 				}
-				pos2+=16;
+				pos2+=32;
 			}
 			System.out.println();
 			pos2=0;
-			pos1+=16;
+			pos1+=32;
 		}
 	}
 
@@ -93,7 +96,7 @@ public class GUI {
 	 */
 	private void initialize() {
 		frame = new JFrame();
-		frame.setSize(1280, 720);
+		frame.setSize(448, 416);
 		frame.getContentPane().setLayout(null);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
@@ -102,10 +105,14 @@ public class GUI {
 		
 		j.mover(k.getKeyCode());
 		labelJugador.setIcon(j.getJugador().getIcon());
-		labelJugador.setBounds(j.getJugador().x(),j.getJugador().y(),16,16);
+		labelJugador.setBounds(j.getJugador().x(),j.getJugador().y(),32,32);
 		
 		frame.repaint();
 		
+	}
+	
+	public Mapa getMapa(){
+		return mapa;
 	}
 	
 }

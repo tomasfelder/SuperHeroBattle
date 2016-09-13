@@ -55,7 +55,7 @@ public abstract class Tanque extends gameObject {
 	
 	public Icon getIcon(){
 		
-		return new ImageIcon(imagen.getImage().getScaledInstance(16, 16, Image.SCALE_DEFAULT));
+		return new ImageIcon(imagen.getImage().getScaledInstance(32, 32, Image.SCALE_DEFAULT));
 		
 	}
 	public Disparo disparar(){
@@ -85,6 +85,10 @@ public abstract class Tanque extends gameObject {
 		
 		this.y=this.y+1+velocidadMovimiento;
 		
+	}
+	
+	public int velocidad(){
+		return velocidadMovimiento;
 	}
 	
 }

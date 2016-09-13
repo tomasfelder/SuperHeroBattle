@@ -9,6 +9,7 @@ public class ParedDeLadrillo extends Pared {
 	 */
 	public ParedDeLadrillo(){
 		vida=4;
+		
 		imagen = new ImageIcon(this.getClass().getResource("/imagenes/ParedDeLadrillo.png"));
 	}
 	
