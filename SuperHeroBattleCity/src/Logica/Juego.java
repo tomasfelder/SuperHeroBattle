@@ -10,7 +10,7 @@ public class Juego {
 	
 	public Juego(GUI gui){
 	
-		jugador=new Jugador(10,10);
+		jugador=new Jugador(0,0);
 		
 	}
 	

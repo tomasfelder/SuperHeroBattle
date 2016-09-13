@@ -1,5 +1,7 @@
 package ObjetosDelJuego;
- import javax.swing.*;
+ import java.awt.Image;
+
+import javax.swing.*;
  
 public class Jugador extends Tanque{
 	
@@ -11,11 +13,12 @@ public class Jugador extends Tanque{
 		golpesQueResiste=1;
 		velocidadDisparo=1;
 		
-		imagen=new ImageIcon(this.getClass().getResource("/imagenes/batmanUP.png"));
-		iconos[0]=new ImageIcon(this.getClass().getResource("/imagenes/batmanUP.png"));
-		iconos[1]=new ImageIcon(this .getClass().getResource("/imagenes/batmanUP.png"));
-		iconos[2]=new ImageIcon(this.getClass().getResource("/imagenes/batmanUP.png"));
-		iconos[3]=new ImageIcon(this.getClass().getResource("/imagenes/batmanUP.png"));
+		imagen=new ImageIcon(this.getClass().getResource("/imagenes/right.png"));
+		
+		iconos[0]=new ImageIcon(this.getClass().getResource("/imagenes/up.png"));
+		iconos[1]=new ImageIcon(this .getClass().getResource("/imagenes/down.png"));
+		iconos[2]=new ImageIcon(this.getClass().getResource("/imagenes/left.png"));
+		iconos[3]=new ImageIcon(this.getClass().getResource("/imagenes/right.png"));
 	}
 
 	

@@ -1,5 +1,7 @@
 package ObjetosDelJuego;
 
+import java.awt.Image;
+
 import javax.swing.*;
 
 public abstract class Tanque extends gameObject {
@@ -22,13 +24,11 @@ public abstract class Tanque extends gameObject {
 	
 	//Metodos
 	
-	public ImageIcon getImagen(){
-		return imagen;
-	}
+	
 	
 	public void mover(int Direccion){
 		
-		this.imagen=iconos[Direccion];
+		
 		switch (Direccion){
 		case 0:
 			this.moverArriba();
@@ -43,9 +43,21 @@ public abstract class Tanque extends gameObject {
 			this.moverDerecha();
 			break;
 		}
+		cambiarImagen(Direccion);
 		
 	}
 
+	private void cambiarImagen(int d){
+		
+		imagen=iconos[d];
+		
+	}
+	
+	public Icon getIcon(){
+		
+		return new ImageIcon(imagen.getImage().getScaledInstance(16, 16, Image.SCALE_DEFAULT));
+		
+	}
 	public Disparo disparar(){
 		
 		return new Disparo(x,y);
@@ -54,24 +66,24 @@ public abstract class Tanque extends gameObject {
 	private void moverDerecha(){
 		
 		
-		this.x=this.x+5+velocidadMovimiento;
+		this.x=this.x+1+velocidadMovimiento;
 		
 	}
 	private void moverIzquierda(){
 		
 		
-		this.x=this.x-5-velocidadMovimiento;
+		this.x=this.x-1-velocidadMovimiento;
 	}
 	private void moverArriba(){
 		
 		
-		this.y=this.y+5+velocidadMovimiento;
+		this.y=this.y-1-velocidadMovimiento;
 		
 	}
 	private void moverAbajo(){
 		
 		
-		this.y=this.y-5-velocidadMovimiento;
+		this.y=this.y+1+velocidadMovimiento;
 		
 	}
 	

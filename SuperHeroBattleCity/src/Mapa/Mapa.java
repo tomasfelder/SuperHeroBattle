@@ -29,7 +29,7 @@ public class Mapa {
 	            			matriz[nroLinea][j]=new ParedDeLadrillo();
 	            			j++;
 	            			break;
-	            		case 'P' :
+	            		case 'z' :
 	            			matriz[nroLinea][i]=new ParedDeAcero();
 	            			j++;
 	            			break;
@@ -37,7 +37,6 @@ public class Mapa {
 	            			break;
 	            		}
 	            	}
-	            	System.out.println();
 	            	nroLinea++;
 			 }
 		}catch (IOException e){
