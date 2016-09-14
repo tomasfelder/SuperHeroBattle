@@ -53,11 +53,6 @@ public abstract class Tanque extends gameObject {
 		
 	}
 	
-	public Icon getIcon(){
-		
-		return new ImageIcon(imagen.getImage().getScaledInstance(32, 32, Image.SCALE_DEFAULT));
-		
-	}
 	public Disparo disparar(){
 		
 		return new Disparo(x,y);

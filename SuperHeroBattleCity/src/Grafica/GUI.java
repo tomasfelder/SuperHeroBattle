@@ -2,6 +2,7 @@ package Grafica;
 
 import java.awt.Color;
 import java.awt.EventQueue;
+import java.awt.Rectangle;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyAdapter;
 
@@ -49,8 +50,8 @@ public class GUI {
 				mover(arg0);
 			}*/
 			public void keyPressed(KeyEvent arg0){
-			
-					mover(arg0);
+				
+				mover(arg0);
 			}
 		});
 		iniciarJugador();
@@ -60,7 +61,7 @@ public class GUI {
 	private void iniciarJugador(){
 		
 		labelJugador=new JLabel(j.getJugador().getImagen());
-		labelJugador.setBounds(j.getJugador().x(), j.getJugador().y(), 16, 16);
+		labelJugador.setBounds(j.getJugador().x(), j.getJugador().y(), 32, 32);
 		frame.add(labelJugador);
 	}
 	
@@ -85,7 +86,6 @@ public class GUI {
 				}
 				pos2+=32;
 			}
-			System.out.println();
 			pos2=0;
 			pos1+=32;
 		}
@@ -96,17 +96,34 @@ public class GUI {
 	 */
 	private void initialize() {
 		frame = new JFrame();
-		frame.setSize(448, 416);
+		frame.setSize(640, 480);
 		frame.getContentPane().setLayout(null);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
 
 	protected void mover(KeyEvent k){
 		
-		j.mover(k.getKeyCode());
+		int direccion = 4;
+		
+		switch (k.getKeyCode()){
+			case KeyEvent.VK_UP : 
+				direccion = 0;
+				break;
+			case KeyEvent.VK_DOWN :
+				direccion = 1;
+				break;
+			case KeyEvent.VK_LEFT : 
+				direccion = 2;
+				break;
+			case KeyEvent.VK_RIGHT : 
+				direccion = 3;
+				break;
+		}
+		if (direccion!=4)
+			j.mover(direccion);
 		labelJugador.setIcon(j.getJugador().getIcon());
 		labelJugador.setBounds(j.getJugador().x(),j.getJugador().y(),32,32);
-		
+		System.out.println(j.getJugador().x());
 		frame.repaint();
 		
 	}

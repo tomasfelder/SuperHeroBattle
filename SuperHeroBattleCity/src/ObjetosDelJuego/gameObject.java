@@ -5,6 +5,9 @@ import javax.swing.*;
 
 public abstract class gameObject {
 
+	protected static final int ANCHO=32;
+	protected static final int ALTO=32;
+	
 	protected int x;
 	protected int y;
 	protected ImageIcon imagen;
@@ -37,7 +40,7 @@ public abstract class gameObject {
 	
 	public Icon getIcon(){
 		
-		return new ImageIcon(imagen.getImage().getScaledInstance(32, 32, Image.SCALE_DEFAULT));
+		return new ImageIcon(imagen.getImage().getScaledInstance(ANCHO, ALTO, Image.SCALE_DEFAULT));
 		
 	}
 	

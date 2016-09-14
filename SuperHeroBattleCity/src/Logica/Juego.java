@@ -39,24 +39,8 @@ public class Juego {
 		
 		return jugador;
 	}
-	public void mover(int dir){		
-		int direccion = 4;
-		
-		switch (dir){
-			case KeyEvent.VK_UP : 
-				direccion = 0;
-				break;
-			case KeyEvent.VK_DOWN :
-				direccion = 1;
-				break;
-			case KeyEvent.VK_LEFT : 
-				direccion = 2;
-				break;
-			case KeyEvent.VK_RIGHT : 
-				direccion = 3;
-				break;
-		}
-		if (direccion!=4)
-			jugador.mover(direccion);
+	public void mover(int dir){	
+		if (dir!=4)
+			jugador.mover(dir);
 	}
 }
