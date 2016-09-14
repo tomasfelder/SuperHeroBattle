@@ -1,5 +1,4 @@
 package ObjetosDelJuego;
- import java.awt.Image;
 
 import javax.swing.*;
  

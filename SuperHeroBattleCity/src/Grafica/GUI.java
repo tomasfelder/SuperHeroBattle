@@ -2,7 +2,6 @@ package Grafica;
 
 import java.awt.Color;
 import java.awt.EventQueue;
-import java.awt.Rectangle;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyAdapter;
 
@@ -52,12 +51,15 @@ public class GUI {
 			public void keyPressed(KeyEvent arg0){
 				
 				int direccion=movimiento(arg0);
-				
-				j.mover(direccion);
-				labelJugador.setIcon(j.getJugador().getIcon());
-				labelJugador.setBounds(j.getJugador().x(),j.getJugador().y(),32,32);
-				System.out.println(j.getJugador().x()+","+j.getJugador().y());
-				frame.repaint();
+				int[] coordenadas = j.getJugador().simularMovimiento(direccion);
+				System.out.println(j.puedoMover(coordenadas));
+				if(j.puedoMover(coordenadas)){
+					j.mover(direccion);
+					labelJugador.setIcon(j.getJugador().getIcon());
+					labelJugador.setBounds(j.getJugador().x(),j.getJugador().y(),32,32);
+					System.out.println(j.getJugador().x()+","+j.getJugador().y());
+					frame.repaint();
+				}
 			}
 		});
 		iniciarJugador();
@@ -79,6 +81,7 @@ public class GUI {
 				if(mapa.obtenerCelda(i, j)!=null){
 					gameObject aux=mapa.obtenerCelda(i, j);
 					aux.setX(pos2); aux.setY(pos1);
+					System.out.println(pos2+","+pos1);
 					JLabel etiqueta = new JLabel(aux.getIcon());
 					etiqueta.setBounds(pos2, pos1, 32, 32);
 					frame.getContentPane().add(etiqueta);

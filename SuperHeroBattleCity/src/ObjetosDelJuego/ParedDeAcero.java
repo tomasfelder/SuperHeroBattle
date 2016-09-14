@@ -12,11 +12,5 @@ public class ParedDeAcero extends Pared {
 		vida=4;
 		imagen = new ImageIcon(this.getClass().getResource("/imagenes/ParedDeAcero.png"));
 	}
-	
-	@Override
-	boolean colision(gameObject g) {
-		// TODO Auto-generated method stub
-		return false;
-	}
 
 }
