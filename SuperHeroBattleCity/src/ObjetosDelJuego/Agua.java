@@ -9,6 +9,6 @@ public class Agua extends gameObject {
 	 */
 	public Agua(){
 		
-		imagen = new ImageIcon(this.getClass().getResource("/imagenes/ParedDeAcero.png"));
+		imagen = new ImageIcon(this.getClass().getResource("/imagenes/Agua.png"));
 	}
 }

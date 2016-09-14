@@ -33,6 +33,18 @@ public class Mapa {
 	            			matriz[nroLinea][j]=new ParedDeAcero();
 	            			j++;
 	            			break;
+	            		case 'b' :
+	            			matriz[nroLinea][j]=new Base();
+	            			j++;
+	            			break;
+	            		case 'a' :
+	            			matriz[nroLinea][j]=new Agua();
+	            			j++;
+	            			break;
+	            		case 'B' :
+	            			matriz[nroLinea][j]=new Bosque();
+	            			j++;
+	            			break;
 	            		case ' ' :
 	            			break;
 	            		}

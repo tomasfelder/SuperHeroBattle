@@ -42,7 +42,7 @@ public class GUI {
 		j=new Juego(this);
 		mapa=new Mapa(12,13,"Mapa1.txt");
 		
-		initialize();	
+		initialize(12,13);	
 		frame.addKeyListener(new KeyAdapter() {
 			@Override
 			/*public void keyReleased(KeyEvent arg0) {
@@ -103,9 +103,9 @@ public class GUI {
 	/**
 	 * Initialize the contents of the frame.
 	 */
-	private void initialize() {
+	private void initialize(int ancho,int largo) {
 		frame = new JFrame();
-		frame.setSize(640, 480);
+		frame.setSize(largo*32,ancho*32);
 		frame.getContentPane().setLayout(null);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
