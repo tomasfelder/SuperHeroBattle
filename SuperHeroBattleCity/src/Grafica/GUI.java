@@ -51,7 +51,13 @@ public class GUI {
 			}*/
 			public void keyPressed(KeyEvent arg0){
 				
-				mover(arg0);
+				int direccion=movimiento(arg0);
+				
+				j.mover(direccion);
+				labelJugador.setIcon(j.getJugador().getIcon());
+				labelJugador.setBounds(j.getJugador().x(),j.getJugador().y(),32,32);
+				System.out.println(j.getJugador().x()+","+j.getJugador().y());
+				frame.repaint();
 			}
 		});
 		iniciarJugador();
@@ -101,7 +107,7 @@ public class GUI {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
 
-	protected void mover(KeyEvent k){
+	protected int movimiento(KeyEvent k){
 		
 		int direccion = 4;
 		
@@ -119,13 +125,7 @@ public class GUI {
 				direccion = 3;
 				break;
 		}
-		if (direccion!=4)
-			j.mover(direccion);
-		labelJugador.setIcon(j.getJugador().getIcon());
-		labelJugador.setBounds(j.getJugador().x(),j.getJugador().y(),32,32);
-		System.out.println(j.getJugador().x());
-		frame.repaint();
-		
+		return direccion;
 	}
 	
 	public Mapa getMapa(){

@@ -24,7 +24,20 @@ public abstract class Tanque extends gameObject {
 	
 	//Metodos
 	
-	
+	public int simularMovimiento(int direccion){
+		switch (direccion){
+		case 0:
+			return this.y-1-velocidadMovimiento;
+		case 1:
+			return this.y+1+velocidadMovimiento;
+		case 2:
+			return this.x-1-velocidadMovimiento;
+		case 3:
+			return this.x+1+velocidadMovimiento;
+		default:
+			return -1;
+		}
+	}
 	
 	public void mover(int Direccion){
 		
