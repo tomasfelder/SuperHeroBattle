@@ -13,8 +13,7 @@ public abstract class gameObject {
 	protected ImageIcon imagen;
 	
 	//http://opensource.apple.com//source/gcc3/gcc3-1041/libjava/java/awt/Rectangle.java
-	public boolean hayColision(int[] coord)
-	  {
+	public boolean hayColision(int[] coord){
 	    int neww = (x + ANCHO < coord[0] + ANCHO ?
 	        	x + ANCHO : coord[0] + ANCHO) - (x < coord[0] ? coord[0] : x);
 	    int newh = (y + ALTO < coord[1] + ALTO ?
