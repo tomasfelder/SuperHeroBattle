@@ -20,11 +20,6 @@ public class Jugador extends Tanque{
 		iconos[3]=new ImageIcon(this.getClass().getResource("/imagenes/right.png"));
 	}
 
-	
-	public boolean colision(gameObject o){
-		
-		return false;
-	}
 	public boolean colision(powerUp p){
 		
 		p.afectar();
