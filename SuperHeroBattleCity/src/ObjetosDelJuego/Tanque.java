@@ -1,5 +1,7 @@
 package ObjetosDelJuego;
 
+import java.awt.Image;
+
 import javax.swing.*;
 
 public abstract class Tanque extends gameObject {
@@ -100,5 +102,6 @@ public abstract class Tanque extends gameObject {
 	public int velocidad(){
 		return velocidadMovimiento;
 	}
+	
 	
 }

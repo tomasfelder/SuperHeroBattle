@@ -15,6 +15,7 @@ import ObjetosDelJuego.gameObject;
 public class GUI {
 
 	private JFrame frame;
+	private JPanel panelMapa;
 	private Mapa mapa;
 	private Juego j;
 	private JLabel labelJugador;
@@ -74,6 +75,10 @@ public class GUI {
 	}
 	
 	private void ponerObstaculos() {
+		panelMapa = new JPanel();
+		panelMapa.setBackground(Color.BLACK);
+		panelMapa.setBounds(0,0,frame.getWidth(),frame.getHeight());
+		panelMapa.setLayout(null);
 		int pos1,pos2;
 		pos1=pos2=0;
 		for(int i=0;i<mapa.getLargo();i++){
@@ -84,20 +89,22 @@ public class GUI {
 					System.out.println(pos2+","+pos1);
 					JLabel etiqueta = new JLabel(aux.getIcon());
 					etiqueta.setBounds(pos2, pos1, 32, 32);
-					frame.getContentPane().add(etiqueta);
+					panelMapa.add(etiqueta);
 				}
 				else{
-					JLabel etiqueta = new JLabel();
+					/*JLabel etiqueta = new JLabel();
 					etiqueta.setBackground(Color.BLACK);
 					etiqueta.setOpaque(true);
 					etiqueta.setBounds(pos2, pos1, 32, 32);
 					frame.getContentPane().add(etiqueta);
+					*/
 				}
 				pos2+=32;
 			}
 			pos2=0;
 			pos1+=32;
 		}
+		frame.add(panelMapa);
 	}
 
 	/**
@@ -105,7 +112,9 @@ public class GUI {
 	 */
 	private void initialize(int ancho,int largo) {
 		frame = new JFrame();
-		frame.setSize(largo*32,ancho*32);
+		
+		frame.setSize(800,600);
+		
 		frame.getContentPane().setLayout(null);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
