@@ -11,6 +11,7 @@ import javax.swing.*;
 
 
 import Mapa.*;
+import ObjetosDelJuego.Obstaculo;
 import ObjetosDelJuego.gameObject;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -21,6 +22,7 @@ public class GUI {
 	private JPanel panelMapa,panelBotones;
 	private Mapa mapa;
 	private Juego j;
+	private JLabel[][] obstaculos;
 	private JLabel labelJugador, labelEnemigo;
 	private JButton btnCrearEnemigo;
 	private JButton btnEliminarEnemigo;
@@ -92,6 +94,21 @@ public class GUI {
 			frame.getContentPane().add(panelBotones);
 			
 			JButton btnEliminarPared = new JButton("Eliminar pared");
+			btnEliminarPared.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent arg0) {
+					Random rnd = new Random();
+					int x=rnd.nextInt(12); int y= rnd.nextInt(13);
+					System.out.println(x+","+y);
+					Obstaculo aux = mapa.obtenerCelda(x, y);
+					while(aux==null){
+						x=rnd.nextInt(12); y= rnd.nextInt(13);
+						System.out.println(x+","+y);
+						aux = mapa.obtenerCelda(x, y);
+					}
+					mapa.eliminarCelda(x, y);
+					obstaculos[x][y].setIcon(null);
+				}
+			});
 			btnEliminarPared.setFocusable(false);
 			panelBotones.add(btnEliminarPared);
 			panelBotones.setFocusable(false);
@@ -112,25 +129,18 @@ public class GUI {
 		panelMapa.setBackground(Color.BLACK);
 		panelMapa.setBounds(0,0,416,384);
 		panelMapa.setLayout(null);
+		obstaculos = new JLabel[12][13];
 		int pos1,pos2;
 		pos1=pos2=0;
 		for(int i=0;i<mapa.getLargo();i++){
 			for(int j=0;j<mapa.getAncho();j++){
 				if(mapa.obtenerCelda(i, j)!=null){
-					gameObject aux=mapa.obtenerCelda(i, j);
+					Obstaculo aux=mapa.obtenerCelda(i, j);
 					aux.setX(pos2); aux.setY(pos1);
 					System.out.println(pos2+","+pos1);
-					JLabel etiqueta = new JLabel(aux.getIcon());
-					etiqueta.setBounds(pos2, pos1, 32, 32);
-					panelMapa.add(etiqueta);
-				}
-				else{
-					/*JLabel etiqueta = new JLabel();
-					etiqueta.setBackground(Color.BLACK);
-					etiqueta.setOpaque(true);
-					etiqueta.setBounds(pos2, pos1, 32, 32);
-					frame.getContentPane().add(etiqueta);
-					*/
+					obstaculos[i][j] = new JLabel(aux.getIcon());
+					obstaculos[i][j].setBounds(pos2, pos1, 32, 32);
+					panelMapa.add(obstaculos[i][j]);
 				}
 				pos2+=32;
 			}

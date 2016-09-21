@@ -72,8 +72,12 @@ public class Mapa {
 		return matriz.length;
 	}
 	
-	public gameObject obtenerCelda(int x, int y){
+	public Obstaculo obtenerCelda(int x, int y){
 		return matriz[x][y];
+	}
+	
+	public void eliminarCelda(int x,int y){
+		matriz[x][y]=null;
 	}
 	
 }
