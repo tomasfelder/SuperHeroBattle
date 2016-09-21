@@ -8,12 +8,13 @@ public class Juego {
 	private Jugador jugador;
 	private Enemigo enemigo;
 	private Mapa mapa;
+	private int puntaje;
 	
 	public Juego(Mapa m){
 	
 		jugador=new Jugador(0,0);
 		mapa=m;
-		
+		puntaje=0;
 	}
 	
 	public boolean puedoMover(int[] coord){
@@ -26,7 +27,11 @@ public class Juego {
 	}
 	
 	public void crearEnemigo(int x,int y){
-		enemigo = new Enemigo(x,y);
+		enemigo = new EnemigoBasico(x,y);
+	}
+	
+	public void moverEnemigo(){
+		
 	}
 	
 	public void eliminarEnemigo(){
@@ -36,6 +41,14 @@ public class Juego {
 	public Enemigo getEnemigo(){
 		
 		return enemigo;
+	}
+	
+	public void sumarPuntaje(int p){
+		puntaje=p;
+	}
+	
+	public int getPuntaje(){
+		return puntaje;
 	}
 	
 	public Jugador getJugador(){

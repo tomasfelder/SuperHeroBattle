@@ -82,9 +82,20 @@ public class GUI {
 			btnEliminarEnemigo.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent arg0) {
 					j.eliminarEnemigo();
+					j.sumarPuntaje(100);
 					labelEnemigo.setIcon(null);
 					btnCrearEnemigo.setEnabled(true);
 					btnEliminarEnemigo.setEnabled(false);
+					frame.repaint();
+					JLabel labelPuntaje = new JLabel(new ImageIcon(this.getClass().getResource("/imagenes/Puntaje_100.png")));
+					labelPuntaje.setBounds(80, 16, 13, 7);
+					panelMapa.add(labelPuntaje);
+//					long start_time = System.currentTimeMillis();
+//					long wait_time = 2000;
+//					long end_time = start_time + wait_time;
+//					while (System.currentTimeMillis() < end_time){
+//					}
+					//panelMapa.remove(labelPuntaje);
 					frame.repaint();
 				}
 			});
@@ -114,7 +125,7 @@ public class GUI {
 			panelBotones.setFocusable(false);
 			frame.repaint();
 	}
-	
+
 	private void iniciarJugador(){
 		
 		labelJugador=new JLabel();
