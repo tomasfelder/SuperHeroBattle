@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyAdapter;
+import java.util.Random;
 
 import Logica.Juego;
 import javax.swing.*;
@@ -17,13 +18,12 @@ import java.awt.event.ActionEvent;
 public class GUI {
 
 	private JFrame frame;
-	private JPanel panelMapa;
+	private JPanel panelMapa,panelBotones;
 	private Mapa mapa;
 	private Juego j;
 	private JLabel labelJugador, labelEnemigo;
 	private JButton btnCrearEnemigo;
 	private JButton btnEliminarEnemigo;
-	
 	
 	/**
 	 * Launch the application.
@@ -46,80 +46,71 @@ public class GUI {
 	 * Create the application.
 	 */
 	public GUI() {
-		j=new Juego(this);
 		mapa=new Mapa(12,13,"Mapa1.txt");
-		
-		initialize(12,13);	
-		
-		frame.addKeyListener(new KeyAdapter() {
-			@Override
-			/*public void keyReleased(KeyEvent arg0) {
-				mover(arg0);
-			}*/
-			public void keyPressed(KeyEvent arg0){
-				
-				int direccion=movimiento(arg0);
-				int[] coordenadas = j.getJugador().simularMovimiento(direccion);
-				System.out.println(j.puedoMover(coordenadas));
-				if(j.puedoMover(coordenadas)){
-					j.mover(direccion);
-					labelJugador.setIcon(j.getJugador().getIcon());
-					labelJugador.setBounds(j.getJugador().x(),j.getJugador().y(),32,32);
-					System.out.println(j.getJugador().x()+","+j.getJugador().y());
-					frame.repaint();
-				}
-			}
-		});
+		j=new Juego(mapa);
+		initialize(12,13);
 		crearBotones();
 		iniciarJugador();
 		ponerObstaculos();
-		
-		
-		
 	}
+	
 	private void crearBotones(){
 		
-			JPanel panel = new JPanel();
-			panel.setBounds(644, 483, 135, 78);
-			frame.add(panel);
+			panelBotones = new JPanel();
+			panelBotones.setBounds(438, 291, 135, 93);
 			
 			btnCrearEnemigo = new JButton("Crear Enemigo");
+			btnCrearEnemigo.setFocusable(false);
 			btnCrearEnemigo.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-					
-					labelEnemigo=new JLabel(j.getEnemigo().getImagen());
+					labelEnemigo=new JLabel();
+					j.crearEnemigo(64, 0);
+					labelEnemigo.setIcon(j.getEnemigo().getIcon());
 					labelEnemigo.setBounds(j.getEnemigo().x(), j.getEnemigo().y(), 32, 32);
-					frame.getContentPane().add(labelEnemigo);
+					panelMapa.add(labelEnemigo);
 					btnCrearEnemigo.setEnabled(false);
 					btnEliminarEnemigo.setEnabled(true);
-					
+					frame.repaint();
 				}
 			});
 			btnCrearEnemigo.setBounds(650, 495, 112, 23);
-			panel.add(btnCrearEnemigo);
-		
-		
+			panelBotones.add(btnCrearEnemigo);
 			btnEliminarEnemigo = new JButton("Eliminar Enemigo");
+			btnEliminarEnemigo.setFocusable(false);
+			btnEliminarEnemigo.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent arg0) {
+					j.eliminarEnemigo();
+					labelEnemigo.setIcon(null);
+					btnCrearEnemigo.setEnabled(true);
+					btnEliminarEnemigo.setEnabled(false);
+					frame.repaint();
+				}
+			});
 			btnEliminarEnemigo.setEnabled(false);
 			btnEliminarEnemigo.setBounds(650, 529, 112, 23);
-			panel.add(btnEliminarEnemigo);
+			panelBotones.add(btnEliminarEnemigo);
+			frame.getContentPane().add(panelBotones);
 			
-			
-		
-		
+			JButton btnEliminarPared = new JButton("Eliminar pared");
+			btnEliminarPared.setFocusable(false);
+			panelBotones.add(btnEliminarPared);
+			panelBotones.setFocusable(false);
+			frame.repaint();
 	}
 	
 	private void iniciarJugador(){
 		
-		labelJugador=new JLabel(j.getJugador().getImagen());
+		labelJugador=new JLabel();
+		labelJugador.setIcon(j.getJugador().getIcon());
 		labelJugador.setBounds(j.getJugador().x(), j.getJugador().y(), 32, 32);
 		frame.getContentPane().add(labelJugador);
+		frame.repaint();
 	}
 	
 	private void ponerObstaculos() {
 		panelMapa = new JPanel();
 		panelMapa.setBackground(Color.BLACK);
-		panelMapa.setBounds(0,0,frame.getWidth(),frame.getHeight());
+		panelMapa.setBounds(0,0,416,384);
 		panelMapa.setLayout(null);
 		int pos1,pos2;
 		pos1=pos2=0;
@@ -146,10 +137,27 @@ public class GUI {
 			pos2=0;
 			pos1+=32;
 		}
+		panelMapa.addKeyListener(new KeyAdapter() {
+			@Override
+			/*public void keyReleased(KeyEvent arg0) {
+				mover(arg0);
+			}*/
+			public void keyPressed(KeyEvent arg0){
+				int direccion=movimiento(arg0);
+				int[] coordenadas = j.getJugador().simularMovimiento(direccion);
+				System.out.println(j.puedoMover(coordenadas));
+				if(j.puedoMover(coordenadas)){
+					j.mover(direccion);
+					labelJugador.setIcon(j.getJugador().getIcon());
+					labelJugador.setBounds(j.getJugador().x(),j.getJugador().y(),32,32);
+					System.out.println(j.getJugador().x()+","+j.getJugador().y());
+					frame.repaint();
+				}
+			}
+		});
+		panelMapa.setFocusable(true);
 		frame.getContentPane().add(panelMapa);
-	
-		
-		
+		frame.repaint();
 	}
 
 	/**

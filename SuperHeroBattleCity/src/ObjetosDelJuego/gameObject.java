@@ -1,7 +1,6 @@
 package ObjetosDelJuego;
 import java.awt.Image;
 import java.awt.Point;
-import java.awt.geom.Point2D;
 
 import javax.swing.*;
 

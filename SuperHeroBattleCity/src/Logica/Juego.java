@@ -1,29 +1,36 @@
 package Logica;
 
 import ObjetosDelJuego.*;
-import Grafica.*;
+import Mapa.Mapa;
 
 public class Juego {
 
 	private Jugador jugador;
 	private Enemigo enemigo;
-	private GUI gui;
+	private Mapa mapa;
 	
-	public Juego(GUI gui){
+	public Juego(Mapa m){
 	
 		jugador=new Jugador(0,0);
-		enemigo=new Enemigo(64,0);
-		this.gui=gui;
+		mapa=m;
 		
 	}
 	
 	public boolean puedoMover(int[] coord){
 		boolean puedo=true;
-		for(int i=0;i<gui.getMapa().getLargo()&&puedo;i++)
-			for(int j=0;j<gui.getMapa().getAncho()&&puedo;j++)
-				if(gui.getMapa().obtenerCelda(i, j)!=null)
-					puedo=!gui.getMapa().obtenerCelda(i, j).hayColision(coord);
+		for(int i=0;i<mapa.getLargo()&&puedo;i++)
+			for(int j=0;j<mapa.getAncho()&&puedo;j++)
+				if(mapa.obtenerCelda(i, j)!=null)
+					puedo=!mapa.obtenerCelda(i, j).hayColision(coord);
 		return puedo;
+	}
+	
+	public void crearEnemigo(int x,int y){
+		enemigo = new Enemigo(x,y);
+	}
+	
+	public void eliminarEnemigo(){
+		enemigo=null;
 	}
 	
 	public Enemigo getEnemigo(){
