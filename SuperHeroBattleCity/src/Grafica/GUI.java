@@ -11,6 +11,8 @@ import javax.swing.*;
 
 import Mapa.*;
 import ObjetosDelJuego.gameObject;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class GUI {
 
@@ -18,11 +20,15 @@ public class GUI {
 	private JPanel panelMapa;
 	private Mapa mapa;
 	private Juego j;
-	private JLabel labelJugador;
+	private JLabel labelJugador, labelEnemigo;
+	private JButton btnCrearEnemigo;
+	private JButton btnEliminarEnemigo;
+	
 	
 	/**
 	 * Launch the application.
 	 */
+	
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -44,6 +50,7 @@ public class GUI {
 		mapa=new Mapa(12,13,"Mapa1.txt");
 		
 		initialize(12,13);	
+		
 		frame.addKeyListener(new KeyAdapter() {
 			@Override
 			/*public void keyReleased(KeyEvent arg0) {
@@ -63,15 +70,50 @@ public class GUI {
 				}
 			}
 		});
+		crearBotones();
 		iniciarJugador();
 		ponerObstaculos();
+		
+		
+		
 	}
-
+	private void crearBotones(){
+		
+			JPanel panel = new JPanel();
+			panel.setBounds(644, 483, 135, 78);
+			frame.add(panel);
+			
+			btnCrearEnemigo = new JButton("Crear Enemigo");
+			btnCrearEnemigo.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					
+					labelEnemigo=new JLabel(j.getEnemigo().getImagen());
+					labelEnemigo.setBounds(j.getEnemigo().x(), j.getEnemigo().y(), 32, 32);
+					frame.getContentPane().add(labelEnemigo);
+					btnCrearEnemigo.setEnabled(false);
+					btnEliminarEnemigo.setEnabled(true);
+					
+				}
+			});
+			btnCrearEnemigo.setBounds(650, 495, 112, 23);
+			panel.add(btnCrearEnemigo);
+		
+		
+			btnEliminarEnemigo = new JButton("Eliminar Enemigo");
+			btnEliminarEnemigo.setEnabled(false);
+			btnEliminarEnemigo.setBounds(650, 529, 112, 23);
+			panel.add(btnEliminarEnemigo);
+			
+			
+		
+		
+	}
+	
 	private void iniciarJugador(){
 		
 		labelJugador=new JLabel(j.getJugador().getImagen());
 		labelJugador.setBounds(j.getJugador().x(), j.getJugador().y(), 32, 32);
-		frame.add(labelJugador);
+		frame.getContentPane().add(labelJugador);
 	}
 	
 	private void ponerObstaculos() {
@@ -104,7 +146,10 @@ public class GUI {
 			pos2=0;
 			pos1+=32;
 		}
-		frame.add(panelMapa);
+		frame.getContentPane().add(panelMapa);
+	
+		
+		
 	}
 
 	/**
@@ -116,6 +161,7 @@ public class GUI {
 		frame.setSize(800,600);
 		
 		frame.getContentPane().setLayout(null);
+		
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
 
@@ -143,5 +189,4 @@ public class GUI {
 	public Mapa getMapa(){
 		return mapa;
 	}
-	
 }

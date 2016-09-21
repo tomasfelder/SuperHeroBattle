@@ -6,11 +6,13 @@ import Grafica.*;
 public class Juego {
 
 	private Jugador jugador;
+	private Enemigo enemigo;
 	private GUI gui;
 	
 	public Juego(GUI gui){
 	
 		jugador=new Jugador(0,0);
+		enemigo=new Enemigo(64,0);
 		this.gui=gui;
 		
 	}
@@ -22,6 +24,11 @@ public class Juego {
 				if(gui.getMapa().obtenerCelda(i, j)!=null)
 					puedo=!gui.getMapa().obtenerCelda(i, j).hayColision(coord);
 		return puedo;
+	}
+	
+	public Enemigo getEnemigo(){
+		
+		return enemigo;
 	}
 	
 	public Jugador getJugador(){
