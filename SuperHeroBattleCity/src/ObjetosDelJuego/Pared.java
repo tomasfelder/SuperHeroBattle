@@ -1,6 +1,6 @@
 package ObjetosDelJuego;
 
-public abstract class Pared extends gameObject {
+public abstract class Pared extends Obstaculo {
 	
 	protected int vida;
 	

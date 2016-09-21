@@ -2,7 +2,7 @@ package ObjetosDelJuego;
 
 import javax.swing.ImageIcon;
 
-public class Agua extends gameObject {
+public class Agua extends Obstaculo {
 	
 	/**
 	 * Constructor

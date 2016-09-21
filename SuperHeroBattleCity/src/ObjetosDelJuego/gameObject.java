@@ -1,5 +1,6 @@
 package ObjetosDelJuego;
 import java.awt.Image;
+import java.awt.Point;
 
 import javax.swing.*;
 
@@ -8,6 +9,7 @@ public abstract class gameObject {
 	protected static final int ANCHO=32;
 	protected static final int ALTO=32;
 	
+	protected Point coordenadas;
 	protected int x;
 	protected int y;
 	protected ImageIcon imagen;

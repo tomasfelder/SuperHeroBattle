@@ -6,13 +6,13 @@ import ObjetosDelJuego.*;
 public class Mapa {
 	
 	//Atributos de instancia
-	protected gameObject[][] matriz;
+	protected Obstaculo[][] matriz;
 	protected String linea;
 	protected BufferedReader br;
 	
 	//Constructor
 	public Mapa(int x,int y,String archivo){
-		matriz=new gameObject[x][y];
+		matriz=new Obstaculo[x][y];
 		try {
 			br= new BufferedReader(new FileReader(archivo));
 			int nroLinea=0;

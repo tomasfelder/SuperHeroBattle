@@ -2,7 +2,7 @@ package ObjetosDelJuego;
 
 import javax.swing.ImageIcon;
 
-public class Base extends gameObject {
+public class Base extends Obstaculo {
 	
 	/**
 	 * Constructor
