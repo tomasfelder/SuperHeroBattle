@@ -4,8 +4,8 @@ abstract class powerUp extends gameObject {
 
 	public powerUp(int x,int y){
 		
-		this.x=x;
-		this.y=y;
+		coordenadas.x=x;
+		coordenadas.y=y;
 		
 	}
 	

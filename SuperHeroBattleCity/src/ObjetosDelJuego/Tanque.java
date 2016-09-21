@@ -1,6 +1,7 @@
 package ObjetosDelJuego;
 
 import java.awt.Image;
+import java.awt.Point;
 
 import javax.swing.*;
 
@@ -16,8 +17,7 @@ public abstract class Tanque extends gameObject {
 	
 	public Tanque(int x,int y){
 		
-		this.x=x;
-		this.y=y;
+		coordenadas = new Point(x,y);
 		iconos=new ImageIcon[4];
 		
 	}
@@ -25,22 +25,22 @@ public abstract class Tanque extends gameObject {
 	//Metodos
 	
 	public int[] simularMovimiento(int direccion){
-		int coordenadas[] = new int[2];
+		int coord[] = new int[2];
 		switch (direccion){
 		case 0:
-			coordenadas[0]=x; coordenadas[1]=this.y-velocidadMovimiento;
+			coord[0]=coordenadas.x; coord[1]=coordenadas.y-velocidadMovimiento;
 			break;
 		case 1:
-			coordenadas[0]=x; coordenadas[1]=this.y+velocidadMovimiento;
+			coord[0]=coordenadas.x; coord[1]=coordenadas.y+velocidadMovimiento;
 			break;
 		case 2:
-			coordenadas[0]=this.x-velocidadMovimiento; coordenadas[1]=y;
+			coord[0]=coordenadas.x-velocidadMovimiento; coord[1]=coordenadas.y;
 			break;
 		case 3:
-			coordenadas[0]=this.x+velocidadMovimiento; coordenadas[1]=y;
+			coord[0]=coordenadas.x+velocidadMovimiento; coord[1]=coordenadas.y;
 			break;
 		}
-		return coordenadas;
+		return coord;
 	}
 	
 	public void mover(int Direccion){
@@ -72,30 +72,30 @@ public abstract class Tanque extends gameObject {
 	
 	public Disparo disparar(){
 		
-		return new Disparo(x,y);
+		return new Disparo(coordenadas.x,coordenadas.y);
 	}
 	
 	private void moverDerecha(){
 		
 		
-		this.x=this.x+velocidadMovimiento;
+		coordenadas.x=coordenadas.x+velocidadMovimiento;
 		
 	}
 	private void moverIzquierda(){
 		
 		
-		this.x=this.x-velocidadMovimiento;
+		coordenadas.x=coordenadas.x-velocidadMovimiento;
 	}
 	private void moverArriba(){
 		
 		
-		this.y=this.y-velocidadMovimiento;
+		coordenadas.y=coordenadas.y-velocidadMovimiento;
 		
 	}
 	private void moverAbajo(){
 		
 		
-		this.y=this.y+velocidadMovimiento;
+		coordenadas.y=coordenadas.y+velocidadMovimiento;
 		
 	}
 	

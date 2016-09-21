@@ -1,11 +1,11 @@
 package ObjetosDelJuego;
 
+import java.awt.Point;
+
 public class Disparo extends gameObject {
 
 	public Disparo(int x,int y){
-		
-		this.x=x;
-		this.y=y;
+		coordenadas = new Point(x,y);
 	}
 	
 	public boolean colision(gameObject o){

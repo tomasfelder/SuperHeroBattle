@@ -1,5 +1,7 @@
 package ObjetosDelJuego;
 
+import java.awt.Point;
+
 import javax.swing.ImageIcon;
 
 public class Base extends Obstaculo {
@@ -8,7 +10,7 @@ public class Base extends Obstaculo {
 	 * Constructor
 	 */
 	public Base(){
-		
+		coordenadas = new Point(0,0);
 		imagen = new ImageIcon(this.getClass().getResource("/imagenes/Reina.png"));
 	}
 }

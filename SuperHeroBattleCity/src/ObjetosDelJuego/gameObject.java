@@ -1,6 +1,7 @@
 package ObjetosDelJuego;
 import java.awt.Image;
 import java.awt.Point;
+import java.awt.geom.Point2D;
 
 import javax.swing.*;
 
@@ -10,35 +11,35 @@ public abstract class gameObject {
 	protected static final int ALTO=32;
 	
 	protected Point coordenadas;
-	protected int x;
-	protected int y;
+//	protected int x;
+//	protected int y;
 	protected ImageIcon imagen;
 	
 	//http://opensource.apple.com//source/gcc3/gcc3-1041/libjava/java/awt/Rectangle.java
 	public boolean hayColision(int[] coord){
-	    int neww = (x + ANCHO < coord[0] + ANCHO ?
-	        	x + ANCHO : coord[0] + ANCHO) - (x < coord[0] ? coord[0] : x);
-	    int newh = (y + ALTO < coord[1] + ALTO ?
-	        	y + ALTO : coord[1] + ALTO) - (y < coord[1] ? coord[1] : y);
+	    int neww = (coordenadas.x + ANCHO < coord[0] + ANCHO ?
+	        	coordenadas.x + ANCHO : coord[0] + ANCHO) - (coordenadas.x < coord[0] ? coord[0] : coordenadas.x);
+	    int newh = (coordenadas.y + ALTO < coord[1] + ALTO ?
+	        	coordenadas.y + ALTO : coord[1] + ALTO) - (coordenadas.y < coord[1] ? coord[1] : coordenadas.y);
 	    return (neww > 0 && newh > 0);
 	  }
 	
 
 	public int x(){
-		return x;
+		return coordenadas.x;
 	}
 	
 	public int y(){
-		return y;
+		return coordenadas.y;
 	}
 	
 	public void setX(int i){
 		
-		x=i;
+		coordenadas.x=i;
 	}
 	public void setY(int i){
 		
-		y=i;
+		coordenadas.y=i;
 		
 	}
 	
