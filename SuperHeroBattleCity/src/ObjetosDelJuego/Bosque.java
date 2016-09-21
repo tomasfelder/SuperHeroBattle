@@ -8,8 +8,7 @@ public class Bosque extends Obstaculo {
 	/**
 	 * Constructor
 	 */
-	public void prueba() {
-	}
+	
 	
 	public Bosque(){
 		coordenadas = new Point(0,0);
