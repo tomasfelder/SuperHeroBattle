@@ -2,6 +2,7 @@ package Logica;
 
 import ObjetosDelJuego.*;
 import Mapa.Mapa;
+import java.util.Random;
 
 public class Juego {
 
@@ -30,8 +31,9 @@ public class Juego {
 		enemigo = new EnemigoBasico(x,y);
 	}
 	
-	public void moverEnemigo(){
-		
+	public void moverEnemigo(int m){
+		if(m!=4)
+			enemigo.mover(m);
 	}
 	
 	public void eliminarEnemigo(){

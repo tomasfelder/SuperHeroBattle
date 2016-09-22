@@ -26,6 +26,7 @@ public class GUI {
 	private JLabel labelJugador, labelEnemigo;
 	private JButton btnCrearEnemigo;
 	private JButton btnEliminarEnemigo;
+	private boolean hayEnemigos;
 	
 	/**
 	 * Launch the application.
@@ -55,11 +56,12 @@ public class GUI {
 		iniciarJugador();
 		ponerObstaculos();
 	}
-	
+
+
 	private void crearBotones(){
 		
 			panelBotones = new JPanel();
-			panelBotones.setBounds(438, 291, 135, 93);
+			panelBotones.setBounds(428, 291, 156, 148);
 			
 			btnCrearEnemigo = new JButton("Crear Enemigo");
 			btnCrearEnemigo.setFocusable(false);
@@ -67,6 +69,7 @@ public class GUI {
 				public void actionPerformed(ActionEvent e) {
 					labelEnemigo=new JLabel();
 					j.crearEnemigo(64, 0);
+					hayEnemigos=true;
 					labelEnemigo.setIcon(j.getEnemigo().getIcon());
 					labelEnemigo.setBounds(j.getEnemigo().x(), j.getEnemigo().y(), 32, 32);
 					panelMapa.add(labelEnemigo);
@@ -82,6 +85,7 @@ public class GUI {
 			btnEliminarEnemigo.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent arg0) {
 					j.eliminarEnemigo();
+					hayEnemigos=false;
 					j.sumarPuntaje(100);
 					labelEnemigo.setIcon(null);
 					btnCrearEnemigo.setEnabled(true);
@@ -160,9 +164,6 @@ public class GUI {
 		}
 		panelMapa.addKeyListener(new KeyAdapter() {
 			@Override
-			/*public void keyReleased(KeyEvent arg0) {
-				mover(arg0);
-			}*/
 			public void keyPressed(KeyEvent arg0){
 				int direccion=movimiento(arg0);
 				int[] coordenadas = j.getJugador().simularMovimiento(direccion);
