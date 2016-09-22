@@ -8,4 +8,8 @@ public abstract class Enemigo extends Tanque{
 	public Enemigo(int x, int y) {
 		super(x, y);
 	}
+	
+	public int getPuntos(){
+		return puntosQueDa;
+	}
 }
