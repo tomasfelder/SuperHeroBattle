@@ -23,81 +23,16 @@ public abstract class Tanque extends gameObject {
 	
 	//Metodos
 	
-	public int[] simularMovimiento(int direccion){
-		int coord[] = new int[2];
-		switch (direccion){
-		case 0:
-			coord[0]=coordenadas.x; coord[1]=coordenadas.y-velocidadMovimiento;
-			break;
-		case 1:
-			coord[0]=coordenadas.x; coord[1]=coordenadas.y+velocidadMovimiento;
-			break;
-		case 2:
-			coord[0]=coordenadas.x-velocidadMovimiento; coord[1]=coordenadas.y;
-			break;
-		case 3:
-			coord[0]=coordenadas.x+velocidadMovimiento; coord[1]=coordenadas.y;
-			break;
-		}
-		return coord;
-	}
+	public abstract int[] simularMovimiento(int direccion);
 	
-	public void mover(int Direccion){
-		
-		
-		switch (Direccion){
-		case 0:
-			this.moverArriba();
-			break;
-		case 1:
-			this.moverAbajo();
-			break;
-		case 2:
-			this.moverIzquierda();
-			break;
-		case 3:
-			this.moverDerecha();
-			break;
-		}
-		cambiarImagen(Direccion);
-		
-	}
-
-	private void cambiarImagen(int d){
-		
-		imagen=iconos[d];
-		
-	}
+	public abstract void mover(int Direccion);
 	
 	public Disparo disparar(){
 		
 		return new Disparo(coordenadas.x,coordenadas.y);
 	}
 	
-	private void moverDerecha(){
-		
-		
-		coordenadas.x=coordenadas.x+velocidadMovimiento;
-		
-	}
-	private void moverIzquierda(){
-		
-		
-		coordenadas.x=coordenadas.x-velocidadMovimiento;
-	}
-	private void moverArriba(){
-		
-		
-		coordenadas.y=coordenadas.y-velocidadMovimiento;
-		
-	}
-	private void moverAbajo(){
-		
-		
-		coordenadas.y=coordenadas.y+velocidadMovimiento;
-		
-	}
-	
+
 	public int velocidad(){
 		return velocidadMovimiento;
 	}

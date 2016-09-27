@@ -24,8 +24,7 @@ public class GUI {
 	private Juego j;
 	private JLabel[][] obstaculos;
 	private JLabel labelJugador, labelEnemigo;
-	private JButton btnCrearEnemigo;
-	private JButton btnEliminarEnemigo;
+	private JButton btnCrearEnemigo,btnEliminarEnemigo,btnCambiarNivel;
 	private boolean hayEnemigos;
 	
 	/**
@@ -127,6 +126,17 @@ public class GUI {
 			btnEliminarPared.setFocusable(false);
 			panelBotones.add(btnEliminarPared);
 			panelBotones.setFocusable(false);
+			
+			btnCambiarNivel = new JButton("Cambiar Nivel");
+			btnCambiarNivel.setFocusable(false);
+			btnCambiarNivel.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent arg0) {
+					j.getJugador().setNivel(new Random().nextInt(4));
+					labelJugador.setIcon(j.getJugador().getIcon());
+					labelJugador.setBounds(j.getJugador().x(),j.getJugador().y(),32,32);
+				}
+			});
+			panelBotones.add(btnCambiarNivel);
 			frame.repaint();
 	}
 

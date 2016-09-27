@@ -1,27 +1,116 @@
 package ObjetosDelJuego;
 
+import java.awt.Image;
+
 import javax.swing.*;
  
 public class Jugador extends Tanque{
 	
-	protected Nivel nivel;
+	protected Nivel miNivel;
 	
 	public Jugador(int x,int y){
 		
 		super(x,y);
-		//nivel=new Nivel1();
+		miNivel=new Nivel_1();
 		velocidadMovimiento=2;
 		golpesQueResiste=1;
 		velocidadDisparo=1;
 		
-		imagen=new ImageIcon(this.getClass().getResource("/imagenesJugador/Nivel_1_Der.png"));
-		
-		iconos[0]=new ImageIcon(this.getClass().getResource("/imagenesJugador/Nivel_1_Arriba.png"));
-		iconos[1]=new ImageIcon(this .getClass().getResource("/imagenesJugador/Nivel_1_Abajo.png"));
-		iconos[2]=new ImageIcon(this.getClass().getResource("/imagenesJugador/Nivel_1_Izq.png"));
-		iconos[3]=new ImageIcon(this.getClass().getResource("/imagenesJugador/Nivel_1_Der.png"));
+//		imagen=new ImageIcon(this.getClass().getResource("/imagenesJugador/Nivel_1_Der.png"));
+//		
+//		iconos[0]=new ImageIcon(this.getClass().getResource("/imagenesJugador/Nivel_1_Arriba.png"));
+//		iconos[1]=new ImageIcon(this .getClass().getResource("/imagenesJugador/Nivel_1_Abajo.png"));
+//		iconos[2]=new ImageIcon(this.getClass().getResource("/imagenesJugador/Nivel_1_Izq.png"));
+//		iconos[3]=new ImageIcon(this.getClass().getResource("/imagenesJugador/Nivel_1_Der.png"));
 	}
-
+	
+	public void setNivel(int n){
+		switch (n){
+		case 0:
+			miNivel = new Nivel_1();
+			break;
+		case 1:
+			miNivel = new Nivel_2();
+			break;
+		case 2:
+			miNivel = new Nivel_3();
+			break;
+		case 3:
+			miNivel = new Nivel_4();
+			break;
+		}
+	}
+	
+	public int[] simularMovimiento(int direccion){
+		int coord[] = new int[2];
+		switch (direccion){
+		case 0:
+			coord[0]=coordenadas.x; coord[1]=coordenadas.y-miNivel.getVelocidadMovimiento();
+			break;
+		case 1:
+			coord[0]=coordenadas.x; coord[1]=coordenadas.y+miNivel.getVelocidadMovimiento();
+			break;
+		case 2:
+			coord[0]=coordenadas.x-miNivel.getVelocidadMovimiento(); coord[1]=coordenadas.y;
+			break;
+		case 3:
+			coord[0]=coordenadas.x+miNivel.getVelocidadMovimiento(); coord[1]=coordenadas.y;
+			break;
+		}
+		return coord;
+	}
+	
+	public void mover(int direccion){
+		
+		switch (direccion){
+		case 0:
+			this.moverArriba();
+			break;
+		case 1:
+			this.moverAbajo();
+			break;
+		case 2:
+			this.moverIzquierda();
+			break;
+		case 3:
+			this.moverDerecha();
+			break;
+		}
+		
+		miNivel.cambiarIcono(direccion);
+		
+	}	
+	
+	private void moverDerecha(){
+		
+		coordenadas.x=coordenadas.x+miNivel.getVelocidadMovimiento();
+		
+	}
+	private void moverIzquierda(){
+		
+		coordenadas.x=coordenadas.x-miNivel.getVelocidadMovimiento();
+	}
+	private void moverArriba(){
+		
+		coordenadas.y=coordenadas.y-miNivel.getVelocidadMovimiento();
+		
+	}
+	private void moverAbajo(){
+		
+		coordenadas.y=coordenadas.y+miNivel.getVelocidadMovimiento();
+		
+	}
+	
+	public ImageIcon getImagen(){
+		return miNivel.getIcono();
+	}
+	
+	public Icon getIcon(){
+		
+		return new ImageIcon(miNivel.getIcono().getImage().getScaledInstance(ANCHO, ALTO, Image.SCALE_DEFAULT));
+		
+	}
+	
 	public boolean colision(powerUp p){
 		
 		p.afectar();

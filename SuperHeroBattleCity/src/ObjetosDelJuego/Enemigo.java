@@ -12,4 +12,13 @@ public abstract class Enemigo extends Tanque{
 	public int getPuntos(){
 		return puntosQueDa;
 	}
+	
+	public  int[] simularMovimiento(int direccion){
+		return null;
+	}
+	
+	public void mover(int Direccion){
+		
+	}
+	
 }
