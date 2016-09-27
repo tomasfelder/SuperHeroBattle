@@ -7,7 +7,7 @@ import javax.swing.ImageIcon;
 public class Base extends Obstaculo {
 	
 	/**
-	 * Constructor
+	 * Constructores
 	 */
 	public Base(){
 		coordenadas = new Point(0,0);
