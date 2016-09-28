@@ -97,8 +97,9 @@ public class GUI {
 //					long wait_time = 2000;
 //					long end_time = start_time + wait_time;
 //					while (System.currentTimeMillis() < end_time){
+//					
 //					}
-					//panelMapa.remove(labelPuntaje);
+//					panelMapa.remove(labelPuntaje);
 					frame.repaint();
 				}
 			});

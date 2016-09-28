@@ -2,7 +2,6 @@ package Logica;
 
 import ObjetosDelJuego.*;
 import Mapa.Mapa;
-import java.util.Random;
 
 public class Juego {
 
@@ -37,6 +36,7 @@ public class Juego {
 	}
 	
 	public void eliminarEnemigo(){
+		puntaje+=enemigo.getPuntos();
 		enemigo=null;
 	}
 	
