@@ -56,7 +56,6 @@ public class GUI {
 		ponerObstaculos();
 	}
 
-
 	private void crearBotones(){
 		
 			panelBotones = new JPanel();
@@ -146,7 +145,6 @@ public class GUI {
 		labelJugador=new JLabel();
 		labelJugador.setIcon(j.getJugador().getIcon());
 		labelJugador.setBounds(j.getJugador().x(), j.getJugador().y(), 32, 32);
-		frame.getContentPane().add(labelJugador);
 		frame.repaint();
 	}
 	
@@ -188,6 +186,7 @@ public class GUI {
 				}
 			}
 		});
+		panelMapa.add(labelJugador);
 		panelMapa.setFocusable(true);
 		frame.getContentPane().add(panelMapa);
 		frame.repaint();

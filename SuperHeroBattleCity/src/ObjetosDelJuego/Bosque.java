@@ -14,4 +14,9 @@ public class Bosque extends Obstaculo {
 		coordenadas = new Point(0,0);
 		imagen = new ImageIcon(this.getClass().getResource("/imagenes/Bosque.png"));
 	}
+	
+	public boolean hayColision(int[] coord){
+		return false;
+	}
+	
 }
