@@ -21,14 +21,6 @@ public abstract class Enemigo extends Tanque implements Runnable{
 	public void run(){
 		ejecutar=true;
 		while(ejecutar){
-			try{
-				int dir= new Random().nextInt(4);
-				int[] mov= simularMovimiento(dir);
-				Thread.sleep(100);
-			}
-			catch(InterruptedException e){
-				
-			}
 		}
 	}
 	
@@ -90,6 +82,10 @@ public abstract class Enemigo extends Tanque implements Runnable{
 		
 		coordenadas.y=coordenadas.y+velocidadMovimiento;
 		
+	}
+	
+	public Disparo disparar(){
+		return null;
 	}
 	
 }

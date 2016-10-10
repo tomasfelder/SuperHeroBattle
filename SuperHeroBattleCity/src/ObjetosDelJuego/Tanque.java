@@ -27,10 +27,7 @@ public abstract class Tanque extends gameObject {
 	
 	public abstract void mover(int Direccion);
 	
-	public Disparo disparar(){
-		
-		return new Disparo(coordenadas.x,coordenadas.y);
-	}
+	public abstract Disparo disparar();
 	
 
 	public int velocidad(){

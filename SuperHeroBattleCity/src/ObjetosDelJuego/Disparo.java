@@ -1,16 +1,31 @@
 package ObjetosDelJuego;
 
+import java.awt.Image;
 import java.awt.Point;
 
+import javax.swing.Icon;
 import javax.swing.ImageIcon;
 
 public class Disparo extends gameObject {
 	
 	protected ImageIcon[] iconos;
 	
-	public Disparo(int x,int y){
+	public Disparo(int x,int y,int dir){
 		coordenadas = new Point(x,y);
-		imagen = new ImageIcon(this.getClass().getResource("/imagenes/Disparo_Der.png"));
+		switch(dir){
+		case(0):
+			imagen = new ImageIcon(this.getClass().getResource("/imagenes/Disparo_Arriba.png"));
+			break;
+		case(1):
+			imagen = new ImageIcon(this.getClass().getResource("/imagenes/Disparo_Abajo.png"));
+			break;
+		case(2):
+			imagen = new ImageIcon(this.getClass().getResource("/imagenes/Disparo_Der.png"));
+			break;
+		case(3):
+			imagen = new ImageIcon(this.getClass().getResource("/imagenes/Disparo_Izq.png"));
+			break;
+		}
 	}
 	
 	public boolean colision(gameObject o){
@@ -28,6 +43,12 @@ public class Disparo extends gameObject {
 		
 	}
 	public void avanzarIzquierda(){
+		
+	}
+	
+	public Icon getIcon(){
+		
+		return new ImageIcon(imagen.getImage().getScaledInstance(7, 8, Image.SCALE_DEFAULT));
 		
 	}
 	

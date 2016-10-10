@@ -2,7 +2,9 @@ package Grafica;
 
 import java.awt.Color;
 import java.awt.EventQueue;
+import java.awt.Rectangle;
 import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.awt.event.KeyAdapter;
 import java.util.Random;
 
@@ -11,12 +13,13 @@ import javax.swing.*;
 
 
 import Mapa.*;
+import ObjetosDelJuego.Disparo;
 import ObjetosDelJuego.Obstaculo;
 import ObjetosDelJuego.gameObject;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
-public class GUI {
+public class GUI extends JFrame {
 
 	private JFrame frame;
 	private JPanel panelMapa,panelBotones;
@@ -24,8 +27,9 @@ public class GUI {
 	private Juego j;
 	private JLabel[][] obstaculos;
 	private JLabel labelJugador, labelEnemigo;
-	private JButton btnCrearEnemigo,btnEliminarEnemigo,btnCambiarNivel;
+	private JButton btnCrearEnemigo,btnEliminarEnemigo,btnCambiarNivel,btnDisparar;
 	private boolean hayEnemigos;
+	private Thread th;
 	
 	/**
 	 * Launch the application.
@@ -43,23 +47,31 @@ public class GUI {
 			}
 		});
 	}
-
+	
 	/**
 	 * Create the application.
 	 */
 	public GUI() {
 		mapa=new Mapa(12,13,"Mapa1.txt");
-		j=new Juego(mapa);
+		j=new Juego(mapa,this);
 		initialize(12,13);
 		crearBotones();
 		iniciarJugador();
 		ponerObstaculos();
 	}
-
+	
+	public Juego getJuego(){
+		return j;
+	}
+	
+	public Rectangle getMapaBounds(){
+		return panelMapa.getBounds();
+	}
+	
 	private void crearBotones(){
 		
 			panelBotones = new JPanel();
-			panelBotones.setBounds(428, 291, 156, 148);
+			panelBotones.setBounds(426, 198, 156, 186);
 			
 			btnCrearEnemigo = new JButton("Crear Enemigo");
 			btnCrearEnemigo.setFocusable(false);
@@ -73,6 +85,8 @@ public class GUI {
 					panelMapa.add(labelEnemigo);
 					btnCrearEnemigo.setEnabled(false);
 					btnEliminarEnemigo.setEnabled(true);
+					th = new Thread(j);
+					th.start();
 					frame.repaint();
 				}
 			});
@@ -82,6 +96,7 @@ public class GUI {
 			btnEliminarEnemigo.setFocusable(false);
 			btnEliminarEnemigo.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent arg0) {
+					j.terminate();
 					j.eliminarEnemigo();
 					hayEnemigos=false;
 					j.sumarPuntaje(100);
@@ -137,9 +152,27 @@ public class GUI {
 				}
 			});
 			panelBotones.add(btnCambiarNivel);
+			
+			btnDisparar = new JButton("Disparar");
+			btnDisparar.setFocusable(false);
+			btnDisparar.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent arg0) {
+					Disparo disp = j.getJugador().disparar();
+					JLabel labelDisparo = new JLabel(disp.getIcon());
+					labelDisparo.setBounds(disp.x(), disp.y(),32,32);
+					panelMapa.add(labelDisparo);
+				}
+			});
+			panelBotones.add(btnDisparar);
 			frame.repaint();
 	}
 
+	public void actualizarLabelEnemigo(){
+		labelEnemigo.setBounds(j.getEnemigo().x(), j.getEnemigo().y(), 32, 32);
+		labelEnemigo.setIcon(j.getEnemigo().getIcon());
+		frame.repaint();
+	}
+	
 	private void iniciarJugador(){
 		
 		labelJugador=new JLabel();
@@ -172,6 +205,7 @@ public class GUI {
 			pos1+=32;
 		}
 		panelMapa.addKeyListener(new KeyAdapter() {
+			
 			@Override
 			public void keyPressed(KeyEvent arg0){
 				int direccion=movimiento(arg0);
@@ -185,6 +219,7 @@ public class GUI {
 					frame.repaint();
 				}
 			}
+
 		});
 		panelMapa.add(labelJugador);
 		panelMapa.setFocusable(true);

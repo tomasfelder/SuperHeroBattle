@@ -17,6 +17,18 @@ public abstract class Nivel {
 		iconosNivel=new ImageIcon[4];
 	}
 	
+	public int direccion(){
+		if(icono==iconosNivel[0])
+			return 0;
+		if(icono==iconosNivel[1])
+			return 1;
+		if(icono==iconosNivel[2])
+			return 2;
+		if(icono==iconosNivel[3])
+			return 3;
+		return -1;
+	}
+	
 	public int getVelocidadMovimiento(){
 		return velocidadMov;
 	}

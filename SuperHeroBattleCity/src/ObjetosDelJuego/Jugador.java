@@ -100,6 +100,25 @@ public class Jugador extends Tanque{
 		
 	}
 	
+	public Disparo disparar(){
+		Disparo disp=null;
+		switch (miNivel.direccion()){
+		case 0:
+			disp = new Disparo(coordenadas.x,coordenadas.y,0);
+			break;
+		case 1:
+			disp = new Disparo(coordenadas.x,coordenadas.y-32,1);
+			break;
+		case 2:
+			disp = new Disparo(coordenadas.x+32,coordenadas.y,2);
+			break;
+		case 3:
+			disp = new Disparo(coordenadas.x,coordenadas.y,3);
+			break;
+		}
+		return disp;
+	}
+	
 	public boolean colision(powerUp p){
 		
 		p.afectar();
