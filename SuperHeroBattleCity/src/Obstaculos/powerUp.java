@@ -1,6 +1,8 @@
-package ObjetosDelJuego;
+package Obstaculos;
 
-abstract class powerUp extends gameObject {
+import ObjetosDelJuego.gameObject;
+
+public abstract class powerUp extends gameObject {
 
 	public powerUp(int x,int y){
 		
@@ -9,5 +11,5 @@ abstract class powerUp extends gameObject {
 		
 	}
 	
-	abstract void afectar();
+	public abstract void afectar();
 }

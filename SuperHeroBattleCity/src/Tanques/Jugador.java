@@ -1,8 +1,10 @@
-package ObjetosDelJuego;
+package Tanques;
 
 import java.awt.Image;
 
 import javax.swing.*;
+
+import Obstaculos.powerUp;
  
 public class Jugador extends Tanque{
 	

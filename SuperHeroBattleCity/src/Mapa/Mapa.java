@@ -2,6 +2,12 @@ package Mapa;
 import java.io.*;
 
 import ObjetosDelJuego.*;
+import Obstaculos.Agua;
+import Obstaculos.Base;
+import Obstaculos.Bosque;
+import Obstaculos.Obstaculo;
+import Obstaculos.ParedDeAcero;
+import Obstaculos.ParedDeLadrillo;
 
 public class Mapa {
 	

@@ -13,9 +13,10 @@ import javax.swing.*;
 
 
 import Mapa.*;
-import ObjetosDelJuego.Disparo;
-import ObjetosDelJuego.Obstaculo;
 import ObjetosDelJuego.gameObject;
+import Obstaculos.Obstaculo;
+import Tanques.Disparo;
+
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 

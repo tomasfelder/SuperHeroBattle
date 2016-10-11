@@ -1,5 +1,12 @@
 package ObjetosDelJuego;
 
+import Obstaculos.Agua;
+import Obstaculos.Base;
+import Obstaculos.Bosque;
+import Obstaculos.Pared;
+import Tanques.Disparo;
+import Tanques.Enemigo;
+
 public interface Visitor {
 	public boolean colisionar(Pared p);
 	public boolean colisionar(Enemigo e);

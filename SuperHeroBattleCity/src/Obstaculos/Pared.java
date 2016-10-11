@@ -1,4 +1,4 @@
-package ObjetosDelJuego;
+package Obstaculos;
 
 public abstract class Pared extends Obstaculo {
 	

@@ -1,8 +1,10 @@
-package ObjetosDelJuego;
+package Tanques;
 
 import java.awt.Point;
 
 import javax.swing.*;
+
+import ObjetosDelJuego.gameObject;
 
 public abstract class Tanque extends gameObject {
 	

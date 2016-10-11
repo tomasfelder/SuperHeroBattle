@@ -1,6 +1,9 @@
 package Logica;
 
 import ObjetosDelJuego.*;
+import Tanques.Enemigo;
+import Tanques.EnemigoBasico;
+import Tanques.Jugador;
 
 import java.util.Random;
 

@@ -1,4 +1,4 @@
-package ObjetosDelJuego;
+package Tanques;
 
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;

@@ -1,4 +1,4 @@
-package ObjetosDelJuego;
+package Tanques;
 
 import java.awt.Image;
 import java.awt.Point;
@@ -6,6 +6,8 @@ import java.awt.Point;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
+
+import ObjetosDelJuego.gameObject;
 
 public class Disparo extends gameObject {
 	

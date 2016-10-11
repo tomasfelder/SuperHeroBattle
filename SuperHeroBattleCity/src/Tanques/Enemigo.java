@@ -1,4 +1,4 @@
-package ObjetosDelJuego;
+package Tanques;
 import java.awt.Image;
 import java.util.Random;
 
