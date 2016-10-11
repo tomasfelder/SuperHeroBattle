@@ -31,7 +31,6 @@ public abstract class Tanque extends gameObject {
 	
 	public abstract Disparo disparar();
 	
-
 	public int velocidad(){
 		return velocidadMovimiento;
 	}

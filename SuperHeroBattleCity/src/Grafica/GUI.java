@@ -4,7 +4,6 @@ import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.Rectangle;
 import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
 import java.awt.event.KeyAdapter;
 import java.util.Random;
 
@@ -13,7 +12,6 @@ import javax.swing.*;
 
 
 import Mapa.*;
-import ObjetosDelJuego.gameObject;
 import Obstaculos.Obstaculo;
 import Tanques.Disparo;
 
@@ -55,9 +53,8 @@ public class GUI extends JFrame {
 		mapa=new Mapa(12,13,"Mapa1.txt");
 		j=new Juego(mapa,this);
 		initialize(12,13);
-		crearBotones();
-		iniciarJugador();
 		ponerObstaculos();
+		crearBotones();
 	}
 	
 	public Juego getJuego(){
@@ -148,8 +145,6 @@ public class GUI extends JFrame {
 			btnCambiarNivel.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent arg0) {
 					j.getJugador().setNivel(new Random().nextInt(4));
-					labelJugador.setIcon(j.getJugador().getIcon());
-					labelJugador.setBounds(j.getJugador().x(),j.getJugador().y(),32,32);
 				}
 			});
 			panelBotones.add(btnCambiarNivel);
@@ -171,14 +166,6 @@ public class GUI extends JFrame {
 	public void actualizarLabelEnemigo(){
 		labelEnemigo.setBounds(j.getEnemigo().x(), j.getEnemigo().y(), 32, 32);
 		labelEnemigo.setIcon(j.getEnemigo().getIcon());
-		frame.repaint();
-	}
-	
-	private void iniciarJugador(){
-		
-		labelJugador=new JLabel();
-		labelJugador.setIcon(j.getJugador().getIcon());
-		labelJugador.setBounds(j.getJugador().x(), j.getJugador().y(), 32, 32);
 		frame.repaint();
 	}
 	
@@ -211,20 +198,21 @@ public class GUI extends JFrame {
 				System.out.println(j.puedoMover(coordenadas));
 				if(j.puedoMover(coordenadas)){
 					j.mover(direccion);
-					labelJugador.setIcon(j.getJugador().getIcon());
-					labelJugador.setBounds(j.getJugador().x(),j.getJugador().y(),32,32);
+//					labelJugador.setIcon(j.getJugador().getIcon());
+//					labelJugador.setBounds(j.getJugador().x(),j.getJugador().y(),32,32);
 					System.out.println(j.getJugador().x()+","+j.getJugador().y());
 					frame.repaint();
 				}
 			}
 
 		});
-		panelMapa.add(labelJugador);
+//		panelMapa.add(labelJugador);
+		panelMapa.add(j.getJugador().getEtiqueta());
 		panelMapa.setFocusable(true);
 		frame.getContentPane().add(panelMapa);
 		frame.repaint();
 	}
-
+	
 	/**
 	 * Initialize the contents of the frame.
 	 */

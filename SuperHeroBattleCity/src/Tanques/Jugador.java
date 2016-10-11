@@ -13,6 +13,9 @@ public class Jugador extends Tanque{
 	public Jugador(int x,int y){
 		super(x,y);
 		miNivel=new Nivel_1();
+		etiqueta=new JLabel();
+		etiqueta.setBounds(x, y, ANCHO, ALTO);
+		etiqueta.setIcon(miNivel.getIcon());
 	}
 	
 	public void setNivel(int n){
@@ -30,6 +33,7 @@ public class Jugador extends Tanque{
 			miNivel = new Nivel_4();
 			break;
 		}
+		etiqueta.setIcon(miNivel.getIcon());
 	}
 	
 	public int[] simularMovimiento(int direccion){
@@ -69,6 +73,8 @@ public class Jugador extends Tanque{
 		}
 		
 		miNivel.cambiarIcono(direccion);
+		etiqueta.setIcon(miNivel.getIcon());
+		etiqueta.setBounds(coordenadas.x, coordenadas.y, ANCHO, ALTO);
 		
 	}	
 	

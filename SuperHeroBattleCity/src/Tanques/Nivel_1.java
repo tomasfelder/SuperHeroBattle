@@ -16,7 +16,6 @@ public class Nivel_1 extends Nivel {
 		iconosNivel[1]=new ImageIcon(this .getClass().getResource("/imagenesJugador/Nivel_1_Abajo.png"));
 		iconosNivel[2]=new ImageIcon(this.getClass().getResource("/imagenesJugador/Nivel_1_Izq.png"));
 		iconosNivel[3]=new ImageIcon(this.getClass().getResource("/imagenesJugador/Nivel_1_Der.png"));
-		etiqueta = new JLabel();
 	}
 	
 }

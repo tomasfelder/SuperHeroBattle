@@ -4,7 +4,6 @@ import java.awt.Image;
 
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
-import javax.swing.JLabel;
 
 public abstract class Nivel {
 	
@@ -13,7 +12,6 @@ public abstract class Nivel {
 	protected int velDisparo;
 	protected ImageIcon[] iconosNivel;
 	protected ImageIcon icono;
-	protected JLabel etiqueta;
 	
 	public Nivel(){
 		iconosNivel=new ImageIcon[4];
@@ -50,9 +48,11 @@ public abstract class Nivel {
 	public void cambiarIcono(int d){
 		icono=iconosNivel[d];
 	}
-	
-	public JLabel getEtiqueta(){
-		return etiqueta;
-	}
 
+	public Icon getIcon(){
+		
+		return new ImageIcon(icono.getImage().getScaledInstance(32, 32, Image.SCALE_DEFAULT));
+		
+	}
+	
 }

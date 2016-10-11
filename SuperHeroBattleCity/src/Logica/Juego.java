@@ -1,6 +1,5 @@
 package Logica;
 
-import ObjetosDelJuego.*;
 import Tanques.Enemigo;
 import Tanques.EnemigoBasico;
 import Tanques.Jugador;
@@ -85,7 +84,6 @@ public class Juego extends Thread {
 	}
 	
 	public Jugador getJugador(){
-		
 		return jugador;
 	}
 	public void mover(int dir){	
