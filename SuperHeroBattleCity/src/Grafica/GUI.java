@@ -24,9 +24,7 @@ public class GUI extends JFrame {
 	private JPanel panelMapa,panelBotones;
 	private Mapa mapa;
 	private Juego j;
-	private JLabel labelJugador, labelEnemigo;
 	private JButton btnCrearEnemigo,btnEliminarEnemigo,btnCambiarNivel,btnDisparar;
-	private boolean hayEnemigos;
 	private Thread th;
 	
 	/**
@@ -74,12 +72,8 @@ public class GUI extends JFrame {
 			btnCrearEnemigo.setFocusable(false);
 			btnCrearEnemigo.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-					labelEnemigo=new JLabel();
 					j.crearEnemigo(64, 0);
-					hayEnemigos=true;
-					labelEnemigo.setIcon(j.getEnemigo().getIcon());
-					labelEnemigo.setBounds(j.getEnemigo().x(), j.getEnemigo().y(), 32, 32);
-					panelMapa.add(labelEnemigo);
+					panelMapa.add(j.getEnemigo().getEtiqueta());
 					btnCrearEnemigo.setEnabled(false);
 					btnEliminarEnemigo.setEnabled(true);
 					th = new Thread(j);
@@ -94,23 +88,15 @@ public class GUI extends JFrame {
 			btnEliminarEnemigo.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent arg0) {
 					j.terminate();
+					panelMapa.remove(j.getEnemigo().getEtiqueta());
 					j.eliminarEnemigo();
-					hayEnemigos=false;
 					j.sumarPuntaje(100);
-					labelEnemigo.setIcon(null);
 					btnCrearEnemigo.setEnabled(true);
 					btnEliminarEnemigo.setEnabled(false);
 					frame.repaint();
 					JLabel labelPuntaje = new JLabel(new ImageIcon(this.getClass().getResource("/imagenes/Puntaje_100.png")));
 					labelPuntaje.setBounds(80, 16, 13, 7);
 					panelMapa.add(labelPuntaje);
-//					long start_time = System.currentTimeMillis();
-//					long wait_time = 2000;
-//					long end_time = start_time + wait_time;
-//					while (System.currentTimeMillis() < end_time){
-//					
-//					}
-//					panelMapa.remove(labelPuntaje);
 					frame.repaint();
 				}
 			});
@@ -163,12 +149,6 @@ public class GUI extends JFrame {
 			frame.repaint();
 	}
 
-	public void actualizarLabelEnemigo(){
-		labelEnemigo.setBounds(j.getEnemigo().x(), j.getEnemigo().y(), 32, 32);
-		labelEnemigo.setIcon(j.getEnemigo().getIcon());
-		frame.repaint();
-	}
-	
 	private void ponerObstaculos() {
 		panelMapa = new JPanel();
 		panelMapa.setBackground(Color.BLACK);

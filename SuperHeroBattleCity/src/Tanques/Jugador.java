@@ -38,6 +38,8 @@ public class Jugador extends Tanque{
 	
 	public int[] simularMovimiento(int direccion){
 		int coord[] = new int[2];
+		miNivel.cambiarIcono(direccion);
+		etiqueta.setIcon(miNivel.getIcon());
 		switch (direccion){
 		case 0:
 			coord[0]=coordenadas.x; coord[1]=coordenadas.y-miNivel.getVelocidadMovimiento();
@@ -72,8 +74,8 @@ public class Jugador extends Tanque{
 			break;
 		}
 		
-		miNivel.cambiarIcono(direccion);
-		etiqueta.setIcon(miNivel.getIcon());
+//		miNivel.cambiarIcono(direccion);
+//		etiqueta.setIcon(miNivel.getIcon());
 		etiqueta.setBounds(coordenadas.x, coordenadas.y, ANCHO, ALTO);
 		
 	}	

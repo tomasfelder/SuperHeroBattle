@@ -52,10 +52,9 @@ public class Juego extends Thread {
 			try{
 				int m=new Random().nextInt(4);
 				int coordenadas[]=enemigo.simularMovimiento(m);
-				if(puedoMover(coordenadas)){
-					enemigo.mover(m);
-					gui.actualizarLabelEnemigo();
-				}
+				for(int i=0;i<10;i++)
+					if(puedoMover(coordenadas))
+						enemigo.mover(m);
 				Thread.sleep(250);
 			}
 			catch(InterruptedException e){
