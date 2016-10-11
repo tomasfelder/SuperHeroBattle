@@ -17,10 +17,8 @@ public abstract class Tanque extends gameObject {
 	
 	
 	public Tanque(int x,int y){
-		
 		coordenadas = new Point(x,y);
 		iconos=new ImageIcon[4];
-		
 	}
 	
 	//Metodos

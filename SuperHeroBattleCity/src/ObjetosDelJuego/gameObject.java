@@ -12,7 +12,7 @@ public abstract class gameObject {
 	protected Point coordenadas;
 	protected ImageIcon imagen;
 	protected JLabel etiqueta;
-	protected Rectangle medida;
+	protected Rectangle rectangulo;
 	
 	//http://opensource.apple.com//source/gcc3/gcc3-1041/libjava/java/awt/Rectangle.java
 	public boolean hayColision(int[] coord){
