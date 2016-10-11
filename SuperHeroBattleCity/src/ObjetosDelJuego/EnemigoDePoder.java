@@ -1,6 +1,9 @@
 package ObjetosDelJuego;
 
+import java.awt.Image;
+
 import javax.swing.ImageIcon;
+import javax.swing.JLabel;
 
 public class EnemigoDePoder extends Enemigo {
 
@@ -17,7 +20,9 @@ public class EnemigoDePoder extends Enemigo {
 		iconos[1]=new ImageIcon(this .getClass().getResource("/imagenesEnemigo/Enemigo_3_Abajo.png"));
 		iconos[2]=new ImageIcon(this.getClass().getResource("/imagenesEnemigo/Enemigo_3_Izq.png"));
 		iconos[3]=new ImageIcon(this.getClass().getResource("/imagenesEnemigo/Enemigo_3_Der.png"));
-
+		etiqueta = new JLabel();
+		etiqueta.setIcon(new ImageIcon(imagen.getImage().getScaledInstance(ANCHO, ALTO, Image.SCALE_DEFAULT)));
+		etiqueta.setBounds(x, y,ANCHO , ALTO);
 	}
 
 }

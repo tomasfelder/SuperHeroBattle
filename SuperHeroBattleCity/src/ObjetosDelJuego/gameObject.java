@@ -1,6 +1,7 @@
 package ObjetosDelJuego;
 import java.awt.Image;
 import java.awt.Point;
+import java.awt.Rectangle;
 
 import javax.swing.*;
 
@@ -10,9 +11,9 @@ public abstract class gameObject {
 	protected static final int ALTO=32;
 	
 	protected Point coordenadas;
-//	protected int x;
-//	protected int y;
 	protected ImageIcon imagen;
+	protected JLabel etiqueta;
+	protected Rectangle medida;
 	
 	//http://opensource.apple.com//source/gcc3/gcc3-1041/libjava/java/awt/Rectangle.java
 	public boolean hayColision(int[] coord){
@@ -35,9 +36,10 @@ public abstract class gameObject {
 	public void setX(int i){
 		
 		coordenadas.x=i;
+		etiqueta.setBounds(i,coordenadas.y , ANCHO, ALTO);
 	}
 	public void setY(int i){
-		
+		etiqueta.setBounds(coordenadas.x,i , ANCHO, ALTO);
 		coordenadas.y=i;
 		
 	}
@@ -48,8 +50,12 @@ public abstract class gameObject {
 	
 	public Icon getIcon(){
 		
-		return new ImageIcon(imagen.getImage().getScaledInstance(ANCHO, ALTO, Image.SCALE_DEFAULT));
+		return etiqueta.getIcon();
 		
+	}
+	
+	public JLabel getEtiqueta(){
+		return etiqueta;
 	}
 	
 }

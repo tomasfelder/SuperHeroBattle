@@ -25,7 +25,6 @@ public class GUI extends JFrame {
 	private JPanel panelMapa,panelBotones;
 	private Mapa mapa;
 	private Juego j;
-	private JLabel[][] obstaculos;
 	private JLabel labelJugador, labelEnemigo;
 	private JButton btnCrearEnemigo,btnEliminarEnemigo,btnCambiarNivel,btnDisparar;
 	private boolean hayEnemigos;
@@ -134,8 +133,9 @@ public class GUI extends JFrame {
 						System.out.println(x+","+y);
 						aux = mapa.obtenerCelda(x, y);
 					}
+					panelMapa.remove(aux.getEtiqueta());
 					mapa.eliminarCelda(x, y);
-					obstaculos[x][y].setIcon(null);
+					frame.repaint();
 				}
 			});
 			btnEliminarPared.setFocusable(false);
@@ -186,7 +186,6 @@ public class GUI extends JFrame {
 		panelMapa.setBackground(Color.BLACK);
 		panelMapa.setBounds(0,0,416,384);
 		panelMapa.setLayout(null);
-		obstaculos = new JLabel[12][13];
 		int pos1,pos2;
 		pos1=pos2=0;
 		for(int i=0;i<mapa.getLargo();i++){
@@ -195,9 +194,7 @@ public class GUI extends JFrame {
 					Obstaculo aux=mapa.obtenerCelda(i, j);
 					aux.setX(pos2); aux.setY(pos1);
 					System.out.println(pos2+","+pos1);
-					obstaculos[i][j] = new JLabel(aux.getIcon());
-					obstaculos[i][j].setBounds(pos2, pos1, 32, 32);
-					panelMapa.add(obstaculos[i][j]);
+					panelMapa.add(aux.getEtiqueta());
 				}
 				pos2+=32;
 			}

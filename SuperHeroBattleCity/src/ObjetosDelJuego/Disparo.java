@@ -5,6 +5,7 @@ import java.awt.Point;
 
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
+import javax.swing.JLabel;
 
 public class Disparo extends gameObject {
 	
@@ -26,6 +27,9 @@ public class Disparo extends gameObject {
 			imagen = new ImageIcon(this.getClass().getResource("/imagenes/Disparo_Izq.png"));
 			break;
 		}
+		etiqueta = new JLabel();
+		etiqueta.setIcon(new ImageIcon(imagen.getImage().getScaledInstance(ANCHO, ALTO, Image.SCALE_DEFAULT)));
+		etiqueta.setBounds(coordenadas.x, coordenadas.y,ANCHO , ALTO);
 	}
 	
 	public boolean colision(gameObject o){

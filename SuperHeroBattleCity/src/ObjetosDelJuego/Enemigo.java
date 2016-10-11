@@ -1,5 +1,8 @@
 package ObjetosDelJuego;
+import java.awt.Image;
 import java.util.Random;
+
+import javax.swing.ImageIcon;
 
 public abstract class Enemigo extends Tanque implements Runnable{
 	
@@ -61,12 +64,14 @@ public abstract class Enemigo extends Tanque implements Runnable{
 		}
 		
 		imagen=iconos[direccion];
-		
+		etiqueta.setIcon(new ImageIcon(imagen.getImage().getScaledInstance(ANCHO, ALTO, Image.SCALE_DEFAULT)));
+		etiqueta.setBounds(coordenadas.x, coordenadas.y, ANCHO, ALTO);
 	}	
 	
 	private void moverDerecha(){
 		
 		coordenadas.x=coordenadas.x+velocidadMovimiento;
+
 		
 	}
 	private void moverIzquierda(){
