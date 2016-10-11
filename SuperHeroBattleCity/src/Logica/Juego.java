@@ -1,5 +1,6 @@
 package Logica;
 
+import Tanques.Disparo;
 import Tanques.Enemigo;
 import Tanques.EnemigoBasico;
 import Tanques.Jugador;
@@ -63,6 +64,10 @@ public class Juego extends Thread {
 		}
 	}
 
+	public void disparar(){
+		Disparo disp= jugador.disparar();
+		IntelegenciaDisparo i=new IntelegenciaDisparo(disp,this);
+	}
 	
 	public void eliminarEnemigo(){
 		puntaje+=enemigo.getPuntos();

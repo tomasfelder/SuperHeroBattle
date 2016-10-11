@@ -140,9 +140,7 @@ public class GUI extends JFrame {
 			btnDisparar.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent arg0) {
 					Disparo disp = j.getJugador().disparar();
-					JLabel labelDisparo = new JLabel(disp.getIcon());
-					labelDisparo.setBounds(disp.x(), disp.y(),32,32);
-					panelMapa.add(labelDisparo);
+					
 				}
 			});
 			panelBotones.add(btnDisparar);
