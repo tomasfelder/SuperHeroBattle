@@ -34,8 +34,8 @@ public class Disparo extends gameObject {
 			break;
 		}
 		etiqueta = new JLabel();
-		etiqueta.setIcon(new ImageIcon(imagen.getImage().getScaledInstance(7, 8, Image.SCALE_DEFAULT)));
-		etiqueta.setBounds(coordenadas.x, coordenadas.y,7 , 8);
+		etiqueta.setIcon(new ImageIcon(imagen.getImage().getScaledInstance(20, 20, Image.SCALE_DEFAULT)));
+		etiqueta.setBounds(coordenadas.x, coordenadas.y,20 , 20);
 	}
 	
 	public boolean colision(gameObject o){
@@ -78,7 +78,7 @@ public class Disparo extends gameObject {
 			avanzarDerecha();
 			break;
 		}
-		etiqueta.setBounds(coordenadas.x, coordenadas.y,7 , 8);
+		etiqueta.setBounds(coordenadas.x, coordenadas.y,20 , 20);
 	}
 	
 	public void avanzarArriba(){
@@ -96,7 +96,7 @@ public class Disparo extends gameObject {
 	
 	public Icon getIcon(){
 		
-		return new ImageIcon(imagen.getImage().getScaledInstance(7, 8, Image.SCALE_DEFAULT));
+		return new ImageIcon(imagen.getImage().getScaledInstance(20, 20, Image.SCALE_DEFAULT));
 		
 	}
 	

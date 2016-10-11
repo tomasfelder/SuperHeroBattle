@@ -111,13 +111,13 @@ public class Jugador extends Tanque{
 	public Disparo disparar(){
 		switch (miNivel.direccion()){
 		case 0:
-			return new Disparo(coordenadas.x+16,coordenadas.y,0,miNivel.getVelocidadDisparo());
+			return new Disparo(coordenadas.x,coordenadas.y,0,miNivel.getVelocidadDisparo());
 		case 1:
-			return new Disparo(coordenadas.x+16,coordenadas.y-32,1,miNivel.getVelocidadDisparo());
+			return new Disparo(coordenadas.x,coordenadas.y,1,miNivel.getVelocidadDisparo());
 		case 2:
-			return new Disparo(coordenadas.x,coordenadas.y-16,2,miNivel.getVelocidadDisparo());
+			return new Disparo(coordenadas.x,coordenadas.y,2,miNivel.getVelocidadDisparo());
 		case 3:
-			return new Disparo(coordenadas.x+32,coordenadas.y-16,3,miNivel.getVelocidadDisparo());
+			return new Disparo(coordenadas.x,coordenadas.y,3,miNivel.getVelocidadDisparo());
 		}
 		return null;
 	}
