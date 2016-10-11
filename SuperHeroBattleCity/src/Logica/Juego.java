@@ -7,10 +7,13 @@ import Tanques.Jugador;
 
 import java.util.Random;
 
+import javax.swing.Icon;
+import javax.swing.JLabel;
+
 import Grafica.GUI;
 import Mapa.Mapa;
 
-public class Juego extends Thread {
+public class Juego{
 
 	private Jugador jugador;
 	private Enemigo enemigo;
@@ -18,18 +21,16 @@ public class Juego extends Thread {
 	private GUI gui;
 	private int puntaje;
 	protected volatile boolean ejecutar;
+	private Thread tDisparo,tEnemigo;
 	
-	public Juego(Mapa m,GUI g){
+	public Juego(Mapa m){
 	
 		jugador=new Jugador(0,0);
 		mapa=m;
-		gui=g;
 		puntaje=0;
 	}
 	
 	public boolean puedoMover(int[] coord){
-		if(!gui.getMapaBounds().intersects(coord[0], coord[1], coord[0]+32, coord[1]+32))
-			return false;
 		boolean puedo=true;
 		for(int i=0;i<mapa.getLargo()&&puedo;i++)
 			for(int j=0;j<mapa.getAncho()&&puedo;j++)
@@ -38,35 +39,19 @@ public class Juego extends Thread {
 		return puedo;
 	}
 	
-	
 	public void crearEnemigo(int x,int y){
 		enemigo = new EnemigoBasico(x,y);
+		InteligenciaEnemigo ie = new InteligenciaEnemigo(enemigo,this);
+		tEnemigo=new Thread(ie);
+		tEnemigo.start();
 	}
 	
-	public void terminate(){
-		ejecutar=false;
-	}
-	
-	public void run(){
-		ejecutar=true;
-		while(ejecutar){
-			try{
-				int m=new Random().nextInt(4);
-				int coordenadas[]=enemigo.simularMovimiento(m);
-				for(int i=0;i<10;i++)
-					if(puedoMover(coordenadas))
-						enemigo.mover(m);
-				Thread.sleep(250);
-			}
-			catch(InterruptedException e){
-				
-			}
-		}
-	}
-
-	public void disparar(){
+	public JLabel disparar(){
 		Disparo disp= jugador.disparar();
-		IntelegenciaDisparo i=new IntelegenciaDisparo(disp,this);
+		IntelegenciaDisparo id=new IntelegenciaDisparo(disp,this);
+		tDisparo= new Thread(id);
+		tDisparo.start();
+		return disp.getEtiqueta();
 	}
 	
 	public void eliminarEnemigo(){

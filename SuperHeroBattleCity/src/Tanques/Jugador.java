@@ -74,8 +74,6 @@ public class Jugador extends Tanque{
 			break;
 		}
 		
-//		miNivel.cambiarIcono(direccion);
-//		etiqueta.setIcon(miNivel.getIcon());
 		etiqueta.setBounds(coordenadas.x, coordenadas.y, ANCHO, ALTO);
 		
 	}	
@@ -111,22 +109,17 @@ public class Jugador extends Tanque{
 	}
 	
 	public Disparo disparar(){
-		Disparo disp=null;
 		switch (miNivel.direccion()){
 		case 0:
-			disp = new Disparo(coordenadas.x,coordenadas.y,0);
-			break;
+			return new Disparo(coordenadas.x+16,coordenadas.y,0,miNivel.getVelocidadDisparo());
 		case 1:
-			disp = new Disparo(coordenadas.x,coordenadas.y-32,1);
-			break;
+			return new Disparo(coordenadas.x+16,coordenadas.y-32,1,miNivel.getVelocidadDisparo());
 		case 2:
-			disp = new Disparo(coordenadas.x+32,coordenadas.y,2);
-			break;
+			return new Disparo(coordenadas.x,coordenadas.y-16,2,miNivel.getVelocidadDisparo());
 		case 3:
-			disp = new Disparo(coordenadas.x,coordenadas.y,3);
-			break;
+			return new Disparo(coordenadas.x+32,coordenadas.y-16,3,miNivel.getVelocidadDisparo());
 		}
-		return disp;
+		return null;
 	}
 	
 	public boolean colision(powerUp p){

@@ -49,7 +49,7 @@ public class GUI extends JFrame {
 	 */
 	public GUI() {
 		mapa=new Mapa(12,13,"Mapa1.txt");
-		j=new Juego(mapa,this);
+		j=new Juego(mapa);
 		initialize(12,13);
 		ponerObstaculos();
 		crearBotones();
@@ -76,8 +76,6 @@ public class GUI extends JFrame {
 					panelMapa.add(j.getEnemigo().getEtiqueta());
 					btnCrearEnemigo.setEnabled(false);
 					btnEliminarEnemigo.setEnabled(true);
-					th = new Thread(j);
-					th.start();
 					frame.repaint();
 				}
 			});
@@ -87,7 +85,6 @@ public class GUI extends JFrame {
 			btnEliminarEnemigo.setFocusable(false);
 			btnEliminarEnemigo.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent arg0) {
-					j.terminate();
 					panelMapa.remove(j.getEnemigo().getEtiqueta());
 					j.eliminarEnemigo();
 					j.sumarPuntaje(100);
@@ -139,8 +136,7 @@ public class GUI extends JFrame {
 			btnDisparar.setFocusable(false);
 			btnDisparar.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent arg0) {
-					Disparo disp = j.getJugador().disparar();
-					
+					panelMapa.add(j.disparar());	
 				}
 			});
 			panelBotones.add(btnDisparar);

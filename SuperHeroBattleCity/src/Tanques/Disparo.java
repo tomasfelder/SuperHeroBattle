@@ -12,9 +12,13 @@ import ObjetosDelJuego.gameObject;
 public class Disparo extends gameObject {
 	
 	protected ImageIcon[] iconos;
+	protected int velocidadMovimiento;
+	protected int direccion;
 	
-	public Disparo(int x,int y,int dir){
+	public Disparo(int x,int y,int dir,int vel){
 		coordenadas = new Point(x,y);
+		velocidadMovimiento=vel;
+		direccion=dir;
 		switch(dir){
 		case(0):
 			imagen = new ImageIcon(this.getClass().getResource("/imagenes/Disparo_Arriba.png"));
@@ -30,8 +34,8 @@ public class Disparo extends gameObject {
 			break;
 		}
 		etiqueta = new JLabel();
-		etiqueta.setIcon(new ImageIcon(imagen.getImage().getScaledInstance(ANCHO, ALTO, Image.SCALE_DEFAULT)));
-		etiqueta.setBounds(coordenadas.x, coordenadas.y,ANCHO , ALTO);
+		etiqueta.setIcon(new ImageIcon(imagen.getImage().getScaledInstance(7, 8, Image.SCALE_DEFAULT)));
+		etiqueta.setBounds(coordenadas.x, coordenadas.y,7 , 8);
 	}
 	
 	public boolean colision(gameObject o){
@@ -40,16 +44,54 @@ public class Disparo extends gameObject {
 		
 	}
 	
+	public int[] simularMovimiento(){
+		int coord[] = new int[2];
+		switch (direccion){
+		case 0:
+			coord[0]=coordenadas.x; coord[1]=coordenadas.y-velocidadMovimiento;
+			break;
+		case 1:
+			coord[0]=coordenadas.x; coord[1]=coordenadas.y+velocidadMovimiento;
+			break;
+		case 2:
+			coord[0]=coordenadas.x-velocidadMovimiento; coord[1]=coordenadas.y;
+			break;
+		case 3:
+			coord[0]=coordenadas.x+velocidadMovimiento; coord[1]=coordenadas.y;
+			break;
+		}
+		return coord;
+	}
+	
+	public void mover(){
+		switch (direccion){
+		case 0:
+			avanzarArriba();
+			break;
+		case 1:
+			avanzarAbajo();
+			break;
+		case 2:
+			avanzarIzquierda();
+			break;
+		case 3:
+			avanzarDerecha();
+			break;
+		}
+		etiqueta.setBounds(coordenadas.x, coordenadas.y,7 , 8);
+	}
+	
 	public void avanzarArriba(){
+		coordenadas.y=coordenadas.y-velocidadMovimiento;
 	}
 	public void avanzarAbajo(){
-		
+		coordenadas.y=coordenadas.y+velocidadMovimiento;
 	}
 	public void avanzarDerecha(){
-		
+		coordenadas.x=coordenadas.x+velocidadMovimiento;
 	}
 	public void avanzarIzquierda(){
-		
+		coordenadas.x=coordenadas.x-velocidadMovimiento;
 	}
 	
 	public Icon getIcon(){
