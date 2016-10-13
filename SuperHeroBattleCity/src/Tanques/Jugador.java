@@ -1,6 +1,7 @@
 package Tanques;
 
 import java.awt.Image;
+import java.awt.Rectangle;
 
 import javax.swing.*;
 
@@ -36,25 +37,56 @@ public class Jugador extends Tanque{
 		etiqueta.setIcon(miNivel.getIcon());
 	}
 	
-	public int[] simularMovimiento(int direccion){
+//	public int[] simularMovimiento(int direccion){
+//		int coord[] = new int[2];
+//		Rectangle nuevaPos = new Rectangle(ANCHO, ALTO);
+//		miNivel.cambiarIcono(direccion);
+//		etiqueta.setIcon(miNivel.getIcon());
+//		switch (direccion){
+//		case 0:
+//			coord[0]=coordenadas.x; coord[1]=coordenadas.y-miNivel.getVelocidadMovimiento();
+//			nuevaPos.x=coordenadas.x; nuevaPos.y=coordenadas.y-miNivel.getVelocidadMovimiento();
+//			break;
+//		case 1:
+//			coord[0]=coordenadas.x; coord[1]=coordenadas.y+miNivel.getVelocidadMovimiento();
+//			nuevaPos.x=coordenadas.x; nuevaPos.y=coordenadas.y+miNivel.getVelocidadMovimiento();
+//			break;
+//		case 2:
+//			coord[0]=coordenadas.x-miNivel.getVelocidadMovimiento(); coord[1]=coordenadas.y;
+//			nuevaPos.x=coordenadas.x-miNivel.getVelocidadMovimiento(); nuevaPos.y=coordenadas.y;
+//			break;
+//		case 3:
+//			coord[0]=coordenadas.x+miNivel.getVelocidadMovimiento(); coord[1]=coordenadas.y;
+//			nuevaPos.x=coordenadas.x+miNivel.getVelocidadMovimiento(); nuevaPos.y=coordenadas.y;
+//			break;
+//		}
+//		return coord;
+//	}
+	
+	public Rectangle simularMovimiento(int direccion){
 		int coord[] = new int[2];
+		Rectangle nuevaPos = new Rectangle(ANCHO, ALTO);
 		miNivel.cambiarIcono(direccion);
 		etiqueta.setIcon(miNivel.getIcon());
 		switch (direccion){
 		case 0:
 			coord[0]=coordenadas.x; coord[1]=coordenadas.y-miNivel.getVelocidadMovimiento();
+			nuevaPos.x=rectangulo.x; nuevaPos.y=rectangulo.y-miNivel.getVelocidadMovimiento();
 			break;
 		case 1:
 			coord[0]=coordenadas.x; coord[1]=coordenadas.y+miNivel.getVelocidadMovimiento();
+			nuevaPos.x=rectangulo.x; nuevaPos.y=rectangulo.y+miNivel.getVelocidadMovimiento();
 			break;
 		case 2:
 			coord[0]=coordenadas.x-miNivel.getVelocidadMovimiento(); coord[1]=coordenadas.y;
+			nuevaPos.x=rectangulo.x-miNivel.getVelocidadMovimiento(); nuevaPos.y=rectangulo.y;
 			break;
 		case 3:
 			coord[0]=coordenadas.x+miNivel.getVelocidadMovimiento(); coord[1]=coordenadas.y;
+			nuevaPos.x=rectangulo.x+miNivel.getVelocidadMovimiento(); nuevaPos.y=rectangulo.y;
 			break;
 		}
-		return coord;
+		return nuevaPos;
 	}
 	
 	public void mover(int direccion){
@@ -81,20 +113,24 @@ public class Jugador extends Tanque{
 	private void moverDerecha(){
 		
 		coordenadas.x=coordenadas.x+miNivel.getVelocidadMovimiento();
+		rectangulo.x=rectangulo.x+miNivel.getVelocidadMovimiento();
 		
 	}
 	private void moverIzquierda(){
 		
 		coordenadas.x=coordenadas.x-miNivel.getVelocidadMovimiento();
+		rectangulo.x=rectangulo.x-miNivel.getVelocidadMovimiento();
 	}
 	private void moverArriba(){
 		
 		coordenadas.y=coordenadas.y-miNivel.getVelocidadMovimiento();
+		rectangulo.y=rectangulo.y-miNivel.getVelocidadMovimiento();
 		
 	}
 	private void moverAbajo(){
 		
 		coordenadas.y=coordenadas.y+miNivel.getVelocidadMovimiento();
+		rectangulo.y=rectangulo.y+miNivel.getVelocidadMovimiento();
 		
 	}
 	

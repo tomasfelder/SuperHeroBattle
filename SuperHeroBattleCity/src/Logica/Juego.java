@@ -5,6 +5,7 @@ import Tanques.Enemigo;
 import Tanques.EnemigoBasico;
 import Tanques.Jugador;
 
+import java.awt.Rectangle;
 import java.util.Random;
 
 import javax.swing.Icon;
@@ -36,6 +37,15 @@ public class Juego{
 			for(int j=0;j<mapa.getAncho()&&puedo;j++)
 				if(mapa.obtenerCelda(i, j)!=null)
 					puedo=!mapa.obtenerCelda(i, j).hayColision(coord);
+		return puedo;
+	}
+	
+	public boolean puedoMover(Rectangle nuevaPos){
+		boolean puedo=true;
+		for(int i=0;i<mapa.getLargo()&&puedo;i++)
+			for(int j=0;j<mapa.getAncho()&&puedo;j++)
+				if(mapa.obtenerCelda(i, j)!=null)
+					puedo=!mapa.obtenerCelda(i, j).getRectangulo().intersects(nuevaPos);
 		return puedo;
 	}
 	

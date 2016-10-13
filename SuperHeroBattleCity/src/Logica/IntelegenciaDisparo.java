@@ -1,5 +1,7 @@
 package Logica;
 
+import java.awt.Rectangle;
+
 import Tanques.Disparo;
 
 public class IntelegenciaDisparo implements Runnable {
@@ -23,10 +25,10 @@ public class IntelegenciaDisparo implements Runnable {
 	
 	@Override
 	public void run() {
-			int [] mov;
+			Rectangle nuevaP;
 			execute=true;
 			while(execute){
-				while(game.puedoMover(mov=d.simularMovimiento())){
+				while(game.puedoMover(nuevaP=d.simularMovimiento())){
 					d.mover();
 					try {
 						Thread.sleep(10);
@@ -34,7 +36,7 @@ public class IntelegenciaDisparo implements Runnable {
 						
 					}
 				}
-			if(!game.puedoMover(mov))
+			if(!game.puedoMover(nuevaP))
 					execute=false;
 					
 			}	

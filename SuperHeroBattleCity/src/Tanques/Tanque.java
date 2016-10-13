@@ -19,13 +19,15 @@ public abstract class Tanque extends gameObject {
 	
 	public Tanque(int x,int y){
 		coordenadas = new Point(x,y);
-		rectangulo = new Rectangle(0, 0, ANCHO, ALTO);
+		rectangulo = new Rectangle(x, y, ANCHO, ALTO);
 		iconos=new ImageIcon[4];
 	}
 	
 	//Metodos
 	
-	public abstract int[] simularMovimiento(int direccion);
+	//public abstract int[] simularMovimiento(int direccion);
+	
+	public abstract Rectangle simularMovimiento(int direccion);
 	
 	public abstract void mover(int Direccion);
 	

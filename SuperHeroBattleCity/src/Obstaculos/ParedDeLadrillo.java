@@ -19,7 +19,7 @@ public class ParedDeLadrillo extends Pared {
 		imagen = new ImageIcon(this.getClass().getResource("/imagenes/ParedDeLadrillo.png"));
 		etiqueta = new JLabel();
 		etiqueta.setIcon(new ImageIcon(imagen.getImage().getScaledInstance(ANCHO, ALTO, Image.SCALE_DEFAULT)));
-		etiqueta.setBounds(0, 0,ANCHO , ALTO);
+		etiqueta.setBounds(rectangulo);
 	}
 
 }

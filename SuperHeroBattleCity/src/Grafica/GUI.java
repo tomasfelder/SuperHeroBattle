@@ -148,6 +148,7 @@ public class GUI extends JFrame {
 		panelMapa.setBackground(Color.BLACK);
 		panelMapa.setBounds(0,0,416,384);
 		panelMapa.setLayout(null);
+		Rectangle prueba = new Rectangle(0,0,32,32);
 		int pos1,pos2;
 		pos1=pos2=0;
 		for(int i=0;i<mapa.getLargo();i++){
@@ -156,6 +157,8 @@ public class GUI extends JFrame {
 					Obstaculo aux=mapa.obtenerCelda(i, j);
 					aux.setX(pos2); aux.setY(pos1);
 					System.out.println(pos2+","+pos1);
+					//prueba.x=pos2; prueba.y=pos1;
+					//System.out.println(prueba.x+","+prueba.y);
 					panelMapa.add(aux.getEtiqueta());
 				}
 				pos2+=32;
@@ -168,7 +171,7 @@ public class GUI extends JFrame {
 			@Override
 			public void keyPressed(KeyEvent arg0){
 				int direccion=movimiento(arg0);
-				int[] coordenadas = j.getJugador().simularMovimiento(direccion);
+				Rectangle coordenadas = j.getJugador().simularMovimiento(direccion);
 				System.out.println(j.puedoMover(coordenadas));
 				if(j.puedoMover(coordenadas)){
 					j.mover(direccion);

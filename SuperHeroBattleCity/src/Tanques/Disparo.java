@@ -37,7 +37,7 @@ public class Disparo extends gameObject {
 		}
 		etiqueta = new JLabel();
 		etiqueta.setIcon(new ImageIcon(imagen.getImage().getScaledInstance(20, 20, Image.SCALE_DEFAULT)));
-		etiqueta.setBounds(coordenadas.x, coordenadas.y,20 , 20);
+		etiqueta.setBounds(rectangulo);
 	}
 	
 	public boolean colision(gameObject o){
@@ -46,24 +46,44 @@ public class Disparo extends gameObject {
 		
 	}
 	
-	public int[] simularMovimiento(){
-		int coord[] = new int[2];
+//	public int[] simularMovimiento(){
+//		int coord[] = new int[2];
+//		switch (direccion){
+//		case 0:
+//			coord[0]=coordenadas.x; coord[1]=coordenadas.y-velocidadMovimiento;
+//			break;
+//		case 1:
+//			coord[0]=coordenadas.x; coord[1]=coordenadas.y+velocidadMovimiento;
+//			break;
+//		case 2:
+//			coord[0]=coordenadas.x-velocidadMovimiento; coord[1]=coordenadas.y;
+//			break;
+//		case 3:
+//			coord[0]=coordenadas.x+velocidadMovimiento; coord[1]=coordenadas.y;
+//			break;
+//		}
+//		return coord;
+//	}
+	
+	public Rectangle simularMovimiento(){
+		Rectangle nuevaPos = new Rectangle(20, 20);
 		switch (direccion){
 		case 0:
-			coord[0]=coordenadas.x; coord[1]=coordenadas.y-velocidadMovimiento;
+			nuevaPos.x=rectangulo.x; nuevaPos.y=rectangulo.y-velocidadMovimiento;
 			break;
 		case 1:
-			coord[0]=coordenadas.x; coord[1]=coordenadas.y+velocidadMovimiento;
+			nuevaPos.x=rectangulo.x; nuevaPos.y=rectangulo.y+velocidadMovimiento;
 			break;
 		case 2:
-			coord[0]=coordenadas.x-velocidadMovimiento; coord[1]=coordenadas.y;
+			nuevaPos.x=rectangulo.x-velocidadMovimiento; nuevaPos.y=rectangulo.y;
 			break;
 		case 3:
-			coord[0]=coordenadas.x+velocidadMovimiento; coord[1]=coordenadas.y;
+			nuevaPos.x=rectangulo.x+velocidadMovimiento; nuevaPos.y=rectangulo.y;
 			break;
 		}
-		return coord;
+		return nuevaPos;
 	}
+	
 	
 	public void mover(){
 		switch (direccion){
@@ -80,20 +100,24 @@ public class Disparo extends gameObject {
 			avanzarDerecha();
 			break;
 		}
-		etiqueta.setBounds(coordenadas.x, coordenadas.y,20 , 20);
+		etiqueta.setBounds(rectangulo);
 	}
 	
 	public void avanzarArriba(){
 		coordenadas.y=coordenadas.y-velocidadMovimiento;
+		rectangulo.y=rectangulo.y-velocidadMovimiento;
 	}
 	public void avanzarAbajo(){
 		coordenadas.y=coordenadas.y+velocidadMovimiento;
+		rectangulo.y=rectangulo.y+velocidadMovimiento;
 	}
 	public void avanzarDerecha(){
 		coordenadas.x=coordenadas.x+velocidadMovimiento;
+		rectangulo.x=rectangulo.x+velocidadMovimiento;
 	}
 	public void avanzarIzquierda(){
 		coordenadas.x=coordenadas.x-velocidadMovimiento;
+		rectangulo.x=rectangulo.x-velocidadMovimiento;
 	}
 	
 	public Icon getIcon(){

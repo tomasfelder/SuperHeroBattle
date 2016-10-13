@@ -1,10 +1,11 @@
 package Tanques;
 import java.awt.Image;
+import java.awt.Rectangle;
 import java.util.Random;
 
 import javax.swing.ImageIcon;
 
-public abstract class Enemigo extends Tanque implements Runnable{
+public abstract class Enemigo extends Tanque {
 	
 	protected int puntosQueDa;
 	protected volatile boolean ejecutar;
@@ -21,29 +22,45 @@ public abstract class Enemigo extends Tanque implements Runnable{
 		ejecutar=false;
 	}
 	
-	public void run(){
-		ejecutar=true;
-		while(ejecutar){
-		}
-	}
+//	public int[] simularMovimiento(int direccion){
+//		int coord[] = new int[2];
+//		switch (direccion){
+//		case 0:
+//			coord[0]=coordenadas.x; coord[1]=coordenadas.y-velocidadMovimiento;
+//			break;
+//		case 1:
+//			coord[0]=coordenadas.x; coord[1]=coordenadas.y+velocidadMovimiento;
+//			break;
+//		case 2:
+//			coord[0]=coordenadas.x-velocidadMovimiento; coord[1]=coordenadas.y;
+//			break;
+//		case 3:
+//			coord[0]=coordenadas.x+velocidadMovimiento; coord[1]=coordenadas.y;
+//			break;
+//		}
+//		return coord;
+//	}
 	
-	public int[] simularMovimiento(int direccion){
-		int coord[] = new int[2];
+	public Rectangle simularMovimiento(int direccion){
+		imagen=iconos[direccion];
+		etiqueta.setIcon(new ImageIcon(imagen.getImage().getScaledInstance(ANCHO, ALTO, Image.SCALE_DEFAULT)));
+		etiqueta.setBounds(rectangulo);
+		Rectangle nuevaPos = new Rectangle(ANCHO, ALTO);
 		switch (direccion){
 		case 0:
-			coord[0]=coordenadas.x; coord[1]=coordenadas.y-velocidadMovimiento;
+			nuevaPos.x=rectangulo.x; nuevaPos.y=rectangulo.y-velocidadMovimiento;
 			break;
 		case 1:
-			coord[0]=coordenadas.x; coord[1]=coordenadas.y+velocidadMovimiento;
+			nuevaPos.x=rectangulo.x; nuevaPos.y=rectangulo.y+velocidadMovimiento;
 			break;
 		case 2:
-			coord[0]=coordenadas.x-velocidadMovimiento; coord[1]=coordenadas.y;
+			nuevaPos.x=rectangulo.x-velocidadMovimiento; nuevaPos.y=rectangulo.y;
 			break;
 		case 3:
-			coord[0]=coordenadas.x+velocidadMovimiento; coord[1]=coordenadas.y;
+			nuevaPos.x=rectangulo.x+velocidadMovimiento; nuevaPos.y=rectangulo.y;
 			break;
 		}
-		return coord;
+		return nuevaPos;
 	}
 	
 	public void mover(int direccion){
@@ -65,27 +82,31 @@ public abstract class Enemigo extends Tanque implements Runnable{
 		
 		imagen=iconos[direccion];
 		etiqueta.setIcon(new ImageIcon(imagen.getImage().getScaledInstance(ANCHO, ALTO, Image.SCALE_DEFAULT)));
-		etiqueta.setBounds(coordenadas.x, coordenadas.y, ANCHO, ALTO);
+		etiqueta.setBounds(rectangulo);
 	}	
 	
 	private void moverDerecha(){
 		
 		coordenadas.x=coordenadas.x+velocidadMovimiento;
+		rectangulo.x=rectangulo.x+velocidadMovimiento;
 
 		
 	}
 	private void moverIzquierda(){
 		
 		coordenadas.x=coordenadas.x-velocidadMovimiento;
+		rectangulo.x=rectangulo.x-velocidadMovimiento;
 	}
 	private void moverArriba(){
 		
 		coordenadas.y=coordenadas.y-velocidadMovimiento;
+		rectangulo.y=rectangulo.y-velocidadMovimiento;
 		
 	}
 	private void moverAbajo(){
 		
 		coordenadas.y=coordenadas.y+velocidadMovimiento;
+		rectangulo.y=rectangulo.y+velocidadMovimiento;
 		
 	}
 	

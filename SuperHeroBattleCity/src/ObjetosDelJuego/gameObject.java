@@ -23,23 +23,28 @@ public abstract class gameObject {
 	    return (neww > 0 && newh > 0);
 	  }
 	
-
+	public Rectangle getRectangulo(){
+		return rectangulo;
+	}
+	
 	public int x(){
-		return coordenadas.x;
+		return rectangulo.x;
 	}
 	
 	public int y(){
-		return coordenadas.y;
+		return rectangulo.y;
 	}
 	
 	public void setX(int i){
-		
-		coordenadas.x=i;
-		etiqueta.setBounds(i,coordenadas.y , ANCHO, ALTO);
+		//coordenadas.x=i;
+		rectangulo.x=i;
+		System.out.println(rectangulo.x);
+		etiqueta.setBounds(rectangulo);
 	}
 	public void setY(int i){
-		etiqueta.setBounds(coordenadas.x,i , ANCHO, ALTO);
-		coordenadas.y=i;
+		//coordenadas.y=i;
+		rectangulo.y=i;
+		etiqueta.setBounds(rectangulo);
 		
 	}
 	

@@ -1,5 +1,6 @@
 package Logica;
 
+import java.awt.Rectangle;
 import java.util.Random;
 
 import Tanques.Enemigo;
@@ -21,9 +22,9 @@ public class InteligenciaEnemigo implements Runnable {
 		while(ejecutar){
 			try{
 				int m=new Random().nextInt(4);
-				int coordenadas[]=enemigo.simularMovimiento(m);
+				Rectangle rect=enemigo.simularMovimiento(m);
 				for(int i=0;i<10;i++)
-					if(game.puedoMover(coordenadas))
+					if(game.puedoMover(rect))
 						enemigo.mover(m);
 				Thread.sleep(250);
 			}
