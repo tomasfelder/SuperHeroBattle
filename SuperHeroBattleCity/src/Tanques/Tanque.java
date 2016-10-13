@@ -1,6 +1,7 @@
 package Tanques;
 
 import java.awt.Point;
+import java.awt.Rectangle;
 
 import javax.swing.*;
 
@@ -18,6 +19,7 @@ public abstract class Tanque extends gameObject {
 	
 	public Tanque(int x,int y){
 		coordenadas = new Point(x,y);
+		rectangulo = new Rectangle(0, 0, ANCHO, ALTO);
 		iconos=new ImageIcon[4];
 	}
 	

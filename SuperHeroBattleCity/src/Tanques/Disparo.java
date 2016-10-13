@@ -2,6 +2,7 @@ package Tanques;
 
 import java.awt.Image;
 import java.awt.Point;
+import java.awt.Rectangle;
 
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
@@ -17,6 +18,7 @@ public class Disparo extends gameObject {
 	
 	public Disparo(int x,int y,int dir,int vel){
 		coordenadas = new Point(x,y);
+		rectangulo = new Rectangle(x, y, 20, 20);
 		velocidadMovimiento=vel;
 		direccion=dir;
 		switch(dir){
