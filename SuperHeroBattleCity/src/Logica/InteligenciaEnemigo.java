@@ -23,10 +23,14 @@ public class InteligenciaEnemigo implements Runnable {
 			try{
 				int m=new Random().nextInt(4);
 				Rectangle rect=enemigo.simularMovimiento(m);
-				if(game.puedoMover(rect))
+				int i=0;
+				while(game.puedoMover(rect)&&i<10){
 					enemigo.mover(m);
+					rect=enemigo.simularMovimiento(m);
+					i++;
+				}
 
-				Thread.sleep(100);
+				Thread.sleep(250);
 			}
 			catch(InterruptedException e){
 				
