@@ -6,9 +6,6 @@ import Tanques.EnemigoBasico;
 import Tanques.Jugador;
 
 import java.awt.Rectangle;
-import java.util.Random;
-
-import javax.swing.Icon;
 import javax.swing.JLabel;
 
 import Grafica.GUI;
@@ -17,28 +14,31 @@ import Mapa.Mapa;
 public class Juego{
 
 	private Jugador jugador;
-	private Enemigo enemigo;
+	private Enemigo[] enemigos;
+	private int cantEnemigos;
 	private Mapa mapa;
 	private GUI gui;
 	private int puntaje;
-	protected volatile boolean ejecutar;
 	private Thread tDisparo,tEnemigo;
 	
-	public Juego(Mapa m){
+	public Juego(Mapa m,GUI g){
 	
 		jugador=new Jugador(0,0);
+		enemigos= new Enemigo[4];
+		cantEnemigos=0;
 		mapa=m;
 		puntaje=0;
+		gui=g;
 	}
 	
-	public boolean puedoMover(int[] coord){
-		boolean puedo=true;
-		for(int i=0;i<mapa.getLargo()&&puedo;i++)
-			for(int j=0;j<mapa.getAncho()&&puedo;j++)
-				if(mapa.obtenerCelda(i, j)!=null)
-					puedo=!mapa.obtenerCelda(i, j).hayColision(coord);
-		return puedo;
-	}
+//	public boolean puedoMover(int[] coord){
+//		boolean puedo=true;
+//		for(int i=0;i<mapa.getLargo()&&puedo;i++)
+//			for(int j=0;j<mapa.getAncho()&&puedo;j++)
+//				if(mapa.obtenerCelda(i, j)!=null)
+//					puedo=!mapa.obtenerCelda(i, j).hayColision(coord);
+//		return puedo;
+//	}
 	
 	public boolean puedoMover(Rectangle nuevaPos){
 		boolean puedo=true;
@@ -49,11 +49,23 @@ public class Juego{
 		return puedo;
 	}
 	
-	public void crearEnemigo(int x,int y){
-		enemigo = new EnemigoBasico(x,y);
-		InteligenciaEnemigo ie = new InteligenciaEnemigo(enemigo,this);
-		tEnemigo=new Thread(ie);
-		tEnemigo.start();
+	public Enemigo crearEnemigo(int x,int y){
+		boolean encontre=false;
+		int i=0;
+		while(i<4&&!encontre){
+			encontre=enemigos[i]==null;
+			if(!encontre)
+				i++;
+		}
+		if(encontre){
+			enemigos[i] = new EnemigoBasico(x,y);
+			cantEnemigos++;
+			InteligenciaEnemigo ie = new InteligenciaEnemigo(enemigos[i],this);
+			tEnemigo=new Thread(ie);
+			tEnemigo.start();
+			return enemigos[i];
+		}
+		else return null;
 	}
 	
 	public JLabel disparar(){
@@ -65,13 +77,20 @@ public class Juego{
 	}
 	
 	public void eliminarEnemigo(){
-		puntaje+=enemigo.getPuntos();
-		enemigo=null;
+		if(cantEnemigos!=0){
+			int i=0;
+			while(enemigos[i]==null)
+				i++;
+			gui.getPanelMapa().remove(enemigos[i].getEtiqueta());
+			enemigos[i]=null;
+			cantEnemigos--;
+		}
+			
 	}
 	
-	public Enemigo getEnemigo(){
+	public Enemigo[] getEnemigos(){
 		
-		return enemigo;
+		return enemigos;
 	}
 	
 	public void sumarPuntaje(int p){
@@ -88,6 +107,10 @@ public class Juego{
 	public void mover(int dir){	
 		if (dir!=4)
 			jugador.mover(dir);
+	}
+
+	public int getCantidadEnemigos() {
+		return cantEnemigos;
 	}
 	
 }

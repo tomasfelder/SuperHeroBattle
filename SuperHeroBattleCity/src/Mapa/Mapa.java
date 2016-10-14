@@ -1,7 +1,6 @@
 package Mapa;
 import java.io.*;
 
-import ObjetosDelJuego.*;
 import Obstaculos.Agua;
 import Obstaculos.Base;
 import Obstaculos.Bosque;

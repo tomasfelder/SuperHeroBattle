@@ -1,7 +1,6 @@
 package Tanques;
 
 import javax.swing.ImageIcon;
-import javax.swing.JLabel;
 
 public class Nivel_1 extends Nivel {
 	

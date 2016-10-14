@@ -13,7 +13,7 @@ import javax.swing.*;
 
 import Mapa.*;
 import Obstaculos.Obstaculo;
-import Tanques.Disparo;
+import Tanques.Enemigo;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -25,7 +25,6 @@ public class GUI extends JFrame {
 	private Mapa mapa;
 	private Juego j;
 	private JButton btnCrearEnemigo,btnEliminarEnemigo,btnCambiarNivel,btnDisparar;
-	private Thread th;
 	
 	/**
 	 * Launch the application.
@@ -49,7 +48,7 @@ public class GUI extends JFrame {
 	 */
 	public GUI() {
 		mapa=new Mapa(12,13,"Mapa1.txt");
-		j=new Juego(mapa);
+		j=new Juego(mapa,this);
 		initialize(12,13);
 		ponerObstaculos();
 		crearBotones();
@@ -59,8 +58,8 @@ public class GUI extends JFrame {
 		return j;
 	}
 	
-	public Rectangle getMapaBounds(){
-		return panelMapa.getBounds();
+	public JPanel getPanelMapa(){
+		return panelMapa;
 	}
 	
 	private void crearBotones(){
@@ -72,11 +71,14 @@ public class GUI extends JFrame {
 			btnCrearEnemigo.setFocusable(false);
 			btnCrearEnemigo.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-					j.crearEnemigo(64, 0);
-					panelMapa.add(j.getEnemigo().getEtiqueta());
-					btnCrearEnemigo.setEnabled(false);
-					btnEliminarEnemigo.setEnabled(true);
-					frame.repaint();
+					Enemigo ene=j.crearEnemigo(64, 0);
+					if(ene!=null){
+						panelMapa.add(ene.getEtiqueta());
+						btnEliminarEnemigo.setEnabled(true);
+						frame.repaint();
+					}
+					if(j.getCantidadEnemigos()==4)
+						btnCrearEnemigo.setEnabled(false);
 				}
 			});
 			btnCrearEnemigo.setBounds(650, 495, 112, 23);
@@ -85,15 +87,14 @@ public class GUI extends JFrame {
 			btnEliminarEnemigo.setFocusable(false);
 			btnEliminarEnemigo.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent arg0) {
-					panelMapa.remove(j.getEnemigo().getEtiqueta());
 					j.eliminarEnemigo();
 					j.sumarPuntaje(100);
-					btnCrearEnemigo.setEnabled(true);
-					btnEliminarEnemigo.setEnabled(false);
-					frame.repaint();
-					JLabel labelPuntaje = new JLabel(new ImageIcon(this.getClass().getResource("/imagenes/Puntaje_100.png")));
-					labelPuntaje.setBounds(80, 16, 13, 7);
-					panelMapa.add(labelPuntaje);
+					if(j.getCantidadEnemigos()==0){
+						btnCrearEnemigo.setEnabled(true);
+						btnEliminarEnemigo.setEnabled(false);
+					}
+					else
+						btnCrearEnemigo.setEnabled(true);
 					frame.repaint();
 				}
 			});
@@ -148,7 +149,6 @@ public class GUI extends JFrame {
 		panelMapa.setBackground(Color.BLACK);
 		panelMapa.setBounds(0,0,416,384);
 		panelMapa.setLayout(null);
-		Rectangle prueba = new Rectangle(0,0,32,32);
 		int pos1,pos2;
 		pos1=pos2=0;
 		for(int i=0;i<mapa.getLargo();i++){
@@ -157,8 +157,6 @@ public class GUI extends JFrame {
 					Obstaculo aux=mapa.obtenerCelda(i, j);
 					aux.setX(pos2); aux.setY(pos1);
 					System.out.println(pos2+","+pos1);
-					//prueba.x=pos2; prueba.y=pos1;
-					//System.out.println(prueba.x+","+prueba.y);
 					panelMapa.add(aux.getEtiqueta());
 				}
 				pos2+=32;

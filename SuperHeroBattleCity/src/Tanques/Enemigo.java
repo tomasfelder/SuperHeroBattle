@@ -1,7 +1,6 @@
 package Tanques;
 import java.awt.Image;
 import java.awt.Rectangle;
-import java.util.Random;
 
 import javax.swing.ImageIcon;
 
@@ -110,7 +109,29 @@ public abstract class Enemigo extends Tanque {
 		
 	}
 	
+	public int direccion(){
+		if(imagen==iconos[0])
+			return 0;
+		if(imagen==iconos[1])
+			return 1;
+		if(imagen==iconos[2])
+			return 2;
+		if(imagen==iconos[3])
+			return 3;
+		return -1;
+	}
+	
 	public Disparo disparar(){
+		switch (direccion()){
+		case 0:
+			return new Disparo(rectangulo.x,rectangulo.y,0,velocidadDisparo);
+		case 1:
+			return new Disparo(rectangulo.x,rectangulo.y,1,velocidadDisparo);
+		case 2:
+			return new Disparo(rectangulo.x,rectangulo.y,2,velocidadDisparo);
+		case 3:
+			return new Disparo(rectangulo.x,rectangulo.y,3,velocidadDisparo);
+		}
 		return null;
 	}
 	
