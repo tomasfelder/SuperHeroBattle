@@ -19,7 +19,7 @@ public abstract class Tanque extends gameObject {
 	
 	public Tanque(int x,int y){
 		coordenadas = new Point(x,y);
-		rectangulo = new Rectangle(x, y, ANCHO, ALTO);
+		rectangulo = new Rectangle(x, y, 28, 28);
 		iconos=new ImageIcon[4];
 	}
 	

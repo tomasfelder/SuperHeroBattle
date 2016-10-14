@@ -7,7 +7,6 @@ import javax.swing.ImageIcon;
 public abstract class Enemigo extends Tanque {
 	
 	protected int puntosQueDa;
-	protected volatile boolean ejecutar;
 	
 	public Enemigo(int x, int y) {
 		super(x, y);
@@ -15,10 +14,6 @@ public abstract class Enemigo extends Tanque {
 	
 	public int getPuntos(){
 		return puntosQueDa;
-	}
-	
-	public void terminate(){
-		ejecutar=false;
 	}
 	
 //	public int[] simularMovimiento(int direccion){
@@ -42,9 +37,9 @@ public abstract class Enemigo extends Tanque {
 	
 	public Rectangle simularMovimiento(int direccion){
 		imagen=iconos[direccion];
-		etiqueta.setIcon(new ImageIcon(imagen.getImage().getScaledInstance(ANCHO, ALTO, Image.SCALE_DEFAULT)));
+		etiqueta.setIcon(new ImageIcon(imagen.getImage().getScaledInstance(28, 28, Image.SCALE_DEFAULT)));
 		etiqueta.setBounds(rectangulo);
-		Rectangle nuevaPos = new Rectangle(ANCHO, ALTO);
+		Rectangle nuevaPos = new Rectangle(28, 28);
 		switch (direccion){
 		case 0:
 			nuevaPos.x=rectangulo.x; nuevaPos.y=rectangulo.y-velocidadMovimiento;
@@ -80,7 +75,7 @@ public abstract class Enemigo extends Tanque {
 		}
 		
 		imagen=iconos[direccion];
-		etiqueta.setIcon(new ImageIcon(imagen.getImage().getScaledInstance(ANCHO, ALTO, Image.SCALE_DEFAULT)));
+		etiqueta.setIcon(new ImageIcon(imagen.getImage().getScaledInstance(28, 28, Image.SCALE_DEFAULT)));
 		etiqueta.setBounds(rectangulo);
 	}	
 	

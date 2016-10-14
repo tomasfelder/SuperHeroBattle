@@ -15,13 +15,13 @@ public abstract class gameObject {
 	protected Rectangle rectangulo;
 	
 	//http://opensource.apple.com//source/gcc3/gcc3-1041/libjava/java/awt/Rectangle.java
-	public boolean hayColision(int[] coord){
-	    int neww = (coordenadas.x + ANCHO < coord[0] + ANCHO ?
-	        	coordenadas.x + ANCHO : coord[0] + ANCHO) - (coordenadas.x < coord[0] ? coord[0] : coordenadas.x);
-	    int newh = (coordenadas.y + ALTO < coord[1] + ALTO ?
-	        	coordenadas.y + ALTO : coord[1] + ALTO) - (coordenadas.y < coord[1] ? coord[1] : coordenadas.y);
-	    return (neww > 0 && newh > 0);
-	  }
+//	public boolean hayColision(int[] coord){
+//	    int neww = (coordenadas.x + ANCHO < coord[0] + ANCHO ?
+//	        	coordenadas.x + ANCHO : coord[0] + ANCHO) - (coordenadas.x < coord[0] ? coord[0] : coordenadas.x);
+//	    int newh = (coordenadas.y + ALTO < coord[1] + ALTO ?
+//	        	coordenadas.y + ALTO : coord[1] + ALTO) - (coordenadas.y < coord[1] ? coord[1] : coordenadas.y);
+//	    return (neww > 0 && newh > 0);
+//	  }
 	
 	public Rectangle getRectangulo(){
 		return rectangulo;

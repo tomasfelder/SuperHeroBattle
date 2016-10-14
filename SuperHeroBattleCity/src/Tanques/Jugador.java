@@ -15,8 +15,9 @@ public class Jugador extends Tanque{
 		super(x,y);
 		miNivel=new Nivel_1();
 		etiqueta=new JLabel();
-		etiqueta.setBounds(x, y, ANCHO, ALTO);
+		etiqueta.setBounds(x, y, 28, 28);
 		etiqueta.setIcon(miNivel.getIcon());
+		etiqueta.setOpaque(false);
 	}
 	
 	public void setNivel(int n){
@@ -65,7 +66,7 @@ public class Jugador extends Tanque{
 	
 	public Rectangle simularMovimiento(int direccion){
 		int coord[] = new int[2];
-		Rectangle nuevaPos = new Rectangle(ANCHO, ALTO);
+		Rectangle nuevaPos = new Rectangle(28, 28);
 		miNivel.cambiarIcono(direccion);
 		etiqueta.setIcon(miNivel.getIcon());
 		switch (direccion){
@@ -140,7 +141,7 @@ public class Jugador extends Tanque{
 	
 	public Icon getIcon(){
 		
-		return new ImageIcon(miNivel.getIcono().getImage().getScaledInstance(ANCHO, ALTO, Image.SCALE_DEFAULT));
+		return new ImageIcon(miNivel.getIcono().getImage().getScaledInstance(28, 28, Image.SCALE_DEFAULT));
 		
 	}
 	

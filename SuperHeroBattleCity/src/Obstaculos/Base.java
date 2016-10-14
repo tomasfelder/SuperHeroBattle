@@ -19,5 +19,6 @@ public class Base extends Obstaculo {
 		etiqueta = new JLabel();
 		etiqueta.setIcon(new ImageIcon(imagen.getImage().getScaledInstance(ANCHO, ALTO, Image.SCALE_DEFAULT)));
 		etiqueta.setBounds(0, 0,ANCHO , ALTO);
+		etiqueta.setOpaque(false);
 	}
 }

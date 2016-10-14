@@ -51,7 +51,7 @@ public abstract class Nivel {
 
 	public Icon getIcon(){
 		
-		return new ImageIcon(icono.getImage().getScaledInstance(32, 32, Image.SCALE_DEFAULT));
+		return new ImageIcon(icono.getImage().getScaledInstance(28, 28, Image.SCALE_DEFAULT));
 		
 	}
 	
