@@ -41,8 +41,8 @@ public class IntelegenciaDisparo implements Runnable {
 						execute=false;
 						game.quitarEtiqueta(d.getEtiqueta());
 						d=null;
-				}		
-			}	
+				}
+			}
 	}
 	
 }
