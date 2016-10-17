@@ -4,7 +4,6 @@ import Tanques.Disparo;
 import Tanques.Enemigo;
 import Tanques.EnemigoBasico;
 import Tanques.Jugador;
-import Tanques.Tanque;
 
 import java.awt.Rectangle;
 import javax.swing.JLabel;
@@ -12,7 +11,6 @@ import javax.swing.JLabel;
 import Grafica.GUI;
 import Mapa.Mapa;
 import ObjetosDelJuego.Visitor;
-import ObjetosDelJuego.gameObject;
 
 public class Juego{
 
@@ -25,7 +23,6 @@ public class Juego{
 	private Thread tDisparo,tEnemigo;
 	
 	public Juego(Mapa m,GUI g){
-	
 		jugador=new Jugador(32,32);
 		enemigos= new Enemigo[4];
 		cantEnemigos=0;

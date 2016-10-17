@@ -37,11 +37,11 @@ public class IntelegenciaDisparo implements Runnable {
 						
 					}
 				}
-			if(!game.puedoMover(nuevaP,d)){
-					execute=false;
-					game.quitarEtiqueta(d.getEtiqueta());
-					d=null;
-			}		
+				if(!game.puedoMover(nuevaP,d)){
+						execute=false;
+						game.quitarEtiqueta(d.getEtiqueta());
+						d=null;
+				}		
 			}	
 	}
 	

@@ -4,9 +4,6 @@ import java.awt.Image;
 import java.awt.Rectangle;
 
 import javax.swing.*;
-
-import Obstaculos.Pared;
-import Obstaculos.powerUp;
  
 public class Jugador extends Tanque{
 	
