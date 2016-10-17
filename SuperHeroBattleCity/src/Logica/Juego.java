@@ -82,6 +82,7 @@ public class Juego{
 			while(enemigos[i]==null)
 				i++;
 			gui.getPanelMapa().remove(enemigos[i].getEtiqueta());
+			gui.repintar();
 			enemigos[i]=null;
 			cantEnemigos--;
 		}
@@ -111,6 +112,11 @@ public class Juego{
 
 	public int getCantidadEnemigos() {
 		return cantEnemigos;
+	}
+
+	public void quitarEtiqueta(JLabel etiqueta) {
+		gui.getPanelMapa().remove(etiqueta);
+		gui.repintar();
 	}
 	
 }

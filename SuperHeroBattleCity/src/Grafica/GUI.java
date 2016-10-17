@@ -54,12 +54,12 @@ public class GUI extends JFrame {
 		crearBotones();
 	}
 	
-	public Juego getJuego(){
-		return juego;
-	}
-	
 	public JPanel getPanelMapa(){
 		return panelMapa;
+	}
+	
+	public void repintar(){
+		frame.repaint();
 	}
 	
 	private void crearBotones(){
@@ -71,7 +71,7 @@ public class GUI extends JFrame {
 			btnCrearEnemigo.setFocusable(false);
 			btnCrearEnemigo.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-					Enemigo ene=juego.crearEnemigo(64, 0);
+					Enemigo ene=juego.crearEnemigo(64, 32);
 					if(ene!=null){
 						panelMapa.add(ene.getEtiqueta());
 						btnEliminarEnemigo.setEnabled(true);
