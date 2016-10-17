@@ -16,4 +16,11 @@ public abstract class Pared extends Obstaculo {
 		return v.colisionarPared(this, nuevaPos);
 	}
 	
+	public void afectar(int disparo){
+		vida-=disparo;
+		if(vida<=0){
+			
+		}
+	}
+	
 }

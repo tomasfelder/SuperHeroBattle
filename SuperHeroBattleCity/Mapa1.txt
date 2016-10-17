@@ -1,12 +1,14 @@
-x x x x x x x x x x x x x
-x p x p x p x p x p x p x
-x p B p x p z p x p B p x
-x p x p x p p p x p x p x
-x p x p x x x x x p x p x
-x x x x x p x p x x x x x
-a x p p x x x x x p p x a
-x x x x x p p p x x x x x
-x p x p x p p p x p x p x
-x p x p x p x p x p x p x
-x p x p x x x x x p x p x
-x x x x x x b x x x x x x
+N N N N N N N N N N N N N N N
+N x x x x x x x x x x x x x N
+N x p x p x p x p x p x p x N
+N x p B p x p z p x p B p x N
+N x p x p x p p p x p x p x N
+N x p x p x x x x x p x p x N
+N x x x x x p x p x x x x x N
+N a x p p x x x x x p p x a N
+N x x x x x p p p x x x x x N
+N x p x p x p p p x p x p x N
+N x p x p x p x p x p x p x N
+N x p x p x x x x x p x p x N
+N x x x x x x b x x x x x x N
+N N N N N N N N N N N N N N N

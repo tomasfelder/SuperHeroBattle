@@ -10,8 +10,13 @@ import javax.swing.JLabel;
 
 import ObjetosDelJuego.Visitor;
 import ObjetosDelJuego.gameObject;
+import Obstaculos.Agua;
+import Obstaculos.Base;
+import Obstaculos.Borde;
+import Obstaculos.Bosque;
+import Obstaculos.Pared;
 
-public class Disparo extends gameObject {
+public class Disparo extends gameObject implements Visitor {
 	
 	protected ImageIcon[] iconos;
 	protected int velocidadMovimiento;
@@ -19,7 +24,7 @@ public class Disparo extends gameObject {
 	
 	public Disparo(int x,int y,int dir,int vel){
 		coordenadas = new Point(x,y);
-		rectangulo = new Rectangle(x, y, 20, 20);
+		rectangulo = new Rectangle(x, y, 7, 10);
 		velocidadMovimiento=vel;
 		direccion=dir;
 		switch(dir){
@@ -30,44 +35,19 @@ public class Disparo extends gameObject {
 			imagen = new ImageIcon(this.getClass().getResource("/imagenes/Disparo_Abajo.png"));
 			break;
 		case(2):
-			imagen = new ImageIcon(this.getClass().getResource("/imagenes/Disparo_Der.png"));
+			imagen = new ImageIcon(this.getClass().getResource("/imagenes/Disparo_Izq.png"));
 			break;
 		case(3):
-			imagen = new ImageIcon(this.getClass().getResource("/imagenes/Disparo_Izq.png"));
+			imagen = new ImageIcon(this.getClass().getResource("/imagenes/Disparo_Der.png"));
 			break;
 		}
 		etiqueta = new JLabel();
-		etiqueta.setIcon(new ImageIcon(imagen.getImage().getScaledInstance(20, 20, Image.SCALE_DEFAULT)));
+		etiqueta.setIcon(new ImageIcon(imagen.getImage().getScaledInstance(7, 10, Image.SCALE_DEFAULT)));
 		etiqueta.setBounds(rectangulo);
 	}
 	
-	public boolean colision(gameObject o){
-		
-		return true;
-		
-	}
-	
-//	public int[] simularMovimiento(){
-//		int coord[] = new int[2];
-//		switch (direccion){
-//		case 0:
-//			coord[0]=coordenadas.x; coord[1]=coordenadas.y-velocidadMovimiento;
-//			break;
-//		case 1:
-//			coord[0]=coordenadas.x; coord[1]=coordenadas.y+velocidadMovimiento;
-//			break;
-//		case 2:
-//			coord[0]=coordenadas.x-velocidadMovimiento; coord[1]=coordenadas.y;
-//			break;
-//		case 3:
-//			coord[0]=coordenadas.x+velocidadMovimiento; coord[1]=coordenadas.y;
-//			break;
-//		}
-//		return coord;
-//	}
-	
 	public Rectangle simularMovimiento(){
-		Rectangle nuevaPos = new Rectangle(20, 20);
+		Rectangle nuevaPos = new Rectangle(7, 10);
 		switch (direccion){
 		case 0:
 			nuevaPos.x=rectangulo.x; nuevaPos.y=rectangulo.y-velocidadMovimiento;
@@ -123,12 +103,41 @@ public class Disparo extends gameObject {
 	
 	public Icon getIcon(){
 		
-		return new ImageIcon(imagen.getImage().getScaledInstance(20, 20, Image.SCALE_DEFAULT));
+		return new ImageIcon(imagen.getImage().getScaledInstance(15, 15, Image.SCALE_DEFAULT));
 		
 	}
 	
 	public boolean aceptar(Visitor v,Rectangle posNueva){
 		return false;
+	}
+
+	public boolean colisionarPared(Pared p,Rectangle posNueva){
+		return p.getRectangulo().intersects(posNueva);
+	}
+	
+	public boolean colisionarBosque(Bosque b,Rectangle posNueva){
+		return false;
+	}
+	public boolean colisionarAgua(Agua a,Rectangle posNueva){
+		return false;
+	}
+	public boolean colisionarBase(Base b,Rectangle posNueva){
+		return b.getRectangulo().intersects(posNueva);
+	}
+	public boolean colisionarDisparo(Disparo d,Rectangle posNueva){
+		return false;
+	}
+	
+	public boolean colisionarBorde(Borde b,Rectangle posNueva){
+		return b.getRectangulo().intersects(posNueva);
+	}
+
+	public boolean colisionarEnemigo(Enemigo e, Rectangle posNueva) {
+		return e.getRectangulo().intersects(posNueva);
+	}
+
+	public boolean colisionarJugador(Jugador j, Rectangle posNueva) {
+		return j.getRectangulo().intersects(posNueva);
 	}
 	
 }

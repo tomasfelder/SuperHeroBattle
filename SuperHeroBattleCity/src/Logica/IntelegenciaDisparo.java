@@ -20,26 +20,27 @@ public class IntelegenciaDisparo implements Runnable {
 	}
 	
 	public void terminate(){
-		execute=true;
+		execute=false;
 	}
 	
 	@Override
 	public void run() {
-//			Rectangle nuevaP;
-//			execute=true;
-//			while(execute){
-//				while(game.puedoMover(nuevaP=d.simularMovimiento(),d)){
-//					d.mover();
-//					try {
-//						Thread.sleep(10);
-//					} catch (InterruptedException e) {
-//						
-//					}
-//				}
-//			if(!game.puedoMover(nuevaP,d))
-//					execute=false;
-//					
-//			}	
+			Rectangle nuevaP=d.simularMovimiento();
+			execute=true;
+			while(execute){
+				while(game.puedoMover(nuevaP,d)){
+					d.mover();
+					nuevaP=d.simularMovimiento();
+					try {
+						Thread.sleep(10);
+					} catch (InterruptedException e) {
+						
+					}
+				}
+			if(!game.puedoMover(nuevaP,d))
+					execute=false;
+					
+			}	
 	}
 	
 }

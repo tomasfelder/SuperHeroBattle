@@ -39,32 +39,6 @@ public class Jugador extends Tanque{
 		etiqueta.setIcon(miNivel.getIcon());
 	}
 	
-//	public int[] simularMovimiento(int direccion){
-//		int coord[] = new int[2];
-//		Rectangle nuevaPos = new Rectangle(ANCHO, ALTO);
-//		miNivel.cambiarIcono(direccion);
-//		etiqueta.setIcon(miNivel.getIcon());
-//		switch (direccion){
-//		case 0:
-//			coord[0]=coordenadas.x; coord[1]=coordenadas.y-miNivel.getVelocidadMovimiento();
-//			nuevaPos.x=coordenadas.x; nuevaPos.y=coordenadas.y-miNivel.getVelocidadMovimiento();
-//			break;
-//		case 1:
-//			coord[0]=coordenadas.x; coord[1]=coordenadas.y+miNivel.getVelocidadMovimiento();
-//			nuevaPos.x=coordenadas.x; nuevaPos.y=coordenadas.y+miNivel.getVelocidadMovimiento();
-//			break;
-//		case 2:
-//			coord[0]=coordenadas.x-miNivel.getVelocidadMovimiento(); coord[1]=coordenadas.y;
-//			nuevaPos.x=coordenadas.x-miNivel.getVelocidadMovimiento(); nuevaPos.y=coordenadas.y;
-//			break;
-//		case 3:
-//			coord[0]=coordenadas.x+miNivel.getVelocidadMovimiento(); coord[1]=coordenadas.y;
-//			nuevaPos.x=coordenadas.x+miNivel.getVelocidadMovimiento(); nuevaPos.y=coordenadas.y;
-//			break;
-//		}
-//		return coord;
-//	}
-	
 	public Rectangle simularMovimiento(int direccion){
 		int coord[] = new int[2];
 		Rectangle nuevaPos = new Rectangle(28, 28);
@@ -149,13 +123,13 @@ public class Jugador extends Tanque{
 	public Disparo disparar(){
 		switch (miNivel.direccion()){
 		case 0:
-			return new Disparo(rectangulo.x,rectangulo.y,0,miNivel.getVelocidadDisparo());
+			return new Disparo(rectangulo.x+10,rectangulo.y-10,0,miNivel.getVelocidadDisparo());
 		case 1:
-			return new Disparo(rectangulo.x,rectangulo.y,1,miNivel.getVelocidadDisparo());
+			return new Disparo(rectangulo.x+10,rectangulo.y+28,1,miNivel.getVelocidadDisparo());
 		case 2:
-			return new Disparo(rectangulo.x,rectangulo.y,2,miNivel.getVelocidadDisparo());
+			return new Disparo(rectangulo.x-10,rectangulo.y+10,2,miNivel.getVelocidadDisparo());
 		case 3:
-			return new Disparo(rectangulo.x,rectangulo.y,3,miNivel.getVelocidadDisparo());
+			return new Disparo(rectangulo.x+28,rectangulo.y+10,3,miNivel.getVelocidadDisparo());
 		}
 		return null;
 	}

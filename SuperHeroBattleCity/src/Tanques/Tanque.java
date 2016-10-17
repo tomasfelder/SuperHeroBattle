@@ -8,6 +8,7 @@ import javax.swing.*;
 import ObjetosDelJuego.*;
 import Obstaculos.Agua;
 import Obstaculos.Base;
+import Obstaculos.Borde;
 import Obstaculos.Bosque;
 import Obstaculos.Pared;
 
@@ -59,6 +60,10 @@ public abstract class Tanque extends gameObject implements Visitor {
 	}
 	public boolean colisionarDisparo(Disparo d,Rectangle posNueva){
 		return d.getRectangulo().intersects(posNueva);
+	}
+	
+	public boolean colisionarBorde(Borde b,Rectangle posNueva){
+		return b.getRectangulo().intersects(posNueva);
 	}
 	
 }

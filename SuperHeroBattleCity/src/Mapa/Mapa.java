@@ -3,6 +3,7 @@ import java.io.*;
 
 import Obstaculos.Agua;
 import Obstaculos.Base;
+import Obstaculos.Borde;
 import Obstaculos.Bosque;
 import Obstaculos.Obstaculo;
 import Obstaculos.ParedDeAcero;
@@ -48,6 +49,10 @@ public class Mapa {
 	            			break;
 	            		case 'B' :
 	            			matriz[nroLinea][j]=new Bosque();
+	            			j++;
+	            			break;
+	            		case 'N' :
+	            			matriz[nroLinea][j]=new Borde();
 	            			j++;
 	            			break;
 	            		case ' ' :

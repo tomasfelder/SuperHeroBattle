@@ -47,9 +47,9 @@ public class GUI extends JFrame {
 	 * Create the application.
 	 */
 	public GUI() {
-		mapa=new Mapa(12,13,"Mapa1.txt");
+		mapa=new Mapa(14,15,"Mapa1.txt");
 		juego=new Juego(mapa,this);
-		initialize(12,13);
+		initialize(14,15);
 		ponerObstaculos();
 		crearBotones();
 	}
@@ -65,7 +65,7 @@ public class GUI extends JFrame {
 	private void crearBotones(){
 		
 			panelBotones = new JPanel();
-			panelBotones.setBounds(426, 198, 156, 186);
+			panelBotones.setBounds(512, 262, 156, 186);
 			
 			btnCrearEnemigo = new JButton("Crear Enemigo");
 			btnCrearEnemigo.setFocusable(false);
@@ -137,7 +137,8 @@ public class GUI extends JFrame {
 			btnDisparar.setFocusable(false);
 			btnDisparar.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent arg0) {
-					panelMapa.add(juego.disparar());	
+					panelMapa.add(juego.disparar());
+					frame.repaint();
 				}
 			});
 			panelBotones.add(btnDisparar);
@@ -147,7 +148,7 @@ public class GUI extends JFrame {
 	private void ponerObstaculos() {
 		panelMapa = new JPanel();
 		panelMapa.setBackground(Color.BLACK);
-		panelMapa.setBounds(0,0,416,384);
+		panelMapa.setBounds(0,0,480,448);
 		panelMapa.setLayout(null);
 		int pos1,pos2;
 		pos1=pos2=0;

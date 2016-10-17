@@ -26,7 +26,7 @@ public class Juego{
 	
 	public Juego(Mapa m,GUI g){
 	
-		jugador=new Jugador(0,0);
+		jugador=new Jugador(32,32);
 		enemigos= new Enemigo[4];
 		cantEnemigos=0;
 		mapa=m;
@@ -34,25 +34,18 @@ public class Juego{
 		gui=g;
 	}
 	
-//	public boolean puedoMover(int[] coord){
-//		boolean puedo=true;
-//		for(int i=0;i<mapa.getLargo()&&puedo;i++)
-//			for(int j=0;j<mapa.getAncho()&&puedo;j++)
-//				if(mapa.obtenerCelda(i, j)!=null)
-//					puedo=!mapa.obtenerCelda(i, j).hayColision(coord);
-//		return puedo;
-//	}
-	
 	public boolean puedoMover(Rectangle nuevaPos,Visitor v){
 		boolean puedo=true;
-		puedo=!v.colisionarJugador(jugador, nuevaPos);
 		for(int i=0;i<mapa.getLargo()&&puedo;i++)
 			for(int j=0;j<mapa.getAncho()&&puedo;j++)
 				if(mapa.obtenerCelda(i, j)!=null)
 					puedo=!mapa.obtenerCelda(i, j).aceptar(v,nuevaPos);
-		for(int i=0;i<cantEnemigos&&puedo;i++)
-			if(enemigos[i]!=v)
-				puedo=!v.colisionarEnemigo(enemigos[i], nuevaPos);
+		if(puedo){
+			puedo=!v.colisionarJugador(jugador, nuevaPos);
+			for(int i=0;i<cantEnemigos&&puedo;i++)
+				if(enemigos[i]!=v)
+					puedo=!v.colisionarEnemigo(enemigos[i], nuevaPos);
+		}
 		return puedo;
 	}
 	
