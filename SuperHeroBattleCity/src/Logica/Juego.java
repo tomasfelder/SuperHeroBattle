@@ -4,12 +4,15 @@ import Tanques.Disparo;
 import Tanques.Enemigo;
 import Tanques.EnemigoBasico;
 import Tanques.Jugador;
+import Tanques.Tanque;
 
 import java.awt.Rectangle;
 import javax.swing.JLabel;
 
 import Grafica.GUI;
 import Mapa.Mapa;
+import ObjetosDelJuego.Visitor;
+import ObjetosDelJuego.gameObject;
 
 public class Juego{
 
@@ -40,12 +43,16 @@ public class Juego{
 //		return puedo;
 //	}
 	
-	public boolean puedoMover(Rectangle nuevaPos){
+	public boolean puedoMover(Rectangle nuevaPos,Visitor v){
 		boolean puedo=true;
+		puedo=!v.colisionarJugador(jugador, nuevaPos);
 		for(int i=0;i<mapa.getLargo()&&puedo;i++)
 			for(int j=0;j<mapa.getAncho()&&puedo;j++)
 				if(mapa.obtenerCelda(i, j)!=null)
-					puedo=!mapa.obtenerCelda(i, j).getRectangulo().intersects(nuevaPos);
+					puedo=!mapa.obtenerCelda(i, j).aceptar(v,nuevaPos);
+		for(int i=0;i<cantEnemigos&&puedo;i++)
+			if(enemigos[i]!=v)
+				puedo=!v.colisionarEnemigo(enemigos[i], nuevaPos);
 		return puedo;
 	}
 	

@@ -7,6 +7,8 @@ import java.awt.Rectangle;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 
+import ObjetosDelJuego.Visitor;
+
 public class Base extends Obstaculo {
 	
 	/**
@@ -21,4 +23,9 @@ public class Base extends Obstaculo {
 		etiqueta.setBounds(0, 0,ANCHO , ALTO);
 		etiqueta.setOpaque(false);
 	}
+	
+	public boolean aceptar(Visitor v,Rectangle nuevaPos){
+		return v.colisionarBase(this, nuevaPos);
+	}
+	
 }

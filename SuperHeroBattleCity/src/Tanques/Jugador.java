@@ -5,6 +5,7 @@ import java.awt.Rectangle;
 
 import javax.swing.*;
 
+import Obstaculos.Pared;
 import Obstaculos.powerUp;
  
 public class Jugador extends Tanque{
@@ -159,11 +160,12 @@ public class Jugador extends Tanque{
 		return null;
 	}
 	
-	public boolean colision(powerUp p){
-		
-		p.afectar();
-		return true;
+	public boolean colisionarEnemigo(Enemigo e,Rectangle posNueva){
+		return e.getRectangulo().intersects(posNueva);
 	}
 	
+	public boolean colisionarJugador(Jugador j,Rectangle posNueva){
+		return false;
+	}
 	
 }

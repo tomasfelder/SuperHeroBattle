@@ -23,6 +23,8 @@ public abstract class gameObject {
 //	    return (neww > 0 && newh > 0);
 //	  }
 	
+	public abstract boolean aceptar(Visitor v,Rectangle nuevaPos);
+	
 	public Rectangle getRectangulo(){
 		return rectangulo;
 	}

@@ -5,9 +5,13 @@ import java.awt.Rectangle;
 
 import javax.swing.*;
 
-import ObjetosDelJuego.gameObject;
+import ObjetosDelJuego.*;
+import Obstaculos.Agua;
+import Obstaculos.Base;
+import Obstaculos.Bosque;
+import Obstaculos.Pared;
 
-public abstract class Tanque extends gameObject {
+public abstract class Tanque extends gameObject implements Visitor {
 	
 	//Atributos de instancia
 	
@@ -37,5 +41,24 @@ public abstract class Tanque extends gameObject {
 		return velocidadMovimiento;
 	}
 	
+	public boolean aceptar(Visitor v,Rectangle posNueva){
+		return false;
+	}
+	
+	public boolean colisionarPared(Pared p,Rectangle posNueva){
+		return p.getRectangulo().intersects(posNueva);
+	}
+	public boolean colisionarBosque(Bosque b,Rectangle posNueva){
+		return false;
+	}
+	public boolean colisionarAgua(Agua a,Rectangle posNueva){
+		return a.getRectangulo().intersects(posNueva);
+	}
+	public boolean colisionarBase(Base b,Rectangle posNueva){
+		return b.getRectangulo().intersects(posNueva);
+	}
+	public boolean colisionarDisparo(Disparo d,Rectangle posNueva){
+		return d.getRectangulo().intersects(posNueva);
+	}
 	
 }

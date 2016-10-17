@@ -130,4 +130,12 @@ public abstract class Enemigo extends Tanque {
 		return null;
 	}
 	
+	public boolean colisionarJugador(Jugador j,Rectangle posNueva){
+		return j.getRectangulo().intersects(posNueva);
+	}
+	
+	public boolean colisionarEnemigo(Enemigo e,Rectangle posNueva){
+		return e.getRectangulo().intersects(posNueva);
+	}
+	
 }

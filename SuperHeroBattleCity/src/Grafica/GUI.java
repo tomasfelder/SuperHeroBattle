@@ -23,7 +23,7 @@ public class GUI extends JFrame {
 	private JFrame frame;
 	private JPanel panelMapa,panelBotones;
 	private Mapa mapa;
-	private Juego j;
+	private Juego juego;
 	private JButton btnCrearEnemigo,btnEliminarEnemigo,btnCambiarNivel,btnDisparar;
 	
 	/**
@@ -48,14 +48,14 @@ public class GUI extends JFrame {
 	 */
 	public GUI() {
 		mapa=new Mapa(12,13,"Mapa1.txt");
-		j=new Juego(mapa,this);
+		juego=new Juego(mapa,this);
 		initialize(12,13);
 		ponerObstaculos();
 		crearBotones();
 	}
 	
 	public Juego getJuego(){
-		return j;
+		return juego;
 	}
 	
 	public JPanel getPanelMapa(){
@@ -71,13 +71,13 @@ public class GUI extends JFrame {
 			btnCrearEnemigo.setFocusable(false);
 			btnCrearEnemigo.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-					Enemigo ene=j.crearEnemigo(64, 32);
+					Enemigo ene=juego.crearEnemigo(64, 0);
 					if(ene!=null){
 						panelMapa.add(ene.getEtiqueta());
 						btnEliminarEnemigo.setEnabled(true);
 						frame.repaint();
 					}
-					if(j.getCantidadEnemigos()==4)
+					if(juego.getCantidadEnemigos()==4)
 						btnCrearEnemigo.setEnabled(false);
 				}
 			});
@@ -87,9 +87,9 @@ public class GUI extends JFrame {
 			btnEliminarEnemigo.setFocusable(false);
 			btnEliminarEnemigo.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent arg0) {
-					j.eliminarEnemigo();
-					j.sumarPuntaje(100);
-					if(j.getCantidadEnemigos()==0){
+					juego.eliminarEnemigo();
+					juego.sumarPuntaje(100);
+					if(juego.getCantidadEnemigos()==0){
 						btnCrearEnemigo.setEnabled(true);
 						btnEliminarEnemigo.setEnabled(false);
 					}
@@ -128,7 +128,7 @@ public class GUI extends JFrame {
 			btnCambiarNivel.setFocusable(false);
 			btnCambiarNivel.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent arg0) {
-					j.getJugador().setNivel(new Random().nextInt(4));
+					juego.getJugador().setNivel(new Random().nextInt(4));
 				}
 			});
 			panelBotones.add(btnCambiarNivel);
@@ -137,7 +137,7 @@ public class GUI extends JFrame {
 			btnDisparar.setFocusable(false);
 			btnDisparar.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent arg0) {
-					panelMapa.add(j.disparar());	
+					panelMapa.add(juego.disparar());	
 				}
 			});
 			panelBotones.add(btnDisparar);
@@ -169,20 +169,20 @@ public class GUI extends JFrame {
 			@Override
 			public void keyPressed(KeyEvent arg0){
 				int direccion=movimiento(arg0);
-				Rectangle coordenadas = j.getJugador().simularMovimiento(direccion);
-				System.out.println(j.puedoMover(coordenadas));
-				if(j.puedoMover(coordenadas)){
-					j.mover(direccion);
-//					labelJugador.setIcon(j.getJugador().getIcon());
-//					labelJugador.setBounds(j.getJugador().x(),j.getJugador().y(),32,32);
-					System.out.println(j.getJugador().x()+","+j.getJugador().y());
+				Rectangle coordenadas = juego.getJugador().simularMovimiento(direccion);
+				System.out.println(juego.puedoMover(coordenadas,juego.getJugador()));
+				if(juego.puedoMover(coordenadas,juego.getJugador())){
+					juego.mover(direccion);
+//					labelJugador.setIcon(juego.getJugador().getIcon());
+//					labelJugador.setBounds(juego.getJugador().x(),juego.getJugador().y(),32,32);
+					System.out.println(juego.getJugador().x()+","+juego.getJugador().y());
 					frame.repaint();
 				}
 			}
 
 		});
 //		panelMapa.add(labelJugador);
-		panelMapa.add(j.getJugador().getEtiqueta());
+		panelMapa.add(juego.getJugador().getEtiqueta());
 		panelMapa.setFocusable(true);
 		frame.getContentPane().add(panelMapa);
 		frame.repaint();

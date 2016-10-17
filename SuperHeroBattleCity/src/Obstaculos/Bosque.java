@@ -7,6 +7,8 @@ import java.awt.Rectangle;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 
+import ObjetosDelJuego.Visitor;
+
 public class Bosque extends Obstaculo {
 	/**
 	 * Constructor
@@ -23,8 +25,8 @@ public class Bosque extends Obstaculo {
 		etiqueta.setOpaque(false);
 	}
 	
-	public boolean hayColision(int[] coord){
-		return false;
+	public boolean aceptar(Visitor v,Rectangle nuevaPos){
+		return v.colisionarBosque(this, nuevaPos);
 	}
 	
 }

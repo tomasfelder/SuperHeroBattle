@@ -8,6 +8,7 @@ import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 
+import ObjetosDelJuego.Visitor;
 import ObjetosDelJuego.gameObject;
 
 public class Disparo extends gameObject {
@@ -124,6 +125,10 @@ public class Disparo extends gameObject {
 		
 		return new ImageIcon(imagen.getImage().getScaledInstance(20, 20, Image.SCALE_DEFAULT));
 		
+	}
+	
+	public boolean aceptar(Visitor v,Rectangle posNueva){
+		return false;
 	}
 	
 }
