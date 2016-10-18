@@ -10,6 +10,7 @@ public class IntelegenciaDisparo implements Runnable {
 	private Juego game;
 	private boolean execute;
 	
+	//Constructor
 	public IntelegenciaDisparo(Disparo disp, Juego juego) {
 		d=disp;
 		game=juego;
