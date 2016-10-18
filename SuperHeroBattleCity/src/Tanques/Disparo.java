@@ -121,12 +121,15 @@ public class Disparo extends gameObject implements Visitor {
 	public boolean colisionarBosque(Bosque b,Rectangle posNueva){
 		return false;
 	}
+	
 	public boolean colisionarAgua(Agua a,Rectangle posNueva){
 		return false;
 	}
+	
 	public boolean colisionarBase(Base b,Rectangle posNueva){
 		return b.getRectangulo().intersects(posNueva);
 	}
+	
 	public boolean colisionarDisparo(Disparo d,Rectangle posNueva){
 		return false;
 	}

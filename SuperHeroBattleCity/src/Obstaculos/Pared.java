@@ -18,6 +18,8 @@ public abstract class Pared extends Obstaculo {
 	
 	public void afectar(){
 		vida--;
+		if(vida==0)
+			etiqueta.setIcon(null);
 	}
 	
 }

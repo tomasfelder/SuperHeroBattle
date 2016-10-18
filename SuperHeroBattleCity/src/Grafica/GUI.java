@@ -18,7 +18,7 @@ import Tanques.Enemigo;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
-public class GUI extends JFrame {
+public class GUI {
 
 	private JFrame frame;
 	private JPanel panelMapa,panelBotones;
@@ -174,15 +174,12 @@ public class GUI extends JFrame {
 				System.out.println(juego.puedoMover(coordenadas,juego.getJugador()));
 				if(juego.puedoMover(coordenadas,juego.getJugador())){
 					juego.mover(direccion);
-//					labelJugador.setIcon(juego.getJugador().getIcon());
-//					labelJugador.setBounds(juego.getJugador().x(),juego.getJugador().y(),32,32);
 					System.out.println(juego.getJugador().x()+","+juego.getJugador().y());
 					frame.repaint();
 				}
 			}
 
 		});
-//		panelMapa.add(labelJugador);
 		panelMapa.add(juego.getJugador().getEtiqueta());
 		panelMapa.setFocusable(true);
 		frame.getContentPane().add(panelMapa);

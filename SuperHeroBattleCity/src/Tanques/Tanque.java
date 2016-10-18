@@ -30,7 +30,6 @@ public abstract class Tanque extends gameObject implements Visitor {
 	
 	//Metodos
 	
-	//public abstract int[] simularMovimiento(int direccion);
 	
 	public abstract Rectangle simularMovimiento(int direccion);
 	
