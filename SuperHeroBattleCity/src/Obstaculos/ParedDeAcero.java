@@ -6,13 +6,15 @@ import java.awt.Rectangle;
 
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
-
+import Mapa.Mapa;
 public class ParedDeAcero extends Pared {
 	
 	/**
 	 * Constructor
 	 */
-	public ParedDeAcero(){
+	public ParedDeAcero(int i,int j,Mapa m){
+		super(i,j,m);
+		
 		coordenadas = new Point(0,0);
 		rectangulo = new Rectangle(0, 0, ANCHO, ALTO);
 		vida=4;
@@ -22,4 +24,11 @@ public class ParedDeAcero extends Pared {
 		etiqueta.setBounds(0, 0,ANCHO , ALTO);
 	}
 
+	public void afectar(){
+		
+		if(vida==0){
+			m.eliminarCelda(i, j);
+			etiqueta.setIcon(null);
+		}
+	}
 }

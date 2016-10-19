@@ -6,13 +6,14 @@ import java.awt.Rectangle;
 
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
-
+import Mapa.Mapa;
 public class ParedDeLadrillo extends Pared {
 	
 	/**
 	 * Constructor
 	 */
-	public ParedDeLadrillo(){
+	public ParedDeLadrillo(int i,int j,Mapa m){
+		super(i,j,m);
 		vida=4;
 		coordenadas = new Point(0,0);
 		rectangulo = new Rectangle(0, 0, ANCHO, ALTO);
@@ -22,4 +23,12 @@ public class ParedDeLadrillo extends Pared {
 		etiqueta.setBounds(rectangulo);
 	}
 
+	public void afectar(){
+		vida--;
+		if(vida==0){
+			m.eliminarCelda(i, j);
+			etiqueta.setIcon(null);
+		}
+	}
+	
 }

@@ -169,6 +169,12 @@ public class GUI {
 			
 			@Override
 			public void keyPressed(KeyEvent arg0){
+				if (arg0.getKeyCode()==KeyEvent.VK_SPACE){
+					
+					panelMapa.add(juego.disparar());
+					frame.repaint();
+				}
+				else{
 				int direccion=movimiento(arg0);
 				Rectangle coordenadas = juego.getJugador().simularMovimiento(direccion);
 				System.out.println(juego.puedoMover(coordenadas,juego.getJugador()));
@@ -176,10 +182,13 @@ public class GUI {
 					juego.mover(direccion);
 					System.out.println(juego.getJugador().x()+","+juego.getJugador().y());
 					frame.repaint();
+					}
 				}
 			}
 
 		});
+		
+		
 		panelMapa.add(juego.getJugador().getEtiqueta());
 		panelMapa.setFocusable(true);
 		frame.getContentPane().add(panelMapa);

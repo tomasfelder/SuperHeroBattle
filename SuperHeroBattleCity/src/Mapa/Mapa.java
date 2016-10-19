@@ -32,11 +32,11 @@ public class Mapa {
 	            			j++;
 	            			break;
 	            		case 'p' :
-	            			matriz[nroLinea][j]=new ParedDeLadrillo();
+	            			matriz[nroLinea][j]=new ParedDeLadrillo(nroLinea,j,this);
 	            			j++;
 	            			break;
 	            		case 'z' :
-	            			matriz[nroLinea][j]=new ParedDeAcero();
+	            			matriz[nroLinea][j]=new ParedDeAcero(nroLinea,j,this);
 	            			j++;
 	            			break;
 	            		case 'b' :
