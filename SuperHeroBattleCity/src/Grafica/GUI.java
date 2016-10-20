@@ -24,7 +24,7 @@ public class GUI {
 	private JPanel panelMapa,panelBotones;
 	private Mapa mapa;
 	private Juego juego;
-	private JButton btnCrearEnemigo,btnEliminarEnemigo,btnCambiarNivel,btnDisparar;
+	private JButton btnCrearEnemigo,btnEliminarEnemigo,btnCambiarNivel;
 	
 	/**
 	 * Launch the application.
@@ -65,7 +65,7 @@ public class GUI {
 	private void crearBotones(){
 		
 			panelBotones = new JPanel();
-			panelBotones.setBounds(512, 262, 156, 186);
+			panelBotones.setBounds(512, 262, 156, 134);
 			
 			btnCrearEnemigo = new JButton("Crear Enemigo");
 			btnCrearEnemigo.setFocusable(false);
@@ -132,16 +132,6 @@ public class GUI {
 				}
 			});
 			panelBotones.add(btnCambiarNivel);
-			
-			btnDisparar = new JButton("Disparar");
-			btnDisparar.setFocusable(false);
-			btnDisparar.addActionListener(new ActionListener() {
-				public void actionPerformed(ActionEvent arg0) {
-					panelMapa.add(juego.disparar());
-					frame.repaint();
-				}
-			});
-			panelBotones.add(btnDisparar);
 			frame.repaint();
 	}
 
@@ -170,9 +160,10 @@ public class GUI {
 			@Override
 			public void keyPressed(KeyEvent arg0){
 				if (arg0.getKeyCode()==KeyEvent.VK_SPACE){
-					if(juego.getJugador().getCantidadDisparos()!=0)
-					panelMapa.add(juego.disparar());
-					frame.repaint();
+					if(juego.getJugador().getCantidadDisparos()!=0){
+						panelMapa.add(juego.disparar());
+						frame.repaint();
+					}
 				}
 				else{
 				int direccion=movimiento(arg0);

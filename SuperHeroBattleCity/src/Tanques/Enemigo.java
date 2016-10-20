@@ -3,7 +3,6 @@ import java.awt.Image;
 import java.awt.Rectangle;
 
 import javax.swing.ImageIcon;
-
 import Logica.Juego;
 
 public abstract class Enemigo extends Tanque {
@@ -19,25 +18,6 @@ public abstract class Enemigo extends Tanque {
 	public int getPuntos(){
 		return puntosQueDa;
 	}
-	
-//	public int[] simularMovimiento(int direccion){
-//		int coord[] = new int[2];
-//		switch (direccion){
-//		case 0:
-//			coord[0]=coordenadas.x; coord[1]=coordenadas.y-velocidadMovimiento;
-//			break;
-//		case 1:
-//			coord[0]=coordenadas.x; coord[1]=coordenadas.y+velocidadMovimiento;
-//			break;
-//		case 2:
-//			coord[0]=coordenadas.x-velocidadMovimiento; coord[1]=coordenadas.y;
-//			break;
-//		case 3:
-//			coord[0]=coordenadas.x+velocidadMovimiento; coord[1]=coordenadas.y;
-//			break;
-//		}
-//		return coord;
-//	}
 	
 	public Rectangle simularMovimiento(int direccion){
 		imagen=iconos[direccion];

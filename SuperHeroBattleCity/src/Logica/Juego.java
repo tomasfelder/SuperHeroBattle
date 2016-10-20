@@ -13,6 +13,7 @@ import java.util.List;
 import javax.swing.JLabel;
 
 import Grafica.GUI;
+import Grafica.MuestraEtiqueta;
 import Mapa.Mapa;
 import ObjetosDelJuego.Visitor;
 
@@ -85,6 +86,7 @@ public class Juego{
 	
 	public void eliminarEnemigo(Enemigo ene){
 		if(cantEnemigos!=0){
+			new MuestraEtiqueta(ene.getRectangulo(),ene.getPuntos(),gui).start();
 			gui.getPanelMapa().remove(ene.getEtiqueta());
 			gui.repintar();
 			listaEnemigos.remove(ene);
