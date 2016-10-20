@@ -12,6 +12,7 @@ public abstract class Nivel {
 	protected int velDisparo;
 	protected ImageIcon[] iconosNivel;
 	protected ImageIcon icono;
+	protected int cantDisparos;
 	
 	public Nivel(){
 		iconosNivel=new ImageIcon[4];
@@ -48,7 +49,19 @@ public abstract class Nivel {
 	public void cambiarIcono(int d){
 		icono=iconosNivel[d];
 	}
-
+	
+	public int getCantidadDisparos(){
+		return cantDisparos;
+	}
+	
+	public void devolverDisparo(){
+		cantDisparos++;
+	}
+	
+	public void quitarDisparo(){
+		cantDisparos--;
+	}
+	
 	public Icon getIcon(){
 		
 		return new ImageIcon(icono.getImage().getScaledInstance(28, 28, Image.SCALE_DEFAULT));

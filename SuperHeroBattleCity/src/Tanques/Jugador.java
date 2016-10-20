@@ -118,6 +118,7 @@ public class Jugador extends Tanque{
 	}
 	
 	public Disparo disparar(){
+		miNivel.quitarDisparo();
 		switch (miNivel.direccion()){
 		case 0:
 			return new Disparo(rectangulo.x+10,rectangulo.y-10,0,miNivel.getVelocidadDisparo());
@@ -137,6 +138,18 @@ public class Jugador extends Tanque{
 	
 	public boolean colisionarJugador(Jugador j,Rectangle posNueva){
 		return false;
+	}
+	
+	public int getCantidadDisparos(){
+		return miNivel.getCantidadDisparos();
+	}
+	
+	public void devolverDisparo(){
+		miNivel.devolverDisparo();
+	}
+	
+	public void quitarDisparo(){
+		miNivel.quitarDisparo();
 	}
 	
 }

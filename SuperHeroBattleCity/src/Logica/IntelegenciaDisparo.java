@@ -40,6 +40,7 @@ public class IntelegenciaDisparo implements Runnable {
 				}
 					execute=false;
 					game.quitarEtiqueta(d.getEtiqueta());
+					game.getJugador().devolverDisparo();
 					d=null;
 			}
 	}

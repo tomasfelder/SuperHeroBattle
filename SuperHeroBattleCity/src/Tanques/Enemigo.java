@@ -4,12 +4,16 @@ import java.awt.Rectangle;
 
 import javax.swing.ImageIcon;
 
+import Logica.Juego;
+
 public abstract class Enemigo extends Tanque {
 	
 	protected int puntosQueDa;
+	protected Juego juego;
 	
-	public Enemigo(int x, int y) {
+	public Enemigo(int x, int y,Juego j) {
 		super(x, y);
+		juego=j;
 	}
 	
 	public int getPuntos(){
@@ -136,6 +140,13 @@ public abstract class Enemigo extends Tanque {
 	
 	public boolean colisionarEnemigo(Enemigo e,Rectangle posNueva){
 		return e.getRectangulo().intersects(posNueva);
+	}
+	
+	public void afectar(){
+		golpesQueResiste--;
+		if(golpesQueResiste==0){
+			juego.eliminarEnemigo(this);
+		}
 	}
 	
 }

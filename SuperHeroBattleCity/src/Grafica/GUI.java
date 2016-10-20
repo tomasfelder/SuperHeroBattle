@@ -170,7 +170,7 @@ public class GUI {
 			@Override
 			public void keyPressed(KeyEvent arg0){
 				if (arg0.getKeyCode()==KeyEvent.VK_SPACE){
-					
+					if(juego.getJugador().getCantidadDisparos()!=0)
 					panelMapa.add(juego.disparar());
 					frame.repaint();
 				}

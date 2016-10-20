@@ -14,6 +14,7 @@ public class Nivel_1 extends Nivel {
 		iconosNivel[2]=new ImageIcon(this.getClass().getResource("/imagenesJugador/Nivel_1_Izq.png"));
 		iconosNivel[3]=new ImageIcon(this.getClass().getResource("/imagenesJugador/Nivel_1_Der.png"));
 		icono=iconosNivel[0];
+		cantDisparos=1;
 	}
 	
 }

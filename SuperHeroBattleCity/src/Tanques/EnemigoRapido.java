@@ -5,10 +5,12 @@ import java.awt.Image;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 
+import Logica.Juego;
+
 public class EnemigoRapido extends Enemigo {
 
-	public EnemigoRapido(int x, int y) {
-		super(x, y);
+	public EnemigoRapido(int x, int y,Juego j) {
+		super(x, y,j);
 		velocidadMovimiento=3;
 		golpesQueResiste=1;
 		velocidadDisparo=2;
