@@ -16,7 +16,7 @@ import Obstaculos.Borde;
 import Obstaculos.Bosque;
 import Obstaculos.Pared;
 
-public class Disparo extends gameObject implements Visitor {
+public abstract class Disparo extends gameObject implements Visitor {
 	
 	protected ImageIcon[] iconos;
 	protected int velocidadMovimiento;
@@ -138,15 +138,8 @@ public class Disparo extends gameObject implements Visitor {
 		return b.getRectangulo().intersects(posNueva);
 	}
 
-	public boolean colisionarEnemigo(Enemigo e, Rectangle posNueva) {
-		boolean colisiono = e.getRectangulo().intersects(posNueva);
-		if(colisiono)
-			e.afectar();
-		return colisiono;
-	}
+	public abstract boolean colisionarEnemigo(Enemigo e, Rectangle posNueva);
 
-	public boolean colisionarJugador(Jugador j, Rectangle posNueva) {
-		return j.getRectangulo().intersects(posNueva);
-	}
+	public abstract boolean colisionarJugador(Jugador j, Rectangle posNueva);
 	
 }

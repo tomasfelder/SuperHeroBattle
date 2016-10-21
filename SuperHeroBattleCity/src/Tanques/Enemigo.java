@@ -9,10 +9,12 @@ public abstract class Enemigo extends Tanque {
 	
 	protected int puntosQueDa;
 	protected Juego juego;
+	protected boolean puedoDisparar;
 	
 	public Enemigo(int x, int y,Juego j) {
 		super(x, y);
 		juego=j;
+		puedoDisparar=true;
 	}
 	
 	public int getPuntos(){
@@ -101,15 +103,16 @@ public abstract class Enemigo extends Tanque {
 	}
 	
 	public Disparo disparar(){
+		puedoDisparar=false;
 		switch (direccion()){
 		case 0:
-			return new Disparo(rectangulo.x,rectangulo.y,0,velocidadDisparo);
+			return new DisparoEnemigo(rectangulo.x+10,rectangulo.y-10,0,velocidadDisparo);
 		case 1:
-			return new Disparo(rectangulo.x,rectangulo.y,1,velocidadDisparo);
+			return new DisparoEnemigo(rectangulo.x+10,rectangulo.y+28,1,velocidadDisparo);
 		case 2:
-			return new Disparo(rectangulo.x,rectangulo.y,2,velocidadDisparo);
+			return new DisparoEnemigo(rectangulo.x-10,rectangulo.y+10,2,velocidadDisparo);
 		case 3:
-			return new Disparo(rectangulo.x,rectangulo.y,3,velocidadDisparo);
+			return new DisparoEnemigo(rectangulo.x+28,rectangulo.y+10,3,velocidadDisparo);
 		}
 		return null;
 	}
@@ -120,6 +123,14 @@ public abstract class Enemigo extends Tanque {
 	
 	public boolean colisionarEnemigo(Enemigo e,Rectangle posNueva){
 		return e.getRectangulo().intersects(posNueva);
+	}
+	
+	public boolean puedeDisparar(){
+		return puedoDisparar;
+	}
+	
+	public void devolverDisparo(){
+		puedoDisparar=true;
 	}
 	
 	public void afectar(){

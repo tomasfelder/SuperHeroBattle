@@ -6,9 +6,9 @@ import Tanques.Disparo;
 
 public class IntelegenciaDisparo implements Runnable {
 	
-	private Disparo d;
-	private Juego game;
-	private boolean execute;
+	protected Disparo d;
+	protected Juego game;
+	protected boolean execute;
 	
 	//Constructor
 	public IntelegenciaDisparo(Disparo disp, Juego juego) {

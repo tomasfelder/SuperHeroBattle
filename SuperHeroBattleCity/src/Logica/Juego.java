@@ -124,4 +124,9 @@ public class Juego{
 		gui.repintar();
 	}
 	
+	public void agregarEtiqueta(JLabel etiqueta){
+		gui.getPanelMapa().add(etiqueta);
+		gui.repintar();
+	}
+	
 }
