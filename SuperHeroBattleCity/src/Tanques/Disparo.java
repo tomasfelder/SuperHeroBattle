@@ -114,7 +114,7 @@ public class Disparo extends gameObject implements Visitor {
 	public boolean colisionarPared(Pared p,Rectangle posNueva){
 		boolean colisiono = p.getRectangulo().intersects(posNueva);
 		if(colisiono)
-			p.afectar();
+			p.afectar(direccion);
 		return colisiono;
 	}
 	
