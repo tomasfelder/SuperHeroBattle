@@ -118,15 +118,16 @@ public class Jugador extends Tanque{
 	}
 	
 	public Disparo disparar(){
+		miNivel.quitarDisparo();
 		switch (miNivel.direccion()){
 		case 0:
-			return new Disparo(rectangulo.x+10,rectangulo.y-10,0,miNivel.getVelocidadDisparo());
+			return new DisparoJugador(rectangulo.x+10,rectangulo.y-10,0,miNivel.getVelocidadDisparo());
 		case 1:
-			return new Disparo(rectangulo.x+10,rectangulo.y+28,1,miNivel.getVelocidadDisparo());
+			return new DisparoJugador(rectangulo.x+10,rectangulo.y+28,1,miNivel.getVelocidadDisparo());
 		case 2:
-			return new Disparo(rectangulo.x-10,rectangulo.y+10,2,miNivel.getVelocidadDisparo());
+			return new DisparoJugador(rectangulo.x-10,rectangulo.y+10,2,miNivel.getVelocidadDisparo());
 		case 3:
-			return new Disparo(rectangulo.x+28,rectangulo.y+10,3,miNivel.getVelocidadDisparo());
+			return new DisparoJugador(rectangulo.x+28,rectangulo.y+10,3,miNivel.getVelocidadDisparo());
 		}
 		return null;
 	}
@@ -137,6 +138,22 @@ public class Jugador extends Tanque{
 	
 	public boolean colisionarJugador(Jugador j,Rectangle posNueva){
 		return false;
+	}
+	
+	public int getCantidadDisparos(){
+		return miNivel.getCantidadDisparos();
+	}
+	
+	public void devolverDisparo(){
+		miNivel.devolverDisparo();
+	}
+	
+	public void quitarDisparo(){
+		miNivel.quitarDisparo();
+	}
+
+	public void afectar() {
+		golpesQueResiste--;
 	}
 	
 }

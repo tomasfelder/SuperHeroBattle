@@ -5,10 +5,12 @@ import java.awt.Image;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 
+import Logica.Juego;
+
 public class EnemigoBlindado extends Enemigo {
 
-	public EnemigoBlindado(int x, int y) {
-		super(x, y);
+	public EnemigoBlindado(int x, int y,Juego j) {
+		super(x, y,j);
 		velocidadMovimiento=1;
 		golpesQueResiste=4;
 		velocidadDisparo=2;

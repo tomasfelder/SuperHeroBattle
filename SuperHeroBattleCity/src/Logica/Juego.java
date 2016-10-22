@@ -6,16 +6,21 @@ import Tanques.EnemigoBasico;
 import Tanques.Jugador;
 
 import java.awt.Rectangle;
+import java.util.Iterator;
+import java.util.LinkedList;
+import java.util.List;
+
 import javax.swing.JLabel;
 
 import Grafica.GUI;
+import Grafica.MuestraEtiqueta;
 import Mapa.Mapa;
 import ObjetosDelJuego.Visitor;
 
 public class Juego{
 
 	private Jugador jugador;
-	private Enemigo[] enemigos;
+	private List<Enemigo> listaEnemigos;
 	private int cantEnemigos;
 	private Mapa mapa;
 	private GUI gui;
@@ -24,7 +29,7 @@ public class Juego{
 	
 	public Juego(Mapa m,GUI g){
 		jugador=new Jugador(32,32);
-		enemigos= new Enemigo[4];
+		listaEnemigos= new LinkedList<Enemigo>();
 		cantEnemigos=0;
 		mapa=m;
 		puntaje=0;
@@ -39,30 +44,27 @@ public class Juego{
 					puedo=!mapa.obtenerCelda(i, j).aceptar(v,nuevaPos);
 		if(puedo){
 			puedo=!v.colisionarJugador(jugador, nuevaPos);
-			for(int i=0;i<cantEnemigos&&puedo;i++)
-				if(enemigos[i]!=v)
-					puedo=!v.colisionarEnemigo(enemigos[i], nuevaPos);
+			Iterator<Enemigo> it= listaEnemigos.iterator();
+			while(it.hasNext()&&puedo){
+				Enemigo aux=it.next();
+				if(aux!=v)
+					puedo=!v.colisionarEnemigo(aux, nuevaPos);
+			}
 		}
 		return puedo;
 	}
 	
 	public Enemigo crearEnemigo(int x,int y){
-		boolean encontre=false;
-		int i=0;
-		while(i<4&&!encontre){
-			encontre=enemigos[i]==null;
-			if(!encontre)
-				i++;
-		}
-		if(encontre){
-			enemigos[i] = new EnemigoBasico(x,y);
+		if(cantEnemigos<5){
+			Enemigo ene = new EnemigoBasico(x,y,this);
 			cantEnemigos++;
-			InteligenciaEnemigo ie = new InteligenciaEnemigo(enemigos[i],this);
+			listaEnemigos.add(ene);
+			InteligenciaEnemigo ie = new InteligenciaEnemigo(ene,this);
 			tEnemigo=new Thread(ie);
 			tEnemigo.start();
-			return enemigos[i];
+			return ene;
 		}
-		else return null;
+		return null;
 	}
 	
 	public JLabel disparar(){
@@ -75,20 +77,26 @@ public class Juego{
 	
 	public void eliminarEnemigo(){
 		if(cantEnemigos!=0){
-			int i=0;
-			while(enemigos[i]==null)
-				i++;
-			gui.getPanelMapa().remove(enemigos[i].getEtiqueta());
+			gui.getPanelMapa().remove(listaEnemigos.get(0).getEtiqueta());
 			gui.repintar();
-			enemigos[i]=null;
+			listaEnemigos.remove(0);
 			cantEnemigos--;
 		}
-			
 	}
 	
-	public Enemigo[] getEnemigos(){
+	public void eliminarEnemigo(Enemigo ene){
+		if(cantEnemigos!=0){
+			new MuestraEtiqueta(ene.getRectangulo(),ene.getPuntos(),gui).start();
+			gui.getPanelMapa().remove(ene.getEtiqueta());
+			gui.repintar();
+			listaEnemigos.remove(ene);
+			cantEnemigos--;
+		}
+	}
+	
+	public List<Enemigo> getEnemigos(){
 		
-		return enemigos;
+		return listaEnemigos;
 	}
 	
 	public void sumarPuntaje(int p){
@@ -113,6 +121,11 @@ public class Juego{
 
 	public void quitarEtiqueta(JLabel etiqueta) {
 		gui.getPanelMapa().remove(etiqueta);
+		gui.repintar();
+	}
+	
+	public void agregarEtiqueta(JLabel etiqueta){
+		gui.getPanelMapa().add(etiqueta);
 		gui.repintar();
 	}
 	

@@ -3,37 +3,23 @@ import java.awt.Image;
 import java.awt.Rectangle;
 
 import javax.swing.ImageIcon;
+import Logica.Juego;
 
 public abstract class Enemigo extends Tanque {
 	
 	protected int puntosQueDa;
+	protected Juego juego;
+	protected boolean puedoDisparar;
 	
-	public Enemigo(int x, int y) {
+	public Enemigo(int x, int y,Juego j) {
 		super(x, y);
+		juego=j;
+		puedoDisparar=true;
 	}
 	
 	public int getPuntos(){
 		return puntosQueDa;
 	}
-	
-//	public int[] simularMovimiento(int direccion){
-//		int coord[] = new int[2];
-//		switch (direccion){
-//		case 0:
-//			coord[0]=coordenadas.x; coord[1]=coordenadas.y-velocidadMovimiento;
-//			break;
-//		case 1:
-//			coord[0]=coordenadas.x; coord[1]=coordenadas.y+velocidadMovimiento;
-//			break;
-//		case 2:
-//			coord[0]=coordenadas.x-velocidadMovimiento; coord[1]=coordenadas.y;
-//			break;
-//		case 3:
-//			coord[0]=coordenadas.x+velocidadMovimiento; coord[1]=coordenadas.y;
-//			break;
-//		}
-//		return coord;
-//	}
 	
 	public Rectangle simularMovimiento(int direccion){
 		imagen=iconos[direccion];
@@ -117,15 +103,16 @@ public abstract class Enemigo extends Tanque {
 	}
 	
 	public Disparo disparar(){
+		puedoDisparar=false;
 		switch (direccion()){
 		case 0:
-			return new Disparo(rectangulo.x,rectangulo.y,0,velocidadDisparo);
+			return new DisparoEnemigo(rectangulo.x+10,rectangulo.y-10,0,velocidadDisparo);
 		case 1:
-			return new Disparo(rectangulo.x,rectangulo.y,1,velocidadDisparo);
+			return new DisparoEnemigo(rectangulo.x+10,rectangulo.y+28,1,velocidadDisparo);
 		case 2:
-			return new Disparo(rectangulo.x,rectangulo.y,2,velocidadDisparo);
+			return new DisparoEnemigo(rectangulo.x-10,rectangulo.y+10,2,velocidadDisparo);
 		case 3:
-			return new Disparo(rectangulo.x,rectangulo.y,3,velocidadDisparo);
+			return new DisparoEnemigo(rectangulo.x+28,rectangulo.y+10,3,velocidadDisparo);
 		}
 		return null;
 	}
@@ -136,6 +123,21 @@ public abstract class Enemigo extends Tanque {
 	
 	public boolean colisionarEnemigo(Enemigo e,Rectangle posNueva){
 		return e.getRectangulo().intersects(posNueva);
+	}
+	
+	public boolean puedeDisparar(){
+		return puedoDisparar;
+	}
+	
+	public void devolverDisparo(){
+		puedoDisparar=true;
+	}
+	
+	public void afectar(){
+		golpesQueResiste--;
+		if(golpesQueResiste==0){
+			juego.eliminarEnemigo(this);
+		}
 	}
 	
 }

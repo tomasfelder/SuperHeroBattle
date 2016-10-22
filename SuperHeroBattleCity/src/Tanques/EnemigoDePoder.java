@@ -5,10 +5,12 @@ import java.awt.Image;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 
+import Logica.Juego;
+
 public class EnemigoDePoder extends Enemigo {
 
-	public EnemigoDePoder(int x, int y) {
-		super(x, y);
+	public EnemigoDePoder(int x, int y,Juego j) {
+		super(x, y,j);
 		velocidadMovimiento=2;
 		golpesQueResiste=1;
 		velocidadDisparo=3;

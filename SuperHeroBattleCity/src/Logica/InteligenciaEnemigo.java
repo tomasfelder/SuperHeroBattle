@@ -3,6 +3,7 @@ package Logica;
 import java.awt.Rectangle;
 import java.util.Random;
 
+import Tanques.Disparo;
 import Tanques.Enemigo;
 
 public class InteligenciaEnemigo implements Runnable {
@@ -10,6 +11,7 @@ public class InteligenciaEnemigo implements Runnable {
 	private Juego game;
 	private Enemigo enemigo;
 	private boolean ejecutar;
+	private Thread tDisparo;
 
 	public InteligenciaEnemigo(Enemigo e,Juego juego){
 		enemigo=e;
@@ -23,11 +25,16 @@ public class InteligenciaEnemigo implements Runnable {
 			try{
 				int m=new Random().nextInt(4);
 				Rectangle rect=enemigo.simularMovimiento(m);
-				int i=0;
 				while(game.puedoMover(rect,enemigo)){
 					enemigo.mover(m);
 					rect=enemigo.simularMovimiento(m);
-					i++;
+					if(enemigo.puedeDisparar()){
+						Disparo disp=enemigo.disparar();
+						game.agregarEtiqueta(disp.getEtiqueta());
+						InteligenciaDisparoEnemigo id=new InteligenciaDisparoEnemigo(disp,game,enemigo);
+						tDisparo= new Thread(id);
+						tDisparo.start();
+					}
 				}
 
 				Thread.sleep(250);
