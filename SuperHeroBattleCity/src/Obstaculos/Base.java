@@ -28,4 +28,8 @@ public class Base extends Obstaculo {
 		return v.colisionarBase(this, nuevaPos);
 	}
 	
+	public boolean EsPared(){
+		return false;
+	}
+	
 }

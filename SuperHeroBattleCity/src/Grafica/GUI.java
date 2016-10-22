@@ -70,8 +70,22 @@ public class GUI {
 			btnCrearEnemigo = new JButton("Crear Enemigo");
 			btnCrearEnemigo.setFocusable(false);
 			btnCrearEnemigo.addActionListener(new ActionListener() {
+				
 				public void actionPerformed(ActionEvent e) {
-					Enemigo ene=juego.crearEnemigo(64, 32);
+			/*		int x,y;
+					Obstaculo aux;
+					Random rnd = new Random();
+					x=rnd.nextInt(12);
+					y=rnd.nextInt(13);
+					aux=mapa.obtenerCelda(x, y);
+					while(aux!=null){
+						x=rnd.nextInt(12);
+						y= rnd.nextInt(13);
+						//System.out.println(x+","+y);
+						aux = mapa.obtenerCelda(x, y);
+					}
+				*/	
+					Enemigo ene=juego.crearEnemigo(64,32);
 					if(ene!=null){
 						panelMapa.add(ene.getEtiqueta());
 						btnEliminarEnemigo.setEnabled(true);
@@ -106,19 +120,36 @@ public class GUI {
 			JButton btnEliminarPared = new JButton("Eliminar pared");
 			btnEliminarPared.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent arg0) {
+					
 					Random rnd = new Random();
+					
 					int x=rnd.nextInt(12); int y= rnd.nextInt(13);
 					System.out.println(x+","+y);
 					Obstaculo aux = mapa.obtenerCelda(x, y);
-					while(aux==null){
-						x=rnd.nextInt(12); y= rnd.nextInt(13);
+					boolean encontre=false;
+					
+					while (!encontre){
+						x=rnd.nextInt(12);
+						y= rnd.nextInt(13);
 						System.out.println(x+","+y);
 						aux = mapa.obtenerCelda(x, y);
+						
+						if (aux!=null){
+							encontre=aux.EsPared();
+						}
+						
+										
 					}
 					panelMapa.remove(aux.getEtiqueta());
 					mapa.eliminarCelda(x, y);
 					frame.repaint();
+					
+					
+					
 				}
+	
+					
+			
 			});
 			btnEliminarPared.setFocusable(false);
 			panelBotones.add(btnEliminarPared);

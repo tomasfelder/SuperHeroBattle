@@ -20,4 +20,5 @@ public interface Visitor {
 	public boolean colisionarBase(Base b,Rectangle posNueva);
 	public boolean colisionarDisparo(Disparo d,Rectangle posNueva);
 	public boolean colisionarBorde(Borde b,Rectangle posNueva);
+	
 }

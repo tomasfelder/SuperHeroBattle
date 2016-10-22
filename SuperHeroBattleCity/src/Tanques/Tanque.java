@@ -51,6 +51,7 @@ public abstract class Tanque extends gameObject implements Visitor {
 	public boolean colisionarBosque(Bosque b,Rectangle posNueva){
 		return false;
 	}
+	
 	public boolean colisionarAgua(Agua a,Rectangle posNueva){
 		return a.getRectangulo().intersects(posNueva);
 	}

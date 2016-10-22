@@ -146,4 +146,5 @@ public class Disparo extends gameObject implements Visitor {
 		return j.getRectangulo().intersects(posNueva);
 	}
 	
+	
 }

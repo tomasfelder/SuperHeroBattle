@@ -27,4 +27,8 @@ public class Agua extends Obstaculo {
 		return v.colisionarAgua(this, nuevaPos);
 	}
 	
+	public boolean EsPared(){
+		return false;
+	}
+	
 }

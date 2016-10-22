@@ -42,6 +42,7 @@ public abstract class gameObject {
 		rectangulo.x=i;
 		System.out.println(rectangulo.x);
 		etiqueta.setBounds(rectangulo);
+		
 	}
 	public void setY(int i){
 		//coordenadas.y=i;
