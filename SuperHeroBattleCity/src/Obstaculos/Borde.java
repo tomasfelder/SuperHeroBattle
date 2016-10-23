@@ -20,8 +20,5 @@ public class Borde extends Obstaculo {
 	public boolean aceptar(Visitor v, Rectangle nuevaPos) {
 		return v.colisionarBorde(this, nuevaPos);
 	}
-	public boolean EsPared(){
-		return false;
-	}
 
 }

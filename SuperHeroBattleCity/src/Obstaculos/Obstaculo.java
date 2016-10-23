@@ -9,10 +9,5 @@ public abstract class Obstaculo extends gameObject {
 	protected int i;
 	protected int j;
 	
-	public abstract boolean EsPared();
-	
-	
-		
-	
 	
 }

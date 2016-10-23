@@ -37,7 +37,7 @@ public class InteligenciaEnemigo implements Runnable {
 					}
 				}
 
-				Thread.sleep(250);
+				Thread.sleep(500);
 			}
 			catch(InterruptedException e){
 				

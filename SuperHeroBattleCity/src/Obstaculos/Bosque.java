@@ -29,8 +29,4 @@ public class Bosque extends Obstaculo {
 		return v.colisionarBosque(this, nuevaPos);
 	}
 	
-	public boolean EsPared(){
-		return false;
-	}
-	
 }

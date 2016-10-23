@@ -49,8 +49,4 @@ public abstract class Pared extends Obstaculo {
 		}
 	}
 	
-	public boolean EsPared(){
-		return true;
-	}
-	
 }

@@ -72,19 +72,6 @@ public class GUI {
 			btnCrearEnemigo.addActionListener(new ActionListener() {
 				
 				public void actionPerformed(ActionEvent e) {
-			/*		int x,y;
-					Obstaculo aux;
-					Random rnd = new Random();
-					x=rnd.nextInt(12);
-					y=rnd.nextInt(13);
-					aux=mapa.obtenerCelda(x, y);
-					while(aux!=null){
-						x=rnd.nextInt(12);
-						y= rnd.nextInt(13);
-						//System.out.println(x+","+y);
-						aux = mapa.obtenerCelda(x, y);
-					}
-				*/	
 					Enemigo ene=juego.crearEnemigo(64,32);
 					if(ene!=null){
 						panelMapa.add(ene.getEtiqueta());
@@ -133,18 +120,13 @@ public class GUI {
 						y= rnd.nextInt(13);
 						System.out.println(x+","+y);
 						aux = mapa.obtenerCelda(x, y);
-						
-						if (aux!=null){
-							encontre=aux.EsPared();
-						}
-						
+						if(aux!=null)
+							encontre=true;
 										
 					}
 					panelMapa.remove(aux.getEtiqueta());
 					mapa.eliminarCelda(x, y);
 					frame.repaint();
-					
-					
 					
 				}
 	
