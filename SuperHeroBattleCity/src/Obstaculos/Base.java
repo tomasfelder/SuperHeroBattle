@@ -27,4 +27,8 @@ public class Base extends Obstaculo {
 	public boolean aceptar(Visitor v,Rectangle nuevaPos){
 		return v.colisionarBase(this, nuevaPos);
 	}
+
+	public void afectar() {
+		
+	}
 }
