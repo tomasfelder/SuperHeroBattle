@@ -33,7 +33,7 @@ public class IntelegenciaDisparo implements Runnable {
 					d.mover();
 					nuevaP=d.simularMovimiento();
 					try {
-						Thread.sleep(10);
+						Thread.sleep(5);
 					} catch (InterruptedException e) {
 						
 					}

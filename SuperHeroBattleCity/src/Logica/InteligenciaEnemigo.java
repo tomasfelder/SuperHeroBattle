@@ -35,9 +35,9 @@ public class InteligenciaEnemigo implements Runnable {
 						tDisparo= new Thread(id);
 						tDisparo.start();
 					}
+					Thread.sleep(200);
 				}
 
-				Thread.sleep(500);
 			}
 			catch(InterruptedException e){
 				

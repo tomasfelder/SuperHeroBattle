@@ -103,38 +103,6 @@ public class GUI {
 			btnEliminarEnemigo.setBounds(650, 529, 112, 23);
 			panelBotones.add(btnEliminarEnemigo);
 			frame.getContentPane().add(panelBotones);
-			
-			JButton btnEliminarPared = new JButton("Eliminar pared");
-			btnEliminarPared.addActionListener(new ActionListener() {
-				public void actionPerformed(ActionEvent arg0) {
-					
-					Random rnd = new Random();
-					
-					int x=rnd.nextInt(12); int y= rnd.nextInt(13);
-					System.out.println(x+","+y);
-					Obstaculo aux = mapa.obtenerCelda(x, y);
-					boolean encontre=false;
-					
-					while (!encontre){
-						x=rnd.nextInt(12);
-						y= rnd.nextInt(13);
-						System.out.println(x+","+y);
-						aux = mapa.obtenerCelda(x, y);
-						if(aux!=null)
-							encontre=true;
-										
-					}
-					panelMapa.remove(aux.getEtiqueta());
-					mapa.eliminarCelda(x, y);
-					frame.repaint();
-					
-				}
-	
-					
-			
-			});
-			btnEliminarPared.setFocusable(false);
-			panelBotones.add(btnEliminarPared);
 			panelBotones.setFocusable(false);
 			
 			btnCambiarNivel = new JButton("Cambiar Nivel");
