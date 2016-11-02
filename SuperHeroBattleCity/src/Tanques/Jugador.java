@@ -1,16 +1,21 @@
 package Tanques;
 
 import java.awt.Image;
+import PowerUps.*;
 import java.awt.Rectangle;
 
 import javax.swing.*;
+
+import Logica.InteligenciaCasco;
  
 public class Jugador extends Tanque{
 	
 	protected Nivel miNivel;
+	protected boolean vulnerable;
 	
 	public Jugador(int x,int y){
 		super(x,y);
+		vulnerable=true;
 		miNivel=new Nivel_1();
 		etiqueta=new JLabel();
 		etiqueta.setBounds(x, y, 28, 28);
@@ -132,12 +137,37 @@ public class Jugador extends Tanque{
 		return null;
 	}
 	
+	
 	public boolean colisionarEnemigo(Enemigo e,Rectangle posNueva){
 		return e.getRectangulo().intersects(posNueva);
 	}
 	
 	public boolean colisionarJugador(Jugador j,Rectangle posNueva){
 		return false;
+	}
+	
+	public boolean colisionarPCasco(PCasco c,Rectangle posNueva){
+		if(c.getRectangulo().intersects(posNueva)){
+			setVulnerable(false);
+			new InteligenciaCasco(this);
+		}
+		return false;
+	}
+	
+	public boolean colisionarPEstrella(PEstrella e,Rectangle posNueva){
+		
+		if (e.getRectangulo().intersects(posNueva) && miNivel.getSiguiente()!=null){
+			
+			miNivel=miNivel.getSiguiente();
+			
+		}
+		return false;
+		
+	}
+	
+	public void setVulnerable(boolean b){
+		
+		vulnerable=b;
 	}
 	
 	public int getCantidadDisparos(){
@@ -153,7 +183,8 @@ public class Jugador extends Tanque{
 	}
 
 	public void afectar() {
-		golpesQueResiste--;
+		if (vulnerable)
+			golpesQueResiste--;
 	}
 	
 }

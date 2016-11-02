@@ -6,6 +6,7 @@ public class Nivel_2 extends Nivel {
 
 	public Nivel_2() {
 		super();
+		siguiente=new Nivel_3();
 		velocidadMov=3;
 		resistencia=1;
 		velDisparo=2;

@@ -7,6 +7,7 @@ import javax.swing.ImageIcon;
 
 public abstract class Nivel {
 	
+	protected Nivel siguiente;
 	protected int velocidadMov;
 	protected int resistencia;
 	protected int velDisparo;
@@ -67,5 +68,9 @@ public abstract class Nivel {
 		return new ImageIcon(icono.getImage().getScaledInstance(28, 28, Image.SCALE_DEFAULT));
 		
 	}
-	
+	public Nivel getSiguiente(){
+		
+		return siguiente;
+		
+	}
 }

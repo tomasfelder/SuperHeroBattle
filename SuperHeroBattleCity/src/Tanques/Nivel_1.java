@@ -4,8 +4,10 @@ import javax.swing.ImageIcon;
 
 public class Nivel_1 extends Nivel {
 	
+	
 	public Nivel_1(){
 		super();
+		siguiente=new Nivel_2();
 		velocidadMov=2;
 		resistencia=1;
 		velDisparo=1;

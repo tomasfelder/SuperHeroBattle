@@ -6,6 +6,7 @@ public class Nivel_4 extends Nivel {
 
 	public Nivel_4() {
 		super();
+		siguiente=null;
 		velocidadMov=2;
 		resistencia=4;
 		velDisparo=3;
