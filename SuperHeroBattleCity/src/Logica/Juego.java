@@ -26,7 +26,7 @@ public class Juego{
 	private Mapa mapa;
 	private GUI gui;
 	private int puntaje;
-	private Thread tDisparo,tEnemigo;
+	private Thread tDisparo,tEnemigo,tJuego;
 	
 	public Juego(Mapa m,GUI g){
 		jugador=new Jugador(32,32);
@@ -35,6 +35,8 @@ public class Juego{
 		mapa=m;
 		puntaje=0;
 		gui=g;
+		tJuego=new ThreadJuego(this);
+		tJuego.start();
 	}
 	
 	public boolean puedoMover(Rectangle nuevaPos,Visitor v){
@@ -60,6 +62,8 @@ public class Juego{
 			Enemigo ene = new EnemigoBasico(x,y,this);
 			cantEnemigos++;
 			listaEnemigos.add(ene);
+			gui.getPanelMapa().add(ene.getEtiqueta());
+			gui.repintar();
 			InteligenciaEnemigo ie = new InteligenciaEnemigo(ene,this);
 			tEnemigo=new Thread(ie);
 			tEnemigo.start();

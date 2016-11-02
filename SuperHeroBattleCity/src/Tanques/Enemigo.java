@@ -4,6 +4,12 @@ import java.awt.Rectangle;
 
 import javax.swing.ImageIcon;
 import Logica.Juego;
+import PowerUps.PCasco;
+import PowerUps.PEstrella;
+import PowerUps.PGranada;
+import PowerUps.PPala;
+import PowerUps.PTanque;
+import PowerUps.PTimer;
 
 public abstract class Enemigo extends Tanque {
 	
@@ -139,5 +145,25 @@ public abstract class Enemigo extends Tanque {
 			juego.eliminarEnemigo(this);
 		}
 	}
+	public boolean colisionarPGranada(PGranada g,Rectangle posNueva){
+			return false;
+	}
+	public boolean colisionarPCasco(PCasco c,Rectangle posNueva){
+			return false;
+	}
+	public boolean colisionarPEstrella(PEstrella e,Rectangle posNueva){
+	
+		return false;
+	}
+	public boolean colisionarPPala(PPala p,Rectangle posNueva){
+			return false;
+	}
+	public boolean colisionarPTanque(PTanque t,Rectangle posNueva){
+			return false;
+	}
+	public boolean colisionarPTimer(PTimer t,Rectangle posNueva){
+			return false;
+	}
+	
 	
 }

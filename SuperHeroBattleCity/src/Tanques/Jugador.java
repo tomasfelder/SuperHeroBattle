@@ -6,7 +6,16 @@ import java.awt.Rectangle;
 
 import javax.swing.*;
 
+
 import Logica.InteligenciaCasco;
+
+import PowerUps.PCasco;
+import PowerUps.PEstrella;
+import PowerUps.PGranada;
+import PowerUps.PPala;
+import PowerUps.PTanque;
+import PowerUps.PTimer;
+
  
 public class Jugador extends Tanque{
 	
@@ -185,6 +194,19 @@ public class Jugador extends Tanque{
 	public void afectar() {
 		if (vulnerable)
 			golpesQueResiste--;
+	}
+	public boolean colisionarPGranada(PGranada g,Rectangle posNueva){
+		return false;
+	}
+
+	public boolean colisionarPPala(PPala p,Rectangle posNueva){
+		return false;
+	}
+	public boolean colisionarPTanque(PTanque t,Rectangle posNueva){
+		return false;
+	}
+	public boolean colisionarPTimer(PTimer t,Rectangle posNueva){
+		return false;
 	}
 	
 }
