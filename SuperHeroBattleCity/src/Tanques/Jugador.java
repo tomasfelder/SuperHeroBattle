@@ -22,6 +22,7 @@ public class Jugador extends Tanque{
 	protected Nivel miNivel;
 	protected boolean vulnerable;
 	
+	//Constructor
 	public Jugador(int x,int y){
 		super(x,y);
 		vulnerable=true;
