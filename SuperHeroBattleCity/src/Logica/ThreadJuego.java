@@ -5,6 +5,7 @@ public class ThreadJuego extends Thread {
 	protected Juego game;
 	protected boolean execute;
 	
+	//Constructor
 	public ThreadJuego(Juego j){
 		game=j;
 		execute=true;
