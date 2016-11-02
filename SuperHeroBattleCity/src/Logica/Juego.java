@@ -10,6 +10,7 @@ import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 
+import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 
 import Grafica.GUI;
@@ -127,6 +128,14 @@ public class Juego{
 	public void agregarEtiqueta(JLabel etiqueta){
 		gui.getPanelMapa().add(etiqueta);
 		gui.repintar();
+	}
+
+	public void perder() {
+		gui.getPanelMapa().removeAll();
+		JLabel gameOver = new JLabel();
+		gameOver.setBounds(gui.getPanelMapa().getBounds());
+		gameOver.setIcon(new ImageIcon(this.getClass().getResource("/imagenes/Game_Over.jpg")));
+		gui.getPanelMapa().add(gameOver);
 	}
 	
 }

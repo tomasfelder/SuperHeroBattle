@@ -136,6 +136,7 @@ public class GUI {
 			pos2=0;
 			pos1+=32;
 		}
+		mapa.getBase().setJuego(juego);
 		panelMapa.addKeyListener(new KeyAdapter() {
 			
 			@Override

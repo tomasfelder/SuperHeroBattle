@@ -7,9 +7,13 @@ import java.awt.Rectangle;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 
+import Logica.Juego;
 import ObjetosDelJuego.Visitor;
 
 public class Base extends Obstaculo {
+	
+	protected int vida;
+	protected Juego game;
 	
 	/**
 	 * Constructores
@@ -22,6 +26,8 @@ public class Base extends Obstaculo {
 		etiqueta.setIcon(new ImageIcon(imagen.getImage().getScaledInstance(ANCHO, ALTO, Image.SCALE_DEFAULT)));
 		etiqueta.setBounds(0, 0,ANCHO , ALTO);
 		etiqueta.setOpaque(false);
+		vida=1;
+		game=null;
 	}
 	
 	public boolean aceptar(Visitor v,Rectangle nuevaPos){
@@ -29,6 +35,12 @@ public class Base extends Obstaculo {
 	}
 
 	public void afectar() {
-		
+		vida--;
+		if(vida==0)
+			game.perder();
+	}
+
+	public void setJuego(Juego juego) {
+		game=juego;
 	}
 }

@@ -15,6 +15,7 @@ public class Mapa {
 	protected Obstaculo[][] matriz;
 	protected String linea;
 	protected BufferedReader br;
+	protected Base base;
 	
 	//Constructor
 	public Mapa(int x,int y,String archivo){
@@ -40,7 +41,7 @@ public class Mapa {
 	            			j++;
 	            			break;
 	            		case 'b' :
-	            			matriz[nroLinea][j]=new Base();
+	            			matriz[nroLinea][j]=base=new Base();
 	            			j++;
 	            			break;
 	            		case 'a' :
@@ -80,6 +81,10 @@ public class Mapa {
 	
 	public int getLargo(){
 		return matriz.length;
+	}
+	
+	public Base getBase(){
+		return base;
 	}
 	
 	public Obstaculo obtenerCelda(int x, int y){
