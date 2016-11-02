@@ -11,6 +11,12 @@ import Obstaculos.Base;
 import Obstaculos.Borde;
 import Obstaculos.Bosque;
 import Obstaculos.Pared;
+import PowerUps.PCasco;
+import PowerUps.PEstrella;
+import PowerUps.PGranada;
+import PowerUps.PPala;
+import PowerUps.PTanque;
+import PowerUps.PTimer;
 
 public abstract class Tanque extends gameObject implements Visitor {
 	
@@ -65,5 +71,11 @@ public abstract class Tanque extends gameObject implements Visitor {
 	public boolean colisionarBorde(Borde b,Rectangle posNueva){
 		return b.getRectangulo().intersects(posNueva);
 	}
+	public abstract boolean colisionarPGranada(PGranada g,Rectangle posNueva);
+	public abstract boolean colisionarPCasco(PCasco c,Rectangle posNueva);
+	public abstract boolean colisionarPEstrella(PEstrella e,Rectangle posNueva);
+	public abstract boolean colisionarPPala(PPala p,Rectangle posNueva);
+	public abstract boolean colisionarPTanque(PTanque t,Rectangle posNueva);
+	public abstract boolean colisionarPTimer(PTimer t,Rectangle posNueva);
 	
 }
