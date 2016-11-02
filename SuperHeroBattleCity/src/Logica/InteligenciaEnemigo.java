@@ -12,10 +12,21 @@ public class InteligenciaEnemigo implements Runnable {
 	private Enemigo enemigo;
 	private boolean ejecutar;
 	private Thread tDisparo;
+	private InteligenciaDisparoEnemigo id;
 
 	public InteligenciaEnemigo(Enemigo e,Juego juego){
 		enemigo=e;
 		game=juego;
+		id=null;
+	}
+	
+	public Thread getThreadDisparo(){
+		return tDisparo;
+	}
+	
+	public void terminate(){
+		id.terminate();
+		ejecutar=false;
 	}
 	
 	@Override
@@ -31,7 +42,7 @@ public class InteligenciaEnemigo implements Runnable {
 					if(enemigo.puedeDisparar()){
 						Disparo disp=enemigo.disparar();
 						game.agregarEtiqueta(disp.getEtiqueta());
-						InteligenciaDisparoEnemigo id=new InteligenciaDisparoEnemigo(disp,game,enemigo);
+						id=new InteligenciaDisparoEnemigo(disp,game,enemigo);
 						tDisparo= new Thread(id);
 						tDisparo.start();
 					}

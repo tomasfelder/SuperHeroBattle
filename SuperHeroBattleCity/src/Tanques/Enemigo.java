@@ -3,6 +3,8 @@ import java.awt.Image;
 import java.awt.Rectangle;
 
 import javax.swing.ImageIcon;
+
+import Logica.InteligenciaEnemigo;
 import Logica.Juego;
 import PowerUps.PCasco;
 import PowerUps.PEstrella;
@@ -16,11 +18,17 @@ public abstract class Enemigo extends Tanque {
 	protected int puntosQueDa;
 	protected Juego juego;
 	protected boolean puedoDisparar;
+	protected Thread tEnemigo;
+	protected InteligenciaEnemigo ie;
 	
 	public Enemigo(int x, int y,Juego j) {
 		super(x, y);
 		juego=j;
 		puedoDisparar=true;
+	}
+	
+	public Thread getThreadEnemigo(){
+		return tEnemigo;
 	}
 	
 	public int getPuntos(){
@@ -142,6 +150,8 @@ public abstract class Enemigo extends Tanque {
 	public void afectar(){
 		golpesQueResiste--;
 		if(golpesQueResiste==0){
+			ie.terminate();
+			tEnemigo.interrupt();
 			juego.eliminarEnemigo(this);
 		}
 	}

@@ -64,9 +64,9 @@ public class Juego{
 			listaEnemigos.add(ene);
 			gui.getPanelMapa().add(ene.getEtiqueta());
 			gui.repintar();
-			InteligenciaEnemigo ie = new InteligenciaEnemigo(ene,this);
-			tEnemigo=new Thread(ie);
-			tEnemigo.start();
+//			InteligenciaEnemigo ie = new InteligenciaEnemigo(ene,this);
+//			tEnemigo=new Thread(ie);
+//			tEnemigo.start();
 			return ene;
 		}
 		return null;

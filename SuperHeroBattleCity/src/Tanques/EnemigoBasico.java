@@ -5,6 +5,7 @@ import java.awt.Image;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 
+import Logica.InteligenciaEnemigo;
 import Logica.Juego;
 
 public class EnemigoBasico extends Enemigo {
@@ -25,6 +26,9 @@ public class EnemigoBasico extends Enemigo {
 			etiqueta = new JLabel();
 			etiqueta.setIcon(new ImageIcon(imagen.getImage().getScaledInstance(28, 28, Image.SCALE_DEFAULT)));
 			etiqueta.setBounds(x, y, 28, 28);
+			ie = new InteligenciaEnemigo(this,juego);
+			tEnemigo=new Thread(ie);
+			tEnemigo.start();
 	}
 
 }
