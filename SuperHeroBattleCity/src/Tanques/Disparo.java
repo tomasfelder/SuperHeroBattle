@@ -142,6 +142,42 @@ public abstract class Disparo extends gameObject implements Visitor {
 		return b.getRectangulo().intersects(posNueva);
 	}
 
+	public boolean colisionarPCasco(PCasco c,Rectangle posNueva){
+		
+		return false;
+		
+	}
+	
+	public boolean colisionarPEstrella(PEstrella e,Rectangle posNueva){
+		
+		return false;
+		
+	}
+	
+	public boolean colisionarPPala(PPala p,Rectangle posNueva){
+		
+		return false;
+		
+	}
+	
+	public boolean colisionarPTimer(PTimer t,Rectangle posNueva){
+		
+		return false;
+		
+	}
+	
+	public boolean colisionarPGranada(PGranada c,Rectangle posNueva){
+		
+		return false;
+		
+	}
+	
+	public boolean colisionarPTanque(PTanque t,Rectangle posNueva){
+		
+		return false;
+		
+	}
+	
 	public abstract boolean colisionarEnemigo(Enemigo e, Rectangle posNueva);
 
 	public abstract boolean colisionarJugador(Jugador j, Rectangle posNueva);
