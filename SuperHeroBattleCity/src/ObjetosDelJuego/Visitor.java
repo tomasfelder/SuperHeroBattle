@@ -1,6 +1,7 @@
 package ObjetosDelJuego;
 
 import java.awt.Rectangle;
+import PowerUps.*;
 
 import Obstaculos.Agua;
 import Obstaculos.Base;
@@ -12,6 +13,7 @@ import Tanques.Enemigo;
 import Tanques.Jugador;
 
 public interface Visitor {
+	
 	public boolean colisionarPared(Pared p,Rectangle posNueva);
 	public boolean colisionarEnemigo(Enemigo e,Rectangle posNueva);
 	public boolean colisionarJugador(Jugador j,Rectangle posNueva);
@@ -21,4 +23,11 @@ public interface Visitor {
 	public boolean colisionarDisparo(Disparo d,Rectangle posNueva);
 	public boolean colisionarBorde(Borde b,Rectangle posNueva);
 	
+	//Visitor de powerUps
+	public boolean colisionarPGranada(PGranada g,Rectangle posNueva);
+	public boolean colisionarPCasco(PCasco c,Rectangle posNueva);
+	public boolean colisionarPEstrella(PEstrella e,Rectangle posNueva);
+	public boolean colisionarPPala(PPala p,Rectangle posNueva);
+	public boolean colisionarPTanque(PTanque t,Rectangle posNueva);
+	public boolean colisionarPTimer(PTimer t,Rectangle posNueva);
 }

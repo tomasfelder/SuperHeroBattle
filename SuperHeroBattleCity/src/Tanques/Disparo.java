@@ -1,6 +1,7 @@
 package Tanques;
 
 import java.awt.Image;
+import PowerUps.*;
 import java.awt.Point;
 import java.awt.Rectangle;
 
@@ -144,6 +145,7 @@ public abstract class Disparo extends gameObject implements Visitor {
 	public abstract boolean colisionarEnemigo(Enemigo e, Rectangle posNueva);
 
 	public abstract boolean colisionarJugador(Jugador j, Rectangle posNueva);
+	
 	
 	
 }
