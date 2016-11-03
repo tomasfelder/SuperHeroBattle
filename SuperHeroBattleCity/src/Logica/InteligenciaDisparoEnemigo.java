@@ -28,6 +28,7 @@ public class InteligenciaDisparoEnemigo extends IntelegenciaDisparo {
 				}
 			}
 			execute=false;
+			game.removerDisparo(d);
 			game.quitarEtiqueta(d.getEtiqueta());
 			ene.devolverDisparo();
 			d=null;

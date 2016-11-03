@@ -65,7 +65,7 @@ public abstract class Tanque extends gameObject implements Visitor {
 		return b.getRectangulo().intersects(posNueva);
 	}
 	public boolean colisionarDisparo(Disparo d,Rectangle posNueva){
-		return d.getRectangulo().intersects(posNueva);
+		return false;
 	}
 	
 	public boolean colisionarBorde(Borde b,Rectangle posNueva){

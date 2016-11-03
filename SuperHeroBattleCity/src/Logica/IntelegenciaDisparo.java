@@ -41,6 +41,7 @@ public class IntelegenciaDisparo extends Thread {
 					execute=false;
 					game.quitarEtiqueta(d.getEtiqueta());
 					game.getJugador().devolverDisparo();
+					game.removerDisparo(d);
 					d=null;
 			}
 	}

@@ -12,11 +12,13 @@ public class InteligenciaEnemigo extends Thread {
 	private Enemigo enemigo;
 	private boolean ejecutar;
 	private InteligenciaDisparoEnemigo tDisparo;
+	
 
 	public InteligenciaEnemigo(Enemigo e,Juego juego){
 		enemigo=e;
 		game=juego;
 		ejecutar=true;
+		
 	}
 	
 	public void terminate(){
@@ -34,6 +36,7 @@ public class InteligenciaEnemigo extends Thread {
 					rect=enemigo.simularMovimiento(m);
 					if(enemigo.puedeDisparar()){
 						Disparo disp=enemigo.disparar();
+						game.agregarDisparo(disp);
 						game.agregarEtiqueta(disp.getEtiqueta());
 						tDisparo = new InteligenciaDisparoEnemigo(disp,game,enemigo);
 						tDisparo.start();

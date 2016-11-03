@@ -109,7 +109,7 @@ public abstract class Disparo extends gameObject implements Visitor {
 	}
 	
 	public boolean aceptar(Visitor v,Rectangle posNueva){
-		return false;
+		return v.colisionarDisparo(this, posNueva);
 	}
 
 	public boolean colisionarPared(Pared p,Rectangle posNueva){
@@ -135,7 +135,10 @@ public abstract class Disparo extends gameObject implements Visitor {
 	}
 	
 	public boolean colisionarDisparo(Disparo d,Rectangle posNueva){
-		return false;
+		boolean colisiono = d.getRectangulo().intersects(posNueva);
+//		if(colisiono)
+//			d.afectar();
+		return colisiono;
 	}
 	
 	public boolean colisionarBorde(Borde b,Rectangle posNueva){

@@ -5,7 +5,6 @@ import java.awt.EventQueue;
 import java.awt.Rectangle;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyAdapter;
-import java.util.Random;
 
 import Logica.Juego;
 import javax.swing.*;
@@ -13,18 +12,15 @@ import javax.swing.*;
 
 import Mapa.*;
 import Obstaculos.Obstaculo;
-import Tanques.Enemigo;
 
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
 
 public class GUI {
 
 	private JFrame frame;
-	private JPanel panelMapa,panelBotones;
+	private JPanel panelMapa;
 	private Mapa mapa;
 	private Juego juego;
-	private JButton btnCrearEnemigo,btnEliminarEnemigo,btnCambiarNivel;
+	
 	
 	/**
 	 * Launch the application.
@@ -51,7 +47,6 @@ public class GUI {
 		juego=new Juego(mapa,this);
 		initialize(14,15);
 		ponerObstaculos();
-		crearBotones();
 	}
 	
 	public JPanel getPanelMapa(){
@@ -62,59 +57,6 @@ public class GUI {
 		frame.repaint();
 	}
 	
-	private void crearBotones(){
-		
-			panelBotones = new JPanel();
-			panelBotones.setBounds(512, 262, 156, 134);
-			
-			btnCrearEnemigo = new JButton("Crear Enemigo");
-			btnCrearEnemigo.setFocusable(false);
-			btnCrearEnemigo.addActionListener(new ActionListener() {
-				
-				public void actionPerformed(ActionEvent e) {
-					Enemigo ene=juego.crearEnemigo(64,32);
-					if(ene!=null){
-						panelMapa.add(ene.getEtiqueta());
-						btnEliminarEnemigo.setEnabled(true);
-						frame.repaint();
-					}
-					if(juego.getCantidadEnemigos()==4)
-						btnCrearEnemigo.setEnabled(false);
-				}
-			});
-			btnCrearEnemigo.setBounds(650, 495, 112, 23);
-			panelBotones.add(btnCrearEnemigo);
-			btnEliminarEnemigo = new JButton("Eliminar Enemigo");
-			btnEliminarEnemigo.setFocusable(false);
-			btnEliminarEnemigo.addActionListener(new ActionListener() {
-				public void actionPerformed(ActionEvent arg0) {
-					juego.eliminarEnemigo();
-					juego.sumarPuntaje(100);
-					if(juego.getCantidadEnemigos()==0){
-						btnCrearEnemigo.setEnabled(true);
-						btnEliminarEnemigo.setEnabled(false);
-					}
-					else
-						btnCrearEnemigo.setEnabled(true);
-					frame.repaint();
-				}
-			});
-			btnEliminarEnemigo.setEnabled(false);
-			btnEliminarEnemigo.setBounds(650, 529, 112, 23);
-			panelBotones.add(btnEliminarEnemigo);
-			frame.getContentPane().add(panelBotones);
-			panelBotones.setFocusable(false);
-			
-			btnCambiarNivel = new JButton("Cambiar Nivel");
-			btnCambiarNivel.setFocusable(false);
-			btnCambiarNivel.addActionListener(new ActionListener() {
-				public void actionPerformed(ActionEvent arg0) {
-					juego.getJugador().setNivel(new Random().nextInt(4));
-				}
-			});
-			panelBotones.add(btnCambiarNivel);
-			frame.repaint();
-	}
 
 	private void ponerObstaculos() {
 		panelMapa = new JPanel();

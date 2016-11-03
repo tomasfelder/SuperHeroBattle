@@ -24,6 +24,7 @@ public class Juego{
 	
 	protected Jugador jugador;
 	protected List<Enemigo> listaEnemigos;
+	protected List<Disparo> listaDisparos;
 	protected int cantEnemigosActuales,puntaje,vidasJugador,cantEnemigosCreados,cantEnemigosMatados;
 	protected Mapa mapa;
 	protected GUI gui;
@@ -35,6 +36,7 @@ public class Juego{
 		jugador=new Jugador(162,388,this);
 		vidasJugador=2;
 		listaEnemigos= new LinkedList<Enemigo>();
+		listaDisparos= new LinkedList<Disparo>();
 		cantEnemigosActuales=0;
 		cantEnemigosCreados=0;
 		cantEnemigosMatados=0;
@@ -76,8 +78,17 @@ public class Juego{
 		return null;
 	}
 	
+	public void agregarDisparo(Disparo d){
+		listaDisparos.add(d);
+	}
+	
+	public void removerDisparo(Disparo d){
+		listaDisparos.remove(d);
+	}
+	
 	public JLabel disparar(){
 		Disparo disp= jugador.disparar();
+		listaDisparos.add(disp);
 		tDisparo = new IntelegenciaDisparo(disp,this);
 		tDisparo.start();
 		return disp.getEtiqueta();
