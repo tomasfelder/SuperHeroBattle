@@ -1,14 +1,14 @@
 package Tanques;
 
 import java.awt.Image;
-import PowerUps.*;
 import java.awt.Rectangle;
 
 import javax.swing.*;
 
 
 import Logica.InteligenciaCasco;
-
+import Logica.Juego;
+import ObjetosDelJuego.Visitor;
 import PowerUps.PCasco;
 import PowerUps.PEstrella;
 import PowerUps.PGranada;
@@ -23,8 +23,8 @@ public class Jugador extends Tanque{
 	protected boolean vulnerable;
 	
 	//Constructors
-	public Jugador(int x,int y){
-		super(x,y);
+	public Jugador(int x,int y,Juego j){
+		super(x,y,j);
 		vulnerable=true;
 		miNivel=new Nivel_1();
 		etiqueta=new JLabel();
@@ -147,6 +147,9 @@ public class Jugador extends Tanque{
 		return null;
 	}
 	
+	public boolean aceptar(Visitor v,Rectangle posNueva){
+		return v.colisionarJugador(this, posNueva);
+	}
 	
 	public boolean colisionarEnemigo(Enemigo e,Rectangle posNueva){
 		return e.getRectangulo().intersects(posNueva);
@@ -194,7 +197,10 @@ public class Jugador extends Tanque{
 
 	public void afectar() {
 		if (vulnerable)
-			golpesQueResiste--;
+			miNivel.restarVida();
+		if(miNivel.getResistencia()==0)
+			juego.eliminarJugador();
+			
 	}
 	public boolean colisionarPGranada(PGranada g,Rectangle posNueva){
 		return false;

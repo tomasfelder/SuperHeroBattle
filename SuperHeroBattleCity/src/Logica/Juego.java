@@ -20,16 +20,17 @@ import ObjetosDelJuego.Visitor;
 
 public class Juego{
 
-	private Jugador jugador;
-	private List<Enemigo> listaEnemigos;
-	private int cantEnemigos;
-	private Mapa mapa;
-	private GUI gui;
-	private int puntaje;
-	private Thread tDisparo,tJuego;
+	protected Jugador jugador;
+	protected List<Enemigo> listaEnemigos;
+	protected int cantEnemigos,puntaje,vidasJugador;
+	protected Mapa mapa;
+	protected GUI gui;
+	protected Thread tDisparo,tJuego;
+	
 	
 	public Juego(Mapa m,GUI g){
-		jugador=new Jugador(32,32);
+		jugador=new Jugador(32,32,this);
+		vidasJugador=2;
 		listaEnemigos= new LinkedList<Enemigo>();
 		cantEnemigos=0;
 		mapa=m;
@@ -46,7 +47,7 @@ public class Juego{
 				if(mapa.obtenerCelda(i, j)!=null)
 					puedo=!mapa.obtenerCelda(i, j).aceptar(v,nuevaPos);
 		if(puedo){
-			puedo=!v.colisionarJugador(jugador, nuevaPos);
+			puedo=!jugador.aceptar(v, nuevaPos);
 			Iterator<Enemigo> it= listaEnemigos.iterator();
 			while(it.hasNext()&&puedo){
 				Enemigo aux=it.next();
@@ -136,6 +137,17 @@ public class Juego{
 		gameOver.setBounds(gui.getPanelMapa().getBounds());
 		gameOver.setIcon(new ImageIcon(this.getClass().getResource("/imagenes/Game_Over.jpg")));
 		gui.getPanelMapa().add(gameOver);
+	}
+
+	public void eliminarJugador() {
+		vidasJugador--;
+		if(vidasJugador!=0){
+			gui.getPanelMapa().remove(jugador.getEtiqueta());
+			jugador = new Jugador(32,32,this);
+			gui.getPanelMapa().add(jugador.getEtiqueta());
+		}
+		else
+			perder();
 	}
 	
 }

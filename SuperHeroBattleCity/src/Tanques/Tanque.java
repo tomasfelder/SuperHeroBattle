@@ -5,6 +5,7 @@ import java.awt.Rectangle;
 
 import javax.swing.*;
 
+import Logica.Juego;
 import ObjetosDelJuego.*;
 import Obstaculos.Agua;
 import Obstaculos.Base;
@@ -26,12 +27,13 @@ public abstract class Tanque extends gameObject implements Visitor {
 	protected int velocidadMovimiento;
 	protected int golpesQueResiste;
 	protected int velocidadDisparo;
+	protected Juego juego;
 	
-	
-	public Tanque(int x,int y){
+	public Tanque(int x,int y,Juego j){
 		coordenadas = new Point(x,y);
 		rectangulo = new Rectangle(x, y, 28, 28);
 		iconos=new ImageIcon[4];
+		juego=j;
 	}
 	
 	//Metodos
@@ -47,9 +49,7 @@ public abstract class Tanque extends gameObject implements Visitor {
 		return velocidadMovimiento;
 	}
 	
-	public boolean aceptar(Visitor v,Rectangle posNueva){
-		return false;
-	}
+	public abstract boolean aceptar(Visitor v,Rectangle posNueva);
 	
 	public boolean colisionarPared(Pared p,Rectangle posNueva){
 		return p.getRectangulo().intersects(posNueva);

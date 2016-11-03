@@ -6,6 +6,7 @@ import javax.swing.ImageIcon;
 
 import Logica.InteligenciaEnemigo;
 import Logica.Juego;
+import ObjetosDelJuego.Visitor;
 import PowerUps.PCasco;
 import PowerUps.PEstrella;
 import PowerUps.PGranada;
@@ -16,13 +17,11 @@ import PowerUps.PTimer;
 public abstract class Enemigo extends Tanque {
 	
 	protected int puntosQueDa;
-	protected Juego juego;
 	protected boolean puedoDisparar;
 	protected InteligenciaEnemigo tEnemigo;
 	
 	public Enemigo(int x, int y,Juego j) {
-		super(x, y);
-		juego=j;
+		super(x, y,j);
 		puedoDisparar=true;
 	}
 	
@@ -128,6 +127,10 @@ public abstract class Enemigo extends Tanque {
 			return new DisparoEnemigo(rectangulo.x+28,rectangulo.y+10,3,velocidadDisparo);
 		}
 		return null;
+	}
+	
+	public boolean aceptar(Visitor v,Rectangle posNueva){
+		return v.colisionarEnemigo(this, posNueva);
 	}
 	
 	public boolean colisionarJugador(Jugador j,Rectangle posNueva){

@@ -63,6 +63,10 @@ public abstract class Nivel {
 		cantDisparos--;
 	}
 	
+	public void restarVida(){
+		resistencia--;
+	}
+	
 	public Icon getIcon(){
 		
 		return new ImageIcon(icono.getImage().getScaledInstance(28, 28, Image.SCALE_DEFAULT));
