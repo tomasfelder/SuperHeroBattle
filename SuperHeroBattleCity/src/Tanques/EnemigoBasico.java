@@ -12,7 +12,7 @@ public class EnemigoBasico extends Enemigo {
 
 	public EnemigoBasico(int x, int y,Juego j) {
 			super(x,y,j);
-			velocidadMovimiento=1;
+			velocidadMovimiento=2;
 			golpesQueResiste=1;
 			velocidadDisparo=1;
 			puntosQueDa=100;
@@ -26,8 +26,7 @@ public class EnemigoBasico extends Enemigo {
 			etiqueta = new JLabel();
 			etiqueta.setIcon(new ImageIcon(imagen.getImage().getScaledInstance(28, 28, Image.SCALE_DEFAULT)));
 			etiqueta.setBounds(x, y, 28, 28);
-			ie = new InteligenciaEnemigo(this,juego);
-			tEnemigo=new Thread(ie);
+			tEnemigo = new InteligenciaEnemigo(this,juego);
 			tEnemigo.start();
 	}
 

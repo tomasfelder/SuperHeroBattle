@@ -6,47 +6,39 @@ import java.util.Random;
 import Tanques.Disparo;
 import Tanques.Enemigo;
 
-public class InteligenciaEnemigo implements Runnable {
+public class InteligenciaEnemigo extends Thread {
 	
 	private Juego game;
 	private Enemigo enemigo;
 	private boolean ejecutar;
-	private Thread tDisparo;
-	private InteligenciaDisparoEnemigo id;
+	private InteligenciaDisparoEnemigo tDisparo;
 
 	public InteligenciaEnemigo(Enemigo e,Juego juego){
 		enemigo=e;
 		game=juego;
-		id=null;
-	}
-	
-	public Thread getThreadDisparo(){
-		return tDisparo;
+		ejecutar=true;
 	}
 	
 	public void terminate(){
-		id.terminate();
 		ejecutar=false;
 	}
 	
 	@Override
 	public void run() {
-		ejecutar=true;
 		while(ejecutar){
 			try{
 				int m=new Random().nextInt(4);
 				Rectangle rect=enemigo.simularMovimiento(m);
-				while(game.puedoMover(rect,enemigo)){
+				while(game.puedoMover(rect,enemigo)&&ejecutar){
 					enemigo.mover(m);
 					rect=enemigo.simularMovimiento(m);
 					if(enemigo.puedeDisparar()){
 						Disparo disp=enemigo.disparar();
 						game.agregarEtiqueta(disp.getEtiqueta());
-						id=new InteligenciaDisparoEnemigo(disp,game,enemigo);
-						tDisparo= new Thread(id);
+						tDisparo = new InteligenciaDisparoEnemigo(disp,game,enemigo);
 						tDisparo.start();
 					}
-					Thread.sleep(200);
+					Thread.sleep(50);
 				}
 
 			}

@@ -12,13 +12,13 @@ public class InteligenciaDisparoEnemigo extends IntelegenciaDisparo {
 	public InteligenciaDisparoEnemigo(Disparo disp, Juego juego,Enemigo ene) {
 		super(disp, juego);
 		this.ene=ene;
+		execute=true;
 	}
 	
 	public void run() {
 		Rectangle nuevaP=d.simularMovimiento();
-		execute=true;
 		while(execute){
-			while(game.puedoMover(nuevaP,d)){
+			while(game.puedoMover(nuevaP,d)&&execute){
 				d.mover();
 				nuevaP=d.simularMovimiento();
 				try {
@@ -27,10 +27,10 @@ public class InteligenciaDisparoEnemigo extends IntelegenciaDisparo {
 					
 				}
 			}
-				execute=false;
-				game.quitarEtiqueta(d.getEtiqueta());
-				ene.devolverDisparo();
-				d=null;
+			execute=false;
+			game.quitarEtiqueta(d.getEtiqueta());
+			ene.devolverDisparo();
+			d=null;
 		}
 }
 	

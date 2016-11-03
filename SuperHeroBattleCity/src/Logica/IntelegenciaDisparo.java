@@ -4,7 +4,7 @@ import java.awt.Rectangle;
 
 import Tanques.Disparo;
 
-public class IntelegenciaDisparo implements Runnable {
+public class IntelegenciaDisparo extends Thread {
 	
 	protected Disparo d;
 	protected Juego game;

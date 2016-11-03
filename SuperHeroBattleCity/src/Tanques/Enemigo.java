@@ -18,8 +18,7 @@ public abstract class Enemigo extends Tanque {
 	protected int puntosQueDa;
 	protected Juego juego;
 	protected boolean puedoDisparar;
-	protected Thread tEnemigo;
-	protected InteligenciaEnemigo ie;
+	protected InteligenciaEnemigo tEnemigo;
 	
 	public Enemigo(int x, int y,Juego j) {
 		super(x, y);
@@ -150,8 +149,7 @@ public abstract class Enemigo extends Tanque {
 	public void afectar(){
 		golpesQueResiste--;
 		if(golpesQueResiste==0){
-			ie.terminate();
-			tEnemigo.interrupt();
+			tEnemigo.terminate();
 			juego.eliminarEnemigo(this);
 		}
 	}

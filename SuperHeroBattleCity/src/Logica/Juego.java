@@ -26,7 +26,7 @@ public class Juego{
 	private Mapa mapa;
 	private GUI gui;
 	private int puntaje;
-	private Thread tDisparo,tEnemigo,tJuego;
+	private Thread tDisparo,tJuego;
 	
 	public Juego(Mapa m,GUI g){
 		jugador=new Jugador(32,32);
@@ -58,15 +58,12 @@ public class Juego{
 	}
 	
 	public Enemigo crearEnemigo(int x,int y){
-		if(cantEnemigos<5){
+		if(cantEnemigos<4){
 			Enemigo ene = new EnemigoBasico(x,y,this);
 			cantEnemigos++;
 			listaEnemigos.add(ene);
 			gui.getPanelMapa().add(ene.getEtiqueta());
 			gui.repintar();
-//			InteligenciaEnemigo ie = new InteligenciaEnemigo(ene,this);
-//			tEnemigo=new Thread(ie);
-//			tEnemigo.start();
 			return ene;
 		}
 		return null;
@@ -74,8 +71,7 @@ public class Juego{
 	
 	public JLabel disparar(){
 		Disparo disp= jugador.disparar();
-		IntelegenciaDisparo id=new IntelegenciaDisparo(disp,this);
-		tDisparo= new Thread(id);
+		tDisparo = new IntelegenciaDisparo(disp,this);
 		tDisparo.start();
 		return disp.getEtiqueta();
 	}
