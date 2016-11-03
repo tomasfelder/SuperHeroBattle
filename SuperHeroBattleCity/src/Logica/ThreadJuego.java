@@ -11,16 +11,21 @@ public class ThreadJuego extends Thread {
 		execute=true;
 	}
 	
+	public void terminate(){
+		execute=false;
+	}
+	
 	public void run(){
 		while(execute){
 			long startTime = System.currentTimeMillis();
 			long elapsedTime=0;
 			long elapsedSeconds=0;
-			while(elapsedSeconds<=7){
+			while(elapsedSeconds<=5&&execute){
 				elapsedTime = System.currentTimeMillis() - startTime;
 				elapsedSeconds = elapsedTime / 1000;
 			}
-			game.crearEnemigo(64, 32);
+			if(execute)
+				game.crearEnemigo(64, 32);
 		}
 	}
 	

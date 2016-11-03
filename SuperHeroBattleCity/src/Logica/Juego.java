@@ -19,20 +19,25 @@ import Mapa.Mapa;
 import ObjetosDelJuego.Visitor;
 
 public class Juego{
-
+	
+	protected static final int TOTAL_ENEMIGOS=16;
+	
 	protected Jugador jugador;
 	protected List<Enemigo> listaEnemigos;
-	protected int cantEnemigos,puntaje,vidasJugador;
+	protected int cantEnemigosActuales,puntaje,vidasJugador,cantEnemigosCreados,cantEnemigosMatados;
 	protected Mapa mapa;
 	protected GUI gui;
-	protected Thread tDisparo,tJuego;
+	protected Thread tDisparo;
+	protected ThreadJuego tJuego;
 	
 	
 	public Juego(Mapa m,GUI g){
-		jugador=new Jugador(32,32,this);
+		jugador=new Jugador(162,388,this);
 		vidasJugador=2;
 		listaEnemigos= new LinkedList<Enemigo>();
-		cantEnemigos=0;
+		cantEnemigosActuales=0;
+		cantEnemigosCreados=0;
+		cantEnemigosMatados=0;
 		mapa=m;
 		puntaje=0;
 		gui=g;
@@ -59,9 +64,10 @@ public class Juego{
 	}
 	
 	public Enemigo crearEnemigo(int x,int y){
-		if(cantEnemigos<4){
+		if(cantEnemigosActuales<4&&cantEnemigosCreados<TOTAL_ENEMIGOS){
 			Enemigo ene = new EnemigoBasico(x,y,this);
-			cantEnemigos++;
+			cantEnemigosActuales++;
+			cantEnemigosCreados++;
 			listaEnemigos.add(ene);
 			gui.getPanelMapa().add(ene.getEtiqueta());
 			gui.repintar();
@@ -78,24 +84,39 @@ public class Juego{
 	}
 	
 	public void eliminarEnemigo(){
-		if(cantEnemigos!=0){
+		if(cantEnemigosActuales!=0){
 			gui.getPanelMapa().remove(listaEnemigos.get(0).getEtiqueta());
 			gui.repintar();
 			listaEnemigos.remove(0);
-			cantEnemigos--;
+			cantEnemigosActuales--;
 		}
 	}
 	
 	public void eliminarEnemigo(Enemigo ene){
-		if(cantEnemigos!=0){
+		if(cantEnemigosActuales!=0){
 			new MuestraEtiqueta(ene.getRectangulo(),ene.getPuntos(),gui).start();
 			gui.getPanelMapa().remove(ene.getEtiqueta());
 			gui.repintar();
 			listaEnemigos.remove(ene);
-			cantEnemigos--;
+			cantEnemigosActuales--;
+			cantEnemigosMatados++;
+			if(cantEnemigosMatados==TOTAL_ENEMIGOS)
+				ganar();
 		}
 	}
 	
+	private void ganar() {
+		gui.getPanelMapa().removeAll();
+		gui.repintar();
+		tJuego.terminate();
+		for(Enemigo e:listaEnemigos)
+			e.terminarThread();
+		JLabel gameOver = new JLabel();
+		gameOver.setBounds(gui.getPanelMapa().getBounds());
+		gameOver.setIcon(new ImageIcon(this.getClass().getResource("/imagenes/You_Win.jpg")));
+		gui.getPanelMapa().add(gameOver);
+	}
+
 	public List<Enemigo> getEnemigos(){
 		
 		return listaEnemigos;
@@ -118,7 +139,7 @@ public class Juego{
 	}
 
 	public int getCantidadEnemigos() {
-		return cantEnemigos;
+		return cantEnemigosActuales;
 	}
 
 	public void quitarEtiqueta(JLabel etiqueta) {
@@ -133,6 +154,10 @@ public class Juego{
 
 	public void perder() {
 		gui.getPanelMapa().removeAll();
+		gui.repintar();
+		tJuego.terminate();
+		for(Enemigo e:listaEnemigos)
+			e.terminarThread();
 		JLabel gameOver = new JLabel();
 		gameOver.setBounds(gui.getPanelMapa().getBounds());
 		gameOver.setIcon(new ImageIcon(this.getClass().getResource("/imagenes/Game_Over.jpg")));
@@ -143,7 +168,7 @@ public class Juego{
 		vidasJugador--;
 		if(vidasJugador!=0){
 			gui.getPanelMapa().remove(jugador.getEtiqueta());
-			jugador = new Jugador(32,32,this);
+			jugador = new Jugador(162,388,this);
 			gui.getPanelMapa().add(jugador.getEtiqueta());
 		}
 		else

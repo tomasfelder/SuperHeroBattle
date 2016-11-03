@@ -175,6 +175,10 @@ public abstract class Enemigo extends Tanque {
 	public boolean colisionarPTimer(PTimer t,Rectangle posNueva){
 			return false;
 	}
+
+	public void terminarThread() {
+		tEnemigo.terminate();
+	}
 	
 	
 }
