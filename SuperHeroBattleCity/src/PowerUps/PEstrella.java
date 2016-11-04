@@ -12,11 +12,10 @@ public class PEstrella extends PowerUp{
 	public PEstrella(int x,int y){
 		super(x,y);
 		coordenadas = new Point(0,0);
-		rectangulo = new Rectangle(0, 0, ANCHO, ALTO);
-		imagen = new ImageIcon(this.getClass().getResource("/imagenes/PowerEstrella.png"));
+		imagen = new ImageIcon(this.getClass().getResource("/imagenesPowerUp/PowerEstrella.png"));
 		etiqueta = new JLabel();
 		etiqueta.setIcon(new ImageIcon(imagen.getImage().getScaledInstance(ANCHO, ALTO, Image.SCALE_DEFAULT)));
-		etiqueta.setBounds(0, 0,ANCHO , ALTO);
+		etiqueta.setBounds(x, y,ANCHO , ALTO);
 	}
 	public boolean aceptar(Visitor v,Rectangle nuevaPos){
 		

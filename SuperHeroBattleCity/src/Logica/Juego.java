@@ -17,6 +17,8 @@ import Grafica.GUI;
 import Grafica.MuestraEtiqueta;
 import Mapa.Mapa;
 import ObjetosDelJuego.Visitor;
+import PowerUps.PEstrella;
+import PowerUps.PowerUp;
 
 public class Juego{
 	
@@ -25,6 +27,7 @@ public class Juego{
 	protected Jugador jugador;
 	protected List<Enemigo> listaEnemigos;
 	protected List<Disparo> listaDisparos;
+	protected List<PowerUp> listaPowerUps;
 	protected int cantEnemigosActuales,puntaje,vidasJugador,cantEnemigosCreados,cantEnemigosMatados;
 	protected Mapa mapa;
 	protected GUI gui;
@@ -37,6 +40,7 @@ public class Juego{
 		vidasJugador=2;
 		listaEnemigos= new LinkedList<Enemigo>();
 		listaDisparos= new LinkedList<Disparo>();
+		listaPowerUps= new LinkedList<PowerUp>();
 		cantEnemigosActuales=0;
 		cantEnemigosCreados=0;
 		cantEnemigosMatados=0;
@@ -54,10 +58,13 @@ public class Juego{
 				if(mapa.obtenerCelda(i, j)!=null)
 					puedo=!mapa.obtenerCelda(i, j).aceptar(v,nuevaPos);
 		if(puedo){
+			Iterator<PowerUp> itP = listaPowerUps.iterator();
+			while(itP.hasNext()&&puedo)
+				puedo=!itP.next().aceptar(v, nuevaPos);
 			puedo=!jugador.aceptar(v, nuevaPos);
-			Iterator<Enemigo> it= listaEnemigos.iterator();
-			while(it.hasNext()&&puedo){
-				Enemigo aux=it.next();
+			Iterator<Enemigo> itE= listaEnemigos.iterator();
+			while(itE.hasNext()&&puedo){
+				Enemigo aux=itE.next();
 				if(aux!=v)
 					puedo=!v.colisionarEnemigo(aux, nuevaPos);
 			}
@@ -111,6 +118,19 @@ public class Juego{
 			listaEnemigos.remove(ene);
 			cantEnemigosActuales--;
 			cantEnemigosMatados++;
+			if(cantEnemigosMatados%4==0){
+				int x = new java.util.Random().nextInt(480);
+				int y = new java.util.Random().nextInt(448);
+				Rectangle auxiliar= new Rectangle(x,y,32,32);
+				Enemigo pruebaLugar = new EnemigoBasico(0,0,this);
+				while(!this.puedoMover(auxiliar, pruebaLugar)){
+					auxiliar.x=new java.util.Random().nextInt(480);
+					auxiliar.y=new java.util.Random().nextInt(448);
+				}
+				PowerUp p=new PEstrella(auxiliar.x,auxiliar.y);
+				listaPowerUps.add(p);
+				gui.getPanelMapa().add(p.getEtiqueta());
+			}
 			if(cantEnemigosMatados==TOTAL_ENEMIGOS)
 				ganar();
 		}

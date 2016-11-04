@@ -163,7 +163,6 @@ public abstract class Enemigo extends Tanque {
 			return false;
 	}
 	public boolean colisionarPEstrella(PEstrella e,Rectangle posNueva){
-	
 		return false;
 	}
 	public boolean colisionarPPala(PPala p,Rectangle posNueva){
