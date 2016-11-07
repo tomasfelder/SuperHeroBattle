@@ -2,53 +2,53 @@ package Tanques;
 
 import java.awt.Image;
 import PowerUps.*;
-import java.awt.Point;
 import java.awt.Rectangle;
 
-import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 
+import Logica.InteligenciaDisparo;
 import ObjetosDelJuego.Visitor;
 import ObjetosDelJuego.gameObject;
 import Obstaculos.Agua;
 import Obstaculos.Base;
 import Obstaculos.Borde;
 import Obstaculos.Bosque;
-import Obstaculos.Pared;
+import Obstaculos.ParedDeAcero;
+import Obstaculos.ParedDeLadrillo;
 
 public abstract class Disparo extends gameObject implements Visitor {
 	
 	protected ImageIcon[] iconos;
 	protected int velocidadMovimiento;
 	protected int direccion;
+	protected InteligenciaDisparo tDisparo;
 	
 	public Disparo(int x,int y,int dir,int vel){
-		coordenadas = new Point(x,y);
-		rectangulo = new Rectangle(x, y, 7, 10);
+		rectangulo = new Rectangle(x, y, 11, 11);
 		velocidadMovimiento=vel;
 		direccion=dir;
 		switch(dir){
 		case(0):
-			imagen = new ImageIcon(this.getClass().getResource("/imagenes/Disparo_Arriba.png"));
+			imagen = new ImageIcon(this.getClass().getResource("/imagenes/Pelota.png"));
 			break;
 		case(1):
-			imagen = new ImageIcon(this.getClass().getResource("/imagenes/Disparo_Abajo.png"));
+			imagen = new ImageIcon(this.getClass().getResource("/imagenes/Pelota.png"));
 			break;
 		case(2):
-			imagen = new ImageIcon(this.getClass().getResource("/imagenes/Disparo_Izq.png"));
+			imagen = new ImageIcon(this.getClass().getResource("/imagenes/Pelota.png"));
 			break;
 		case(3):
-			imagen = new ImageIcon(this.getClass().getResource("/imagenes/Disparo_Der.png"));
+			imagen = new ImageIcon(this.getClass().getResource("/imagenes/Pelota.png"));
 			break;
 		}
 		etiqueta = new JLabel();
-		etiqueta.setIcon(new ImageIcon(imagen.getImage().getScaledInstance(7, 10, Image.SCALE_DEFAULT)));
+		etiqueta.setIcon(new ImageIcon(imagen.getImage().getScaledInstance(11, 11, Image.SCALE_DEFAULT)));
 		etiqueta.setBounds(rectangulo);
 	}
 	
 	public Rectangle simularMovimiento(){
-		Rectangle nuevaPos = new Rectangle(7, 10);
+		Rectangle nuevaPos = new Rectangle(11, 11);
 		switch (direccion){
 		case 0:
 			nuevaPos.x=rectangulo.x; nuevaPos.y=rectangulo.y-velocidadMovimiento;
@@ -86,37 +86,32 @@ public abstract class Disparo extends gameObject implements Visitor {
 	}
 	
 	public void avanzarArriba(){
-		coordenadas.y=coordenadas.y-velocidadMovimiento;
 		rectangulo.y=rectangulo.y-velocidadMovimiento;
 	}
 	public void avanzarAbajo(){
-		coordenadas.y=coordenadas.y+velocidadMovimiento;
 		rectangulo.y=rectangulo.y+velocidadMovimiento;
 	}
 	public void avanzarDerecha(){
-		coordenadas.x=coordenadas.x+velocidadMovimiento;
 		rectangulo.x=rectangulo.x+velocidadMovimiento;
 	}
 	public void avanzarIzquierda(){
-		coordenadas.x=coordenadas.x-velocidadMovimiento;
 		rectangulo.x=rectangulo.x-velocidadMovimiento;
 	}
 	
-	public Icon getIcon(){
-		
-		return new ImageIcon(imagen.getImage().getScaledInstance(15, 15, Image.SCALE_DEFAULT));
-		
-	}
 	
 	public boolean aceptar(Visitor v,Rectangle posNueva){
 		return v.colisionarDisparo(this, posNueva);
 	}
 
-	public boolean colisionarPared(Pared p,Rectangle posNueva){
+	public boolean colisionarParedDeLadrillo(ParedDeLadrillo p,Rectangle posNueva){
 		boolean colisiono = p.getRectangulo().intersects(posNueva);
 		if(colisiono)
 			p.afectar(direccion);
 		return colisiono;
+	}
+	
+	public boolean colisionarParedDeAcero(ParedDeAcero p,Rectangle posNueva){
+		return p.getRectangulo().intersects(posNueva);
 	}
 	
 	public boolean colisionarBosque(Bosque b,Rectangle posNueva){
@@ -136,8 +131,6 @@ public abstract class Disparo extends gameObject implements Visitor {
 	
 	public boolean colisionarDisparo(Disparo d,Rectangle posNueva){
 		boolean colisiono = d.getRectangulo().intersects(posNueva);
-//		if(colisiono)
-//			d.afectar();
 		return colisiono;
 	}
 	

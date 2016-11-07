@@ -4,14 +4,14 @@ import java.awt.Rectangle;
 
 import Tanques.Disparo;
 
-public class IntelegenciaDisparo extends Thread {
+public class InteligenciaDisparo extends Thread {
 	
 	protected Disparo d;
 	protected Juego game;
 	protected boolean execute;
 	
 	//Constructor
-	public IntelegenciaDisparo(Disparo disp, Juego juego) {
+	public InteligenciaDisparo(Disparo disp, Juego juego) {
 		d=disp;
 		game=juego;
 	}
@@ -38,11 +38,11 @@ public class IntelegenciaDisparo extends Thread {
 						
 					}
 				}
-					execute=false;
-					game.quitarEtiqueta(d.getEtiqueta());
-					game.getJugador().devolverDisparo();
-					game.removerDisparo(d);
-					d=null;
+			execute=false;
+			game.quitarEtiqueta(d.getEtiqueta());
+			game.getJugador().devolverDisparo();
+			game.removerDisparo(d);
+			d=null;
 			}
 	}
 	

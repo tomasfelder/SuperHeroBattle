@@ -1,23 +1,13 @@
 package Tanques;
 
-import java.awt.Point;
 import java.awt.Rectangle;
 
 import javax.swing.*;
 
 import Logica.Juego;
 import ObjetosDelJuego.*;
-import Obstaculos.Agua;
-import Obstaculos.Base;
-import Obstaculos.Borde;
-import Obstaculos.Bosque;
-import Obstaculos.Pared;
-import PowerUps.PCasco;
-import PowerUps.PEstrella;
-import PowerUps.PGranada;
-import PowerUps.PPala;
-import PowerUps.PTanque;
-import PowerUps.PTimer;
+import Obstaculos.*;
+import PowerUps.*;
 
 public abstract class Tanque extends gameObject implements Visitor {
 	
@@ -30,7 +20,6 @@ public abstract class Tanque extends gameObject implements Visitor {
 	protected Juego juego;
 	
 	public Tanque(int x,int y,Juego j){
-		coordenadas = new Point(x,y);
 		rectangulo = new Rectangle(x, y, 28, 28);
 		iconos=new ImageIcon[4];
 		juego=j;
@@ -51,9 +40,14 @@ public abstract class Tanque extends gameObject implements Visitor {
 	
 	public abstract boolean aceptar(Visitor v,Rectangle posNueva);
 	
-	public boolean colisionarPared(Pared p,Rectangle posNueva){
+	public boolean colisionarParedDeAcero(ParedDeAcero p,Rectangle posNueva){
 		return p.getRectangulo().intersects(posNueva);
 	}
+	
+	public boolean colisionarParedDeLadrillo(ParedDeLadrillo p,Rectangle posNueva){
+		return p.getRectangulo().intersects(posNueva);
+	}
+	
 	public boolean colisionarBosque(Bosque b,Rectangle posNueva){
 		return false;
 	}

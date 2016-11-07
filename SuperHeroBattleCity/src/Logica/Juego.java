@@ -17,8 +17,7 @@ import Grafica.GUI;
 import Grafica.MuestraEtiqueta;
 import Mapa.Mapa;
 import ObjetosDelJuego.Visitor;
-import PowerUps.PEstrella;
-import PowerUps.PowerUp;
+import PowerUps.*;
 
 public class Juego{
 	
@@ -66,13 +65,13 @@ public class Juego{
 			while(itE.hasNext()&&puedo){
 				Enemigo aux=itE.next();
 				if(aux!=v)
-					puedo=!v.colisionarEnemigo(aux, nuevaPos);
+					puedo=!aux.aceptar(v, nuevaPos);
 			}
 		}
 		return puedo;
 	}
 	
-	public Enemigo crearEnemigo(int x,int y){
+	public void crearEnemigo(int x,int y){
 		if(cantEnemigosActuales<4&&cantEnemigosCreados<TOTAL_ENEMIGOS){
 			Enemigo ene = new EnemigoBasico(x,y,this);
 			cantEnemigosActuales++;
@@ -80,9 +79,7 @@ public class Juego{
 			listaEnemigos.add(ene);
 			gui.getPanelMapa().add(ene.getEtiqueta());
 			gui.repintar();
-			return ene;
 		}
-		return null;
 	}
 	
 	public void agregarDisparo(Disparo d){
@@ -93,12 +90,17 @@ public class Juego{
 		listaDisparos.remove(d);
 	}
 	
-	public JLabel disparar(){
+	public void removerPowerUp(PowerUp p){
+		gui.getPanelMapa().remove(p.getEtiqueta());
+		new MuestraEtiqueta(p.getRectangulo(),p.getPuntosQueDa(),gui).start();
+		puntaje+=p.getPuntosQueDa();
+		listaPowerUps.remove(p);
+	}
+	
+	public void disparar(){
 		Disparo disp= jugador.disparar();
+		gui.getPanelMapa().add(disp.getEtiqueta());
 		listaDisparos.add(disp);
-		tDisparo = new IntelegenciaDisparo(disp,this);
-		tDisparo.start();
-		return disp.getEtiqueta();
 	}
 	
 	public void eliminarEnemigo(){
@@ -115,6 +117,7 @@ public class Juego{
 			new MuestraEtiqueta(ene.getRectangulo(),ene.getPuntos(),gui).start();
 			gui.getPanelMapa().remove(ene.getEtiqueta());
 			gui.repintar();
+			puntaje+=ene.getPuntos();
 			listaEnemigos.remove(ene);
 			cantEnemigosActuales--;
 			cantEnemigosMatados++;
@@ -127,13 +130,27 @@ public class Juego{
 					auxiliar.x=new java.util.Random().nextInt(480);
 					auxiliar.y=new java.util.Random().nextInt(448);
 				}
-				PowerUp p=new PEstrella(auxiliar.x,auxiliar.y);
+				PowerUp p=new PGranada(auxiliar.x,auxiliar.y);
 				listaPowerUps.add(p);
 				gui.getPanelMapa().add(p.getEtiqueta());
 			}
 			if(cantEnemigosMatados==TOTAL_ENEMIGOS)
 				ganar();
 		}
+	}
+	
+	public void eliminarEnemigos(){
+		Iterator<Enemigo> itE= listaEnemigos.iterator();
+		while(itE.hasNext()){
+			Enemigo aux= itE.next();
+			aux.terminarThread();
+			gui.getPanelMapa().remove(aux.getEtiqueta());
+		}
+		cantEnemigosMatados+=listaEnemigos.size();
+		cantEnemigosActuales=0;
+		listaEnemigos.clear();
+		if(cantEnemigosMatados==TOTAL_ENEMIGOS)
+			ganar();
 	}
 	
 	private void ganar() {
@@ -149,7 +166,6 @@ public class Juego{
 	}
 
 	public List<Enemigo> getEnemigos(){
-		
 		return listaEnemigos;
 	}
 	

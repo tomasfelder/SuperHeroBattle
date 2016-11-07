@@ -1,7 +1,6 @@
 package Obstaculos;
 
 import java.awt.Image;
-import java.awt.Point;
 import java.awt.Rectangle;
 
 import javax.swing.ImageIcon;
@@ -15,7 +14,6 @@ public class Agua extends Obstaculo {
 	 * Constructor
 	 */
 	public Agua(){
-		coordenadas = new Point(0,0);
 		rectangulo = new Rectangle(0, 0, ANCHO, ALTO);
 		imagen = new ImageIcon(this.getClass().getResource("/imagenes/Agua.png"));
 		etiqueta = new JLabel();

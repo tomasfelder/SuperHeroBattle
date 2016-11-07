@@ -38,8 +38,8 @@ public class InteligenciaEnemigo extends Thread {
 						Disparo disp=enemigo.disparar();
 						game.agregarDisparo(disp);
 						game.agregarEtiqueta(disp.getEtiqueta());
-						tDisparo = new InteligenciaDisparoEnemigo(disp,game,enemigo);
-						tDisparo.start();
+//						tDisparo = new InteligenciaDisparoEnemigo(disp,game,enemigo);
+//						tDisparo.start();
 					}
 					Thread.sleep(50);
 				}

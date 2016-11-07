@@ -52,25 +52,20 @@ public class Jugador extends Tanque{
 	}
 	
 	public Rectangle simularMovimiento(int direccion){
-		int coord[] = new int[2];
 		Rectangle nuevaPos = new Rectangle(28, 28);
 		miNivel.cambiarIcono(direccion);
 		etiqueta.setIcon(miNivel.getIcon());
 		switch (direccion){
 		case 0:
-			coord[0]=coordenadas.x; coord[1]=coordenadas.y-miNivel.getVelocidadMovimiento();
 			nuevaPos.x=rectangulo.x; nuevaPos.y=rectangulo.y-miNivel.getVelocidadMovimiento();
 			break;
 		case 1:
-			coord[0]=coordenadas.x; coord[1]=coordenadas.y+miNivel.getVelocidadMovimiento();
 			nuevaPos.x=rectangulo.x; nuevaPos.y=rectangulo.y+miNivel.getVelocidadMovimiento();
 			break;
 		case 2:
-			coord[0]=coordenadas.x-miNivel.getVelocidadMovimiento(); coord[1]=coordenadas.y;
 			nuevaPos.x=rectangulo.x-miNivel.getVelocidadMovimiento(); nuevaPos.y=rectangulo.y;
 			break;
 		case 3:
-			coord[0]=coordenadas.x+miNivel.getVelocidadMovimiento(); coord[1]=coordenadas.y;
 			nuevaPos.x=rectangulo.x+miNivel.getVelocidadMovimiento(); nuevaPos.y=rectangulo.y;
 			break;
 		}
@@ -100,24 +95,20 @@ public class Jugador extends Tanque{
 	
 	private void moverDerecha(){
 		
-		coordenadas.x=coordenadas.x+miNivel.getVelocidadMovimiento();
 		rectangulo.x=rectangulo.x+miNivel.getVelocidadMovimiento();
 		
 	}
 	private void moverIzquierda(){
 		
-		coordenadas.x=coordenadas.x-miNivel.getVelocidadMovimiento();
 		rectangulo.x=rectangulo.x-miNivel.getVelocidadMovimiento();
 	}
 	private void moverArriba(){
 		
-		coordenadas.y=coordenadas.y-miNivel.getVelocidadMovimiento();
 		rectangulo.y=rectangulo.y-miNivel.getVelocidadMovimiento();
 		
 	}
 	private void moverAbajo(){
 		
-		coordenadas.y=coordenadas.y+miNivel.getVelocidadMovimiento();
 		rectangulo.y=rectangulo.y+miNivel.getVelocidadMovimiento();
 		
 	}
@@ -136,13 +127,13 @@ public class Jugador extends Tanque{
 		miNivel.quitarDisparo();
 		switch (miNivel.direccion()){
 		case 0:
-			return new DisparoJugador(rectangulo.x+10,rectangulo.y-10,0,miNivel.getVelocidadDisparo());
+			return new DisparoJugador(rectangulo.x+10,rectangulo.y-10,0,miNivel.getVelocidadDisparo(),juego);
 		case 1:
-			return new DisparoJugador(rectangulo.x+10,rectangulo.y+28,1,miNivel.getVelocidadDisparo());
+			return new DisparoJugador(rectangulo.x+10,rectangulo.y+28,1,miNivel.getVelocidadDisparo(),juego);
 		case 2:
-			return new DisparoJugador(rectangulo.x-10,rectangulo.y+10,2,miNivel.getVelocidadDisparo());
+			return new DisparoJugador(rectangulo.x-10,rectangulo.y+10,2,miNivel.getVelocidadDisparo(),juego);
 		case 3:
-			return new DisparoJugador(rectangulo.x+28,rectangulo.y+10,3,miNivel.getVelocidadDisparo());
+			return new DisparoJugador(rectangulo.x+28,rectangulo.y+10,3,miNivel.getVelocidadDisparo(),juego);
 		}
 		return null;
 	}
@@ -170,7 +161,7 @@ public class Jugador extends Tanque{
 	public boolean colisionarPEstrella(PEstrella e,Rectangle posNueva){
 		
 		if (e.getRectangulo().intersects(posNueva) && miNivel.getSiguiente()!=null){
-			
+			juego.removerPowerUp(e);
 			miNivel=miNivel.getSiguiente();
 			
 		}
@@ -203,6 +194,10 @@ public class Jugador extends Tanque{
 			
 	}
 	public boolean colisionarPGranada(PGranada g,Rectangle posNueva){
+		if(g.getRectangulo().intersects(posNueva)){
+			juego.removerPowerUp(g);
+			juego.eliminarEnemigos();
+		}
 		return false;
 	}
 

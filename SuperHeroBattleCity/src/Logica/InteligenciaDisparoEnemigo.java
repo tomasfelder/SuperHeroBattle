@@ -5,7 +5,7 @@ import java.awt.Rectangle;
 import Tanques.Disparo;
 import Tanques.Enemigo;
 
-public class InteligenciaDisparoEnemigo extends IntelegenciaDisparo {
+public class InteligenciaDisparoEnemigo extends InteligenciaDisparo {
 	
 	protected Enemigo ene;
 	

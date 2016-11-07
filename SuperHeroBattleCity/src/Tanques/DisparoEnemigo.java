@@ -2,10 +2,15 @@ package Tanques;
 
 import java.awt.Rectangle;
 
+import Logica.InteligenciaDisparoEnemigo;
+import Logica.Juego;
+
 public class DisparoEnemigo extends Disparo {
 
-	public DisparoEnemigo(int x, int y, int dir, int vel) {
+	public DisparoEnemigo(int x, int y, int dir, int vel, Juego juego, Enemigo enemigo) {
 		super(x, y, dir, vel);
+		tDisparo = new InteligenciaDisparoEnemigo(this, juego, enemigo);
+		tDisparo.start();
 	}
 	
 	public boolean colisionarEnemigo(Enemigo e, Rectangle posNueva) {

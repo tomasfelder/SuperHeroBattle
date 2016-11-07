@@ -79,25 +79,21 @@ public abstract class Enemigo extends Tanque {
 	
 	private void moverDerecha(){
 		
-		coordenadas.x=coordenadas.x+velocidadMovimiento;
 		rectangulo.x=rectangulo.x+velocidadMovimiento;
 
 		
 	}
 	private void moverIzquierda(){
 		
-		coordenadas.x=coordenadas.x-velocidadMovimiento;
 		rectangulo.x=rectangulo.x-velocidadMovimiento;
 	}
 	private void moverArriba(){
 		
-		coordenadas.y=coordenadas.y-velocidadMovimiento;
 		rectangulo.y=rectangulo.y-velocidadMovimiento;
 		
 	}
 	private void moverAbajo(){
 		
-		coordenadas.y=coordenadas.y+velocidadMovimiento;
 		rectangulo.y=rectangulo.y+velocidadMovimiento;
 		
 	}
@@ -118,13 +114,13 @@ public abstract class Enemigo extends Tanque {
 		puedoDisparar=false;
 		switch (direccion()){
 		case 0:
-			return new DisparoEnemigo(rectangulo.x+10,rectangulo.y-10,0,velocidadDisparo);
+			return new DisparoEnemigo(rectangulo.x+10,rectangulo.y-10,0,velocidadDisparo,juego,this);
 		case 1:
-			return new DisparoEnemigo(rectangulo.x+10,rectangulo.y+28,1,velocidadDisparo);
+			return new DisparoEnemigo(rectangulo.x+10,rectangulo.y+28,1,velocidadDisparo,juego,this);
 		case 2:
-			return new DisparoEnemigo(rectangulo.x-10,rectangulo.y+10,2,velocidadDisparo);
+			return new DisparoEnemigo(rectangulo.x-10,rectangulo.y+10,2,velocidadDisparo,juego,this);
 		case 3:
-			return new DisparoEnemigo(rectangulo.x+28,rectangulo.y+10,3,velocidadDisparo);
+			return new DisparoEnemigo(rectangulo.x+28,rectangulo.y+10,3,velocidadDisparo,juego,this);
 		}
 		return null;
 	}

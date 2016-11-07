@@ -1,8 +1,6 @@
 package Obstaculos;
 
-import java.awt.Rectangle;
 
-import ObjetosDelJuego.Visitor;
 import Mapa.Mapa;
 public abstract class Pared extends Obstaculo {
 	
@@ -18,11 +16,6 @@ public abstract class Pared extends Obstaculo {
 	public int getVida(){
 		return vida;
 	}
-	
-	public boolean aceptar(Visitor v,Rectangle nuevaPos){
-		return v.colisionarPared(this, nuevaPos);
-	}
-	
 	
 	public void afectar(int direccion){
 		switch (direccion){

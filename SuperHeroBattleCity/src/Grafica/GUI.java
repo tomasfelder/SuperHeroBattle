@@ -1,6 +1,5 @@
 package Grafica;
 
-import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.Rectangle;
 import java.awt.event.KeyEvent;
@@ -59,8 +58,7 @@ public class GUI {
 	
 
 	private void ponerObstaculos() {
-		panelMapa = new JPanel();
-		panelMapa.setBackground(Color.BLACK);
+		panelMapa = new PanelConFondo();
 		panelMapa.setBounds(0,0,480,448);
 		panelMapa.setLayout(null);
 		int pos1,pos2;
@@ -85,7 +83,7 @@ public class GUI {
 			public void keyPressed(KeyEvent arg0){
 				if (arg0.getKeyCode()==KeyEvent.VK_SPACE){
 					if(juego.getJugador().getCantidadDisparos()!=0){
-						panelMapa.add(juego.disparar());
+						juego.disparar();
 						frame.repaint();
 					}
 				}

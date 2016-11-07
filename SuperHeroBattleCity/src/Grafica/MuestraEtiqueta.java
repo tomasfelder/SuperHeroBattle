@@ -8,12 +8,14 @@ import javax.swing.JLabel;
 
 public class MuestraEtiqueta extends Thread {
 	
+	
 	protected JLabel label;
 	protected GUI gui;
+	protected ImageIcon imagen;
 	
 	public MuestraEtiqueta(Rectangle rectangulo, int puntosQueDa,GUI g){
 		gui=g;
-		ImageIcon imagen = new ImageIcon(this.getClass().getResource("/imagenes/Puntaje_100.png"));
+		imagen = new ImageIcon(this.getClass().getResource("/imagenes/Puntaje_"+puntosQueDa+".png"));
 		label=new JLabel();
 		label.setBounds((int) rectangulo.getCenterX()-5,(int) rectangulo.getCenterY(),15,9);
 		label.setIcon(new ImageIcon(imagen.getImage().getScaledInstance(15, 9, Image.SCALE_DEFAULT)));

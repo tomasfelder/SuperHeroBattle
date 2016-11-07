@@ -7,14 +7,16 @@ import Obstaculos.Agua;
 import Obstaculos.Base;
 import Obstaculos.Borde;
 import Obstaculos.Bosque;
-import Obstaculos.Pared;
+import Obstaculos.ParedDeAcero;
+import Obstaculos.ParedDeLadrillo;
 import Tanques.Disparo;
 import Tanques.Enemigo;
 import Tanques.Jugador;
 
 public interface Visitor {
 	
-	public boolean colisionarPared(Pared p,Rectangle posNueva);
+	public boolean colisionarParedDeAcero(ParedDeAcero p,Rectangle posNueva);
+	public boolean colisionarParedDeLadrillo(ParedDeLadrillo p,Rectangle posNueva);
 	public boolean colisionarEnemigo(Enemigo e,Rectangle posNueva);
 	public boolean colisionarJugador(Jugador j,Rectangle posNueva);
 	public boolean colisionarBosque(Bosque b,Rectangle posNueva);
