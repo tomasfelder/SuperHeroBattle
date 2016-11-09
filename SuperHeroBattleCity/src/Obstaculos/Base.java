@@ -19,11 +19,10 @@ public class Base extends Obstaculo {
 	 */
 	public Base(){
 		rectangulo = new Rectangle(0, 0, ANCHO, ALTO);
-		imagen = new ImageIcon(this.getClass().getResource("/imagenes/Reina.png"));
+		imagen = new ImageIcon(this.getClass().getResource("/imagenes/Base_Arco.png"));
 		etiqueta = new JLabel();
 		etiqueta.setIcon(new ImageIcon(imagen.getImage().getScaledInstance(ANCHO, ALTO, Image.SCALE_DEFAULT)));
 		etiqueta.setBounds(0, 0,ANCHO , ALTO);
-		etiqueta.setOpaque(false);
 		vida=1;
 		game=null;
 	}

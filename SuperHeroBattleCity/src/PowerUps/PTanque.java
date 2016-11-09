@@ -10,11 +10,10 @@ public class PTanque extends PowerUp{
 
 	public PTanque(int x,int y){
 		super(x,y);
-		rectangulo = new Rectangle(0, 0, ANCHO, ALTO);
 		imagen = new ImageIcon(this.getClass().getResource("/imagenesPowerUp/PowerTanque.png"));
 		etiqueta = new JLabel();
 		etiqueta.setIcon(new ImageIcon(imagen.getImage().getScaledInstance(ANCHO, ALTO, Image.SCALE_DEFAULT)));
-		etiqueta.setBounds(0, 0,ANCHO , ALTO);
+		etiqueta.setBounds(x, y,ANCHO , ALTO);
 	}
 	public boolean aceptar(Visitor v,Rectangle nuevaPos){
 		

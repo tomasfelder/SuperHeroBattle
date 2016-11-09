@@ -25,7 +25,7 @@ public abstract class Enemigo extends Tanque {
 		puedoDisparar=true;
 	}
 	
-	public Thread getThreadEnemigo(){
+	public InteligenciaEnemigo getThreadEnemigo(){
 		return tEnemigo;
 	}
 	

@@ -10,11 +10,10 @@ public class PCasco extends PowerUp{
 
 	public PCasco(int x,int y){
 		super(x,y);
-		rectangulo = new Rectangle(0, 0, ANCHO, ALTO);
 		imagen = new ImageIcon(this.getClass().getResource("/imagenesPowerUp/PowerCasco.png"));
 		etiqueta = new JLabel();
 		etiqueta.setIcon(new ImageIcon(imagen.getImage().getScaledInstance(ANCHO, ALTO, Image.SCALE_DEFAULT)));
-		etiqueta.setBounds(0, 0,ANCHO , ALTO);
+		etiqueta.setBounds(x, y,ANCHO , ALTO);
 	}
 	public boolean aceptar(Visitor v,Rectangle nuevaPos){
 		

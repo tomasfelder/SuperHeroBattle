@@ -150,25 +150,6 @@ public class Jugador extends Tanque{
 		return false;
 	}
 	
-	public boolean colisionarPCasco(PCasco c,Rectangle posNueva){
-		if(c.getRectangulo().intersects(posNueva)){
-			setVulnerable(false);
-			new InteligenciaCasco(this);
-		}
-		return false;
-	}
-	
-	public boolean colisionarPEstrella(PEstrella e,Rectangle posNueva){
-		
-		if (e.getRectangulo().intersects(posNueva) && miNivel.getSiguiente()!=null){
-			juego.removerPowerUp(e);
-			miNivel=miNivel.getSiguiente();
-			
-		}
-		return false;
-		
-	}
-	
 	public void setVulnerable(boolean b){
 		
 		vulnerable=b;
@@ -200,14 +181,39 @@ public class Jugador extends Tanque{
 		}
 		return false;
 	}
-
+	
+	public boolean colisionarPCasco(PCasco c,Rectangle posNueva){
+		if(c.getRectangulo().intersects(posNueva)){
+			setVulnerable(false);
+			new InteligenciaCasco(this).start();
+			juego.removerPowerUp(c);
+		}
+		return false;
+	}
+	
+	public boolean colisionarPEstrella(PEstrella e,Rectangle posNueva){
+		if (e.getRectangulo().intersects(posNueva) && miNivel.getSiguiente()!=null){
+			juego.removerPowerUp(e);
+			miNivel=miNivel.getSiguiente();
+		}
+		return false;
+	}
+	
 	public boolean colisionarPPala(PPala p,Rectangle posNueva){
 		return false;
 	}
 	public boolean colisionarPTanque(PTanque t,Rectangle posNueva){
+		if(t.getRectangulo().intersects(posNueva)){
+			juego.agregarVida();
+			juego.removerPowerUp(t);
+		}
 		return false;
 	}
 	public boolean colisionarPTimer(PTimer t,Rectangle posNueva){
+		if(t.getRectangulo().intersects(posNueva)){
+			juego.pararEnemigos();
+			juego.removerPowerUp(t);
+		}
 		return false;
 	}
 	

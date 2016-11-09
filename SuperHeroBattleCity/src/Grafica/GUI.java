@@ -1,11 +1,15 @@
 package Grafica;
 
+import java.applet.Applet;
+import java.applet.AudioClip;
 import java.awt.EventQueue;
 import java.awt.Rectangle;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyAdapter;
 
 import Logica.Juego;
+
+import javax.sound.sampled.Clip;
 import javax.swing.*;
 
 
@@ -19,7 +23,7 @@ public class GUI {
 	private JPanel panelMapa;
 	private Mapa mapa;
 	private Juego juego;
-	
+	private AudioClip audioDisparo,audioMovimiento,audioAmbiente;
 	
 	/**
 	 * Launch the application.
@@ -42,10 +46,15 @@ public class GUI {
 	 * Create the application.
 	 */
 	public GUI() {
+		audioDisparo = Applet.newAudioClip(this.getClass().getResource("/Sonidos/Patada_Futbol.wav"));
+		audioMovimiento = Applet.newAudioClip(this.getClass().getResource("/Sonidos/Sonido_Cesped.wav"));
+		audioAmbiente = Applet.newAudioClip(this.getClass().getResource("/Sonidos/Sonido_Ambiente.wav"));
+		audioAmbiente.loop();
 		mapa=new Mapa(14,15,"Mapa1.txt");
 		juego=new Juego(mapa,this);
 		initialize(14,15);
 		ponerObstaculos();
+		juego.empezar();
 	}
 	
 	public JPanel getPanelMapa(){
@@ -83,6 +92,7 @@ public class GUI {
 			public void keyPressed(KeyEvent arg0){
 				if (arg0.getKeyCode()==KeyEvent.VK_SPACE){
 					if(juego.getJugador().getCantidadDisparos()!=0){
+						audioDisparo.play();
 						juego.disparar();
 						frame.repaint();
 					}
@@ -92,6 +102,7 @@ public class GUI {
 				Rectangle coordenadas = juego.getJugador().simularMovimiento(direccion);
 				System.out.println(juego.puedoMover(coordenadas,juego.getJugador()));
 				if(juego.puedoMover(coordenadas,juego.getJugador())){
+					audioMovimiento.play();
 					juego.mover(direccion);
 					System.out.println(juego.getJugador().x()+","+juego.getJugador().y());
 					frame.repaint();

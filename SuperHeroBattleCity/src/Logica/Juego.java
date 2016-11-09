@@ -46,6 +46,10 @@ public class Juego{
 		mapa=m;
 		puntaje=0;
 		gui=g;
+		tJuego=null;
+	}
+	
+	public void empezar(){
 		tJuego=new ThreadJuego(this);
 		tJuego.start();
 	}
@@ -130,7 +134,7 @@ public class Juego{
 					auxiliar.x=new java.util.Random().nextInt(480);
 					auxiliar.y=new java.util.Random().nextInt(448);
 				}
-				PowerUp p=new PGranada(auxiliar.x,auxiliar.y);
+				PowerUp p=new PTimer(auxiliar.x,auxiliar.y);
 				listaPowerUps.add(p);
 				gui.getPanelMapa().add(p.getEtiqueta());
 			}
@@ -220,6 +224,17 @@ public class Juego{
 		}
 		else
 			perder();
+	}
+	
+	public void agregarVida(){
+		vidasJugador++;
+	}
+
+	public void pararEnemigos() {
+		for(Enemigo e:listaEnemigos){
+			e.getThreadEnemigo().pausar();
+		}
+		tJuego.pausar();
 	}
 	
 }

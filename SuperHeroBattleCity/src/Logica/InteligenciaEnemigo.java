@@ -12,17 +12,26 @@ public class InteligenciaEnemigo extends Thread {
 	private Enemigo enemigo;
 	private boolean ejecutar;
 	private InteligenciaDisparoEnemigo tDisparo;
+	private boolean pausado;
 	
 
 	public InteligenciaEnemigo(Enemigo e,Juego juego){
 		enemigo=e;
 		game=juego;
 		ejecutar=true;
-		
+		pausado=false;
+	}
+	
+	public void pausar(){
+		pausado=true;
 	}
 	
 	public void terminate(){
 		ejecutar=false;
+	}
+	
+	public void reanudar(){
+		pausado=false;
 	}
 	
 	@Override
@@ -31,9 +40,11 @@ public class InteligenciaEnemigo extends Thread {
 			try{
 				int m=new Random().nextInt(4);
 				Rectangle rect=enemigo.simularMovimiento(m);
-				while(game.puedoMover(rect,enemigo)&&ejecutar){
+				int i=0;
+				while(game.puedoMover(rect,enemigo)&&i<15&&ejecutar){
 					enemigo.mover(m);
 					rect=enemigo.simularMovimiento(m);
+					i++;
 					if(enemigo.puedeDisparar()){
 						Disparo disp=enemigo.disparar();
 						game.agregarDisparo(disp);
@@ -41,7 +52,9 @@ public class InteligenciaEnemigo extends Thread {
 //						tDisparo = new InteligenciaDisparoEnemigo(disp,game,enemigo);
 //						tDisparo.start();
 					}
-					Thread.sleep(50);
+					Thread.sleep(40);
+					if(pausado)
+						parar();
 				}
 
 			}
@@ -49,5 +62,16 @@ public class InteligenciaEnemigo extends Thread {
 				
 			}
 		}
+	}
+
+	private void parar() {
+		long startTime = System.currentTimeMillis();
+		long elapsedTime=0;
+		long elapsedSeconds=0;
+		while(elapsedSeconds<=10){
+			elapsedTime = System.currentTimeMillis() - startTime;
+			elapsedSeconds = elapsedTime / 1000;
+		}
+		reanudar();
 	}
 }
