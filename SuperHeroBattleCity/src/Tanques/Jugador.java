@@ -9,12 +9,7 @@ import javax.swing.*;
 import Logica.InteligenciaCasco;
 import Logica.Juego;
 import ObjetosDelJuego.Visitor;
-import PowerUps.PCasco;
-import PowerUps.PEstrella;
-import PowerUps.PGranada;
-import PowerUps.PPala;
-import PowerUps.PTanque;
-import PowerUps.PTimer;
+import PowerUps.*;
 
  
 public class Jugador extends Tanque{
