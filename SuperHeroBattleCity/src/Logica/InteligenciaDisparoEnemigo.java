@@ -16,23 +16,26 @@ public class InteligenciaDisparoEnemigo extends InteligenciaDisparo {
 	}
 	
 	public void run() {
+		game.agregarEtiqueta(d.getEtiqueta());
 		Rectangle nuevaP=d.simularMovimiento();
 		while(execute){
-			while(game.puedoMover(nuevaP,d)&&execute){
-				d.mover();
-				nuevaP=d.simularMovimiento();
-				try {
+			try {
+				while(game.puedoMover(nuevaP,d)&&execute){
+					d.mover();
+					nuevaP=d.simularMovimiento();
 					Thread.sleep(10);
-				} catch (InterruptedException e) {
-					
 				}
+			} catch (InterruptedException e) {
+					
 			}
-			execute=false;
-			game.removerDisparo(d);
-			game.quitarEtiqueta(d.getEtiqueta());
-			ene.devolverDisparo();
-			d=null;
+			finally{
+				execute=false;
+				game.quitarEtiqueta(d.getEtiqueta());
+				game.removerDisparo(d);
+				ene.devolverDisparo();
+				d=null;
+			}
 		}
-}
+	}
 	
 }
