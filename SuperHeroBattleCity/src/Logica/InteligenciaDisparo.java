@@ -33,7 +33,7 @@ public class InteligenciaDisparo extends Thread {
 					d.mover();
 					nuevaP=d.simularMovimiento();
 					try {
-						Thread.sleep(5);
+						Thread.sleep(10);
 					} catch (InterruptedException e) {
 						
 					}

@@ -99,14 +99,17 @@ public class GUI {
 				}
 				else{
 				int direccion=movimiento(arg0);
-				Rectangle coordenadas = juego.getJugador().simularMovimiento(direccion);
-				System.out.println(juego.puedoMover(coordenadas,juego.getJugador()));
-				if(juego.puedoMover(coordenadas,juego.getJugador())){
-					audioMovimiento.play();
-					juego.mover(direccion);
-					System.out.println(juego.getJugador().x()+","+juego.getJugador().y());
-					frame.repaint();
+				if (direccion!=4){
+					Rectangle coordenadas = juego.getJugador().simularMovimiento(direccion);
+					System.out.println(juego.puedoMover(coordenadas,juego.getJugador()));
+					if(juego.puedoMover(coordenadas,juego.getJugador())){
+						audioMovimiento.play();
+						juego.mover(direccion);
+						System.out.println(juego.getJugador().x()+","+juego.getJugador().y());
+						frame.repaint();
+						}
 					}
+				
 				}
 			}
 

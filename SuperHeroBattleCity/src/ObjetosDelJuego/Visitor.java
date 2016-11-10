@@ -10,6 +10,8 @@ import Obstaculos.Bosque;
 import Obstaculos.ParedDeAcero;
 import Obstaculos.ParedDeLadrillo;
 import Tanques.Disparo;
+import Tanques.DisparoEnemigo;
+import Tanques.DisparoJugador;
 import Tanques.Enemigo;
 import Tanques.Jugador;
 
@@ -32,4 +34,7 @@ public interface Visitor {
 	public boolean colisionarPPala(PPala p,Rectangle posNueva);
 	public boolean colisionarPTanque(PTanque t,Rectangle posNueva);
 	public boolean colisionarPTimer(PTimer t,Rectangle posNueva);
+	
+	public boolean colisionarDEnemigo(DisparoEnemigo d,Rectangle posNueva);
+	public boolean colisionarDJugador(DisparoJugador d,Rectangle posNueva);
 }

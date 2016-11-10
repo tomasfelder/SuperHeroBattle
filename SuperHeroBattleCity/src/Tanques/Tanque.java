@@ -65,11 +65,25 @@ public abstract class Tanque extends gameObject implements Visitor {
 	public boolean colisionarBorde(Borde b,Rectangle posNueva){
 		return b.getRectangulo().intersects(posNueva);
 	}
+	
+	public boolean colisionarDEnemigo(DisparoEnemigo d,Rectangle posNueva ){
+		
+		return false;
+		
+	}
+	
+	public boolean colisionarDJugador(DisparoJugador d,Rectangle posNueva ){
+		
+		return false;
+		
+	}
+	
 	public abstract boolean colisionarPGranada(PGranada g,Rectangle posNueva);
 	public abstract boolean colisionarPCasco(PCasco c,Rectangle posNueva);
 	public abstract boolean colisionarPEstrella(PEstrella e,Rectangle posNueva);
 	public abstract boolean colisionarPPala(PPala p,Rectangle posNueva);
 	public abstract boolean colisionarPTanque(PTanque t,Rectangle posNueva);
 	public abstract boolean colisionarPTimer(PTimer t,Rectangle posNueva);
+	
 	
 }
