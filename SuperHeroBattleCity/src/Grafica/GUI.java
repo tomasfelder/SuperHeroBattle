@@ -48,9 +48,7 @@ public class GUI {
 		});
 	}
 	
-	/**
-	 * Create the application.
-	 */
+	
 	public GUI() {
 		crearFrame(14,19);
 		crearPanelInicio();
