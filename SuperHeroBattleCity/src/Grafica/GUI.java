@@ -12,7 +12,6 @@ import Logica.Juego;
 
 import javax.swing.*;
 
-
 import Mapa.*;
 import Obstaculos.Obstaculo;
 import java.awt.Font;
