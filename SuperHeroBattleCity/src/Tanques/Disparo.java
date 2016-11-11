@@ -25,7 +25,7 @@ public abstract class Disparo extends gameObject implements Visitor {
 	protected InteligenciaDisparo tDisparo;
 	
 	public Disparo(int x,int y,int dir,int vel){
-		rectangulo = new Rectangle(x, y, 11, 11);
+		rectangulo = new Rectangle(x, y, 22, 22);
 		velocidadMovimiento=vel;
 		direccion=dir;
 		switch(dir){
@@ -43,12 +43,12 @@ public abstract class Disparo extends gameObject implements Visitor {
 			break;
 		}
 		etiqueta = new JLabel();
-		etiqueta.setIcon(new ImageIcon(imagen.getImage().getScaledInstance(11, 11, Image.SCALE_DEFAULT)));
+		etiqueta.setIcon(new ImageIcon(imagen.getImage().getScaledInstance(22, 22, Image.SCALE_DEFAULT)));
 		etiqueta.setBounds(rectangulo);
 	}
 	
 	public Rectangle simularMovimiento(){
-		Rectangle nuevaPos = new Rectangle(11, 11);
+		Rectangle nuevaPos = new Rectangle(22, 22);
 		switch (direccion){
 		case 0:
 			nuevaPos.x=rectangulo.x; nuevaPos.y=rectangulo.y-velocidadMovimiento;
@@ -66,6 +66,9 @@ public abstract class Disparo extends gameObject implements Visitor {
 		return nuevaPos;
 	}
 	
+	public InteligenciaDisparo getThreadDisparo(){
+		return tDisparo;
+	}
 	
 	public void mover(){
 		switch (direccion){
@@ -97,11 +100,6 @@ public abstract class Disparo extends gameObject implements Visitor {
 	public void avanzarIzquierda(){
 		rectangulo.x=rectangulo.x-velocidadMovimiento;
 	}
-	
-	
-	public boolean aceptar(Visitor v,Rectangle posNueva){
-		return v.colisionarDisparo(this, posNueva);
-	}
 
 	public boolean colisionarParedDeLadrillo(ParedDeLadrillo p,Rectangle posNueva){
 		boolean colisiono = p.getRectangulo().intersects(posNueva);
@@ -131,6 +129,10 @@ public abstract class Disparo extends gameObject implements Visitor {
 	
 	public boolean colisionarDisparo(Disparo d,Rectangle posNueva){
 		boolean colisiono = d.getRectangulo().intersects(posNueva);
+		if(colisiono){
+			d.getThreadDisparo().terminate();
+			this.tDisparo.terminate();
+		}
 		return colisiono;
 	}
 	

@@ -17,7 +17,11 @@ public class DisparoEnemigo extends Disparo {
 	public boolean colisionarEnemigo(Enemigo e, Rectangle posNueva) {
 		return false;
 	}
-
+	
+	public boolean aceptar(Visitor v,Rectangle posNueva){
+		return v.colisionarDEnemigo(this, posNueva);
+	}
+	
 	public boolean colisionarJugador(Jugador j, Rectangle posNueva) {
 		boolean colisiono = j.getRectangulo().intersects(posNueva);
 		if(colisiono)
@@ -25,11 +29,13 @@ public class DisparoEnemigo extends Disparo {
 		return colisiono;
 	}
 	
-
-	
 	public boolean colisionarDJugador(DisparoJugador d,Rectangle posNueva){
-		
-		return false;
+		boolean colisiono = d.getRectangulo().intersects(posNueva);
+		if(colisiono){
+			d.getThreadDisparo().terminate();
+			this.tDisparo.terminate();
+		}
+		return colisiono;
 	}
 	
 	public boolean colisionarDEnemigo(DisparoEnemigo d,Rectangle posNueva ){

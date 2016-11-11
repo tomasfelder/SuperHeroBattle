@@ -8,9 +8,9 @@ import Tanques.EnemigoBasico;
 public class ThreadJuego extends Thread {
 	
 	protected Juego game;
-	protected boolean execute;
+	protected volatile boolean  execute;
 	protected Rectangle[] apariciones;
-	protected boolean pausado; 
+	protected volatile boolean pausado; 
 	
 	//Constructor
 	public ThreadJuego(Juego j){

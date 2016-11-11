@@ -13,7 +13,6 @@ import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 
-import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 
 import Grafica.GUI;
@@ -67,6 +66,12 @@ public class Juego{
 			Iterator<PowerUp> itP = listaPowerUps.iterator();
 			while(itP.hasNext()&&puedo)
 				puedo=!itP.next().aceptar(v, nuevaPos);
+			Iterator<Disparo> itD = listaDisparos.iterator();
+			while(itD.hasNext()&&puedo){
+				Disparo aux =itD.next();
+				if(aux!=v)
+					puedo=!aux.aceptar(v, nuevaPos);
+			}
 			puedo=!jugador.aceptar(v, nuevaPos);
 			Iterator<Enemigo> itE= listaEnemigos.iterator();
 			while(itE.hasNext()&&puedo){
@@ -246,7 +251,7 @@ public class Juego{
 		vidasJugador--;
 		if(vidasJugador!=0){
 			gui.getPanelMapa().remove(jugador.getEtiqueta());
-			jugador = new Jugador(162,388,this);
+			jugador = new Jugador(376,648,this);
 			gui.getPanelMapa().add(jugador.getEtiqueta());
 		}
 		else

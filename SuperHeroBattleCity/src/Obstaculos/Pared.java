@@ -13,6 +13,10 @@ public abstract class Pared extends Obstaculo {
 		this.m=m;
 	}
 	
+	protected Pared(int x,int y){
+		
+	}
+	
 	public int getVida(){
 		return vida;
 	}

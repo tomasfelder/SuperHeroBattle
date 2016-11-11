@@ -63,7 +63,6 @@ public class GUI {
 		audioInicio=Applet.newAudioClip(this.getClass().getResource("/Sonidos/Sonido_Intro.wav"));
 		audioInicio.loop();
 		panelDeInicio();
-		//this.pantallaGanar(100);
 	}
 	
 	private void panelDeInicio() {
@@ -330,15 +329,77 @@ public class GUI {
 	}
 
 	public void pantallaGanar(int puntaje) {
-//		panelMapa.removeAll();
-//		frame.getContentPane().remove(panelMapa);
-//		frame.repaint();
-//		audioAmbiente.stop();
+		panelMapa.removeAll();
+		frame.getContentPane().remove(panelMapa);
+		frame.repaint();
+		audioAmbiente.stop();
 		panelFinal=new JPanel();
 		panelFinal.setBounds(frame.getBounds());
 		panelFinal.setBackground(Color.BLACK);
 		panelFinal.setLayout(null);
 		frame.getContentPane().add(panelFinal);
+		
+		JLabel lblNewLabel_1 = new JLabel("");
+		lblNewLabel_1.setIcon(new ImageIcon(GUI.class.getResource("/imagenes/Maradona_Gana.png")));
+		lblNewLabel_1.setBounds(491, 118, 504, 625);
+		panelFinal.add(lblNewLabel_1);
+		
+		JLabel lblGanasteElNivel = new JLabel("Ganaste el nivel!");
+		lblGanasteElNivel.setForeground(Color.WHITE);
+		lblGanasteElNivel.setFont(new Font("Symtext", Font.PLAIN, 60));
+		lblGanasteElNivel.setBounds(24, 49, 682, 67);
+		panelFinal.add(lblGanasteElNivel);
+		
+		JLabel lblPuntaje = new JLabel("Puntaje: ");
+		lblPuntaje.setFont(new Font("Symtext", Font.PLAIN, 40));
+		lblPuntaje.setForeground(Color.WHITE);
+		lblPuntaje.setBounds(24, 176, 257, 38);
+		panelFinal.add(lblPuntaje);
+		
+		JLabel label = new JLabel(""+puntaje);
+		label.setForeground(Color.RED);
+		label.setFont(new Font("Symtext", Font.PLAIN, 40));
+		label.setBounds(277, 176, 174, 38);
+		panelFinal.add(label);
+		
+		JLabel lblQuersVolverA = new JLabel("Quer\u00E9s volver a jugar?");
+		lblQuersVolverA.setForeground(Color.WHITE);
+		lblQuersVolverA.setFont(new Font("Symtext", Font.PLAIN, 35));
+		lblQuersVolverA.setBounds(24, 388, 554, 37);
+		panelFinal.add(lblQuersVolverA);
+		
+		JButton btnSi = new JButton("SI");
+		btnSi.setForeground(Color.WHITE);
+		btnSi.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				frame.getContentPane().remove(panelFinal);
+				frame.repaint();
+				crearPanelInicio();
+			}
+		});
+		btnSi.setFont(new Font("Symtext", Font.PLAIN, 25));
+		btnSi.setBounds(63, 436, 89, 23);
+		btnSi.setBorderPainted(false);
+		btnSi.setContentAreaFilled(false);
+		btnSi.setOpaque(false);
+		btnSi.setFocusable(false);
+		panelFinal.add(btnSi);
+		
+		JButton btnNo = new JButton("NO");
+		btnNo.setForeground(Color.WHITE);
+		btnNo.setFont(new Font("Symtext", Font.PLAIN, 25));
+		btnNo.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				System.exit(0);
+			}
+		});
+		btnNo.setBounds(362, 436, 89, 23);
+		btnNo.setBorderPainted(false);
+		btnNo.setContentAreaFilled(false);
+		btnNo.setOpaque(false);
+		btnNo.setFocusable(false);
+		panelFinal.add(btnNo);
+		
 	}
 	
 	

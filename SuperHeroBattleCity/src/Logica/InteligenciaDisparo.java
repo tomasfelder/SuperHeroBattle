@@ -8,7 +8,7 @@ public class InteligenciaDisparo extends Thread {
 	
 	protected Disparo d;
 	protected Juego game;
-	protected boolean execute;
+	protected volatile boolean execute;
 	
 	//Constructor
 	public InteligenciaDisparo(Disparo disp, Juego juego) {
@@ -29,7 +29,7 @@ public class InteligenciaDisparo extends Thread {
 			Rectangle nuevaP=d.simularMovimiento();
 			execute=true;
 			while(execute){
-				while(game.puedoMover(nuevaP,d)){
+				while(game.puedoMover(nuevaP,d)&&execute){
 					d.mover();
 					nuevaP=d.simularMovimiento();
 					try {

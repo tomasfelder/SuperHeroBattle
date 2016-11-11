@@ -5,6 +5,7 @@ import java.awt.Rectangle;
 
 import Logica.InteligenciaDisparo;
 import Logica.Juego;
+import ObjetosDelJuego.Visitor;
 
 public class DisparoJugador extends Disparo {
 	
@@ -22,7 +23,11 @@ public class DisparoJugador extends Disparo {
 		}
 		return colisiono;
 	}
-
+	
+	public boolean aceptar(Visitor v,Rectangle posNueva){
+		return v.colisionarDJugador(this, posNueva);
+	}
+	
 	public boolean colisionarJugador(Jugador j, Rectangle posNueva) {
 		return false;
 	}
@@ -33,8 +38,11 @@ public class DisparoJugador extends Disparo {
 	}
 	
 	public boolean colisionarDEnemigo(DisparoEnemigo d,Rectangle posNueva ){
-		
-		return false;
-		
+		boolean colisiono = d.getRectangulo().intersects(posNueva);
+		if(colisiono){
+			d.getThreadDisparo().terminate();
+			this.tDisparo.terminate();
+		}
+		return colisiono;
 	}
 }

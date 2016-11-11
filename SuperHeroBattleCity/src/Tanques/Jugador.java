@@ -47,6 +47,7 @@ public class Jugador extends Tanque{
 	}
 	
 	public Rectangle simularMovimiento(int direccion){
+		direccionQueApunta=direccion;
 		Rectangle nuevaPos = new Rectangle(28, 28);
 		miNivel.cambiarIcono(direccion);
 		etiqueta.setIcon(miNivel.getIcon());
@@ -120,7 +121,7 @@ public class Jugador extends Tanque{
 	
 	public Disparo disparar(){
 		miNivel.quitarDisparo();
-		switch (miNivel.direccion()){
+		switch (direccionQueApunta){
 		case 0:
 			return new DisparoJugador(rectangulo.x+10,rectangulo.y-10,0,miNivel.getVelocidadDisparo(),juego);
 		case 1:
