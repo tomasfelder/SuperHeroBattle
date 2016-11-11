@@ -27,4 +27,14 @@ public class DisparoJugador extends Disparo {
 		return false;
 	}
 	
+	public boolean colisionarDJugador(DisparoJugador d,Rectangle posNueva){
+		
+		return false;
+	}
+	
+	public boolean colisionarDEnemigo(DisparoEnemigo d,Rectangle posNueva ){
+		
+		return false;
+		
+	}
 }

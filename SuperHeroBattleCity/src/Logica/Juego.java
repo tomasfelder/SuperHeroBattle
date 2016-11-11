@@ -104,6 +104,7 @@ public class Juego{
 	public void disparar(){
 		Disparo disp= jugador.disparar();
 		gui.getPanelMapa().add(disp.getEtiqueta());
+		gui.getPanelMapa().setComponentZOrder(disp.getEtiqueta(), 1);
 		listaDisparos.add(disp);
 	}
 	

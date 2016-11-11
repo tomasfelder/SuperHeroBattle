@@ -4,6 +4,7 @@ import java.awt.Rectangle;
 
 import Logica.InteligenciaDisparoEnemigo;
 import Logica.Juego;
+import ObjetosDelJuego.Visitor;
 
 public class DisparoEnemigo extends Disparo {
 
@@ -22,6 +23,19 @@ public class DisparoEnemigo extends Disparo {
 		if(colisiono)
 			j.afectar();
 		return colisiono;
+	}
+	
+
+	
+	public boolean colisionarDJugador(DisparoJugador d,Rectangle posNueva){
+		
+		return false;
+	}
+	
+	public boolean colisionarDEnemigo(DisparoEnemigo d,Rectangle posNueva ){
+		
+		return false;
+		
 	}
 	
 }
