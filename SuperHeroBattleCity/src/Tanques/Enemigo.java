@@ -36,9 +36,9 @@ public abstract class Enemigo extends Tanque {
 	public Rectangle simularMovimiento(int direccion){
 		direccionQueApunta=direccion;
 		imagen=iconos[direccion];
-		etiqueta.setIcon(new ImageIcon(imagen.getImage().getScaledInstance(28, 28, Image.SCALE_DEFAULT)));
+		etiqueta.setIcon(new ImageIcon(imagen.getImage().getScaledInstance(48, 48, Image.SCALE_DEFAULT)));
 		etiqueta.setBounds(rectangulo);
-		Rectangle nuevaPos = new Rectangle(28, 28);
+		Rectangle nuevaPos = new Rectangle(48, 48);
 		switch (direccion){
 		case 0:
 			nuevaPos.x=rectangulo.x; nuevaPos.y=rectangulo.y-velocidadMovimiento;
@@ -74,7 +74,7 @@ public abstract class Enemigo extends Tanque {
 		}
 		
 		imagen=iconos[direccion];
-		etiqueta.setIcon(new ImageIcon(imagen.getImage().getScaledInstance(28, 28, Image.SCALE_DEFAULT)));
+		etiqueta.setIcon(new ImageIcon(imagen.getImage().getScaledInstance(48, 48, Image.SCALE_DEFAULT)));
 		etiqueta.setBounds(rectangulo);
 	}	
 	
@@ -117,11 +117,11 @@ public abstract class Enemigo extends Tanque {
 		case 0:
 			return new DisparoEnemigo(rectangulo.x+10,rectangulo.y-10,0,velocidadDisparo,juego,this);
 		case 1:
-			return new DisparoEnemigo(rectangulo.x+10,rectangulo.y+28,1,velocidadDisparo,juego,this);
+			return new DisparoEnemigo(rectangulo.x+10,rectangulo.y+48,1,velocidadDisparo,juego,this);
 		case 2:
 			return new DisparoEnemigo(rectangulo.x-10,rectangulo.y+10,2,velocidadDisparo,juego,this);
 		case 3:
-			return new DisparoEnemigo(rectangulo.x+28,rectangulo.y+10,3,velocidadDisparo,juego,this);
+			return new DisparoEnemigo(rectangulo.x+48,rectangulo.y+10,3,velocidadDisparo,juego,this);
 		}
 		return null;
 	}

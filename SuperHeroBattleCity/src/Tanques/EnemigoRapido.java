@@ -17,15 +17,15 @@ public class EnemigoRapido extends Enemigo {
 		velocidadDisparo=2;
 		puntosQueDa=200;
 		
-		imagen=new ImageIcon(this.getClass().getResource("/imagenesEnemigo/Enemigo_2_Arriba.png"));
+		imagen=new ImageIcon(this.getClass().getResource("/imagenesEnemigo/socraDerechaGif.gif"));
 		
-		iconos[0]=new ImageIcon(this.getClass().getResource("/imagenesEnemigo/Enemigo_2_Arriba.png"));
-		iconos[1]=new ImageIcon(this .getClass().getResource("/imagenesEnemigo/Enemigo_2_Abajo.png"));
-		iconos[2]=new ImageIcon(this.getClass().getResource("/imagenesEnemigo/Enemigo_2_Izq.png"));
-		iconos[3]=new ImageIcon(this.getClass().getResource("/imagenesEnemigo/Enemigo_2_Der.png"));
+		iconos[0]=new ImageIcon(this.getClass().getResource("/imagenesEnemigo/socraDerechaGif.gif"));
+		iconos[1]=new ImageIcon(this .getClass().getResource("/imagenesEnemigo/socraDerechaGif.gif"));
+		iconos[2]=new ImageIcon(this.getClass().getResource("/imagenesEnemigo/socraIzquierdaGif.gif"));
+		iconos[3]=new ImageIcon(this.getClass().getResource("/imagenesEnemigo/socraDerechaGif.gif"));
 		etiqueta = new JLabel();
-		etiqueta.setIcon(new ImageIcon(imagen.getImage().getScaledInstance(28, 28, Image.SCALE_DEFAULT)));
-		etiqueta.setBounds(x, y,28 , 28);
+		etiqueta.setIcon(new ImageIcon(imagen.getImage().getScaledInstance(48, 48, Image.SCALE_DEFAULT)));
+		etiqueta.setBounds(x, y,48 , 48);
 		tEnemigo = new InteligenciaEnemigo(this,juego);
 		tEnemigo.start();
 	}

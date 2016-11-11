@@ -40,6 +40,7 @@ public class InteligenciaEnemigo extends Thread {
 			try{
 				int m=new Random().nextInt(4);
 				Rectangle rect=enemigo.simularMovimiento(m);
+				game.repintarGui();
 				int i=0;
 				while(game.puedoMover(rect,enemigo)&&i<15&&ejecutar){
 					enemigo.mover(m);

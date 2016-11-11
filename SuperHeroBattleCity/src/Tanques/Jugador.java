@@ -23,7 +23,7 @@ public class Jugador extends Tanque{
 		vulnerable=true;
 		miNivel=new Nivel_1();
 		etiqueta=new JLabel();
-		etiqueta.setBounds(x, y, 28, 28);
+		etiqueta.setBounds(x, y, 48, 48);
 		etiqueta.setIcon(miNivel.getIcon());
 		etiqueta.setOpaque(false);
 	}
@@ -48,7 +48,7 @@ public class Jugador extends Tanque{
 	
 	public Rectangle simularMovimiento(int direccion){
 		direccionQueApunta=direccion;
-		Rectangle nuevaPos = new Rectangle(28, 28);
+		Rectangle nuevaPos = new Rectangle(48, 48);
 		miNivel.cambiarIcono(direccion);
 		etiqueta.setIcon(miNivel.getIcon());
 		switch (direccion){
@@ -115,7 +115,7 @@ public class Jugador extends Tanque{
 	
 	public Icon getIcon(){
 		
-		return new ImageIcon(miNivel.getIcono().getImage().getScaledInstance(28, 28, Image.SCALE_DEFAULT));
+		return new ImageIcon(miNivel.getIcono().getImage().getScaledInstance(48, 48, Image.SCALE_DEFAULT));
 		
 	}
 	
@@ -125,11 +125,11 @@ public class Jugador extends Tanque{
 		case 0:
 			return new DisparoJugador(rectangulo.x+10,rectangulo.y-10,0,miNivel.getVelocidadDisparo(),juego);
 		case 1:
-			return new DisparoJugador(rectangulo.x+10,rectangulo.y+28,1,miNivel.getVelocidadDisparo(),juego);
+			return new DisparoJugador(rectangulo.x+10,rectangulo.y+48,1,miNivel.getVelocidadDisparo(),juego);
 		case 2:
 			return new DisparoJugador(rectangulo.x-10,rectangulo.y+10,2,miNivel.getVelocidadDisparo(),juego);
 		case 3:
-			return new DisparoJugador(rectangulo.x+28,rectangulo.y+10,3,miNivel.getVelocidadDisparo(),juego);
+			return new DisparoJugador(rectangulo.x+48,rectangulo.y+10,3,miNivel.getVelocidadDisparo(),juego);
 		}
 		return null;
 	}

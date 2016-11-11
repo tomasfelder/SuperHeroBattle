@@ -37,7 +37,7 @@ public class Juego{
 	
 	
 	public Juego(Mapa m,GUI g){
-		jugador=new Jugador(376,648,this);
+		jugador=new Jugador(366,628,this);
 		vidasJugador=2;
 		listaEnemigos= new LinkedList<Enemigo>();
 		listaDisparos= new LinkedList<Disparo>();
@@ -261,7 +261,11 @@ public class Juego{
 	public void agregarVida(){
 		vidasJugador++;
 	}
-
+	
+	public void repintarGui(){
+		gui.repintar();
+	}
+	
 	public void pararEnemigos() {
 		for(Enemigo e:listaEnemigos){
 			e.getThreadEnemigo().pausar();

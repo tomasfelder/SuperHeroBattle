@@ -21,7 +21,7 @@ public abstract class Tanque extends gameObject implements Visitor {
 	protected int direccionQueApunta;
 	
 	public Tanque(int x,int y,Juego j){
-		rectangulo = new Rectangle(x, y, 28, 28);
+		rectangulo = new Rectangle(x, y, 48, 48);
 		iconos=new ImageIcon[4];
 		juego=j;
 		direccionQueApunta=0;
