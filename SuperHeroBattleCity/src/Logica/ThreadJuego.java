@@ -17,9 +17,9 @@ public class ThreadJuego extends Thread {
 		game=j;
 		execute=true;
 		apariciones= new Rectangle[3];
-		apariciones[0]=new Rectangle(32,32,28,28);
-		apariciones[1]=new Rectangle(226,32,28,28);
-		apariciones[2]=new Rectangle(416,32,28,28);
+		apariciones[0]=new Rectangle(52,52,28,28);
+		apariciones[1]=new Rectangle(460,52,28,28);
+		apariciones[2]=new Rectangle(880,52,28,28);
 		pausado=false;
 	}
 	

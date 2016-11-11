@@ -5,8 +5,8 @@ import javax.swing.*;
 
 public abstract class gameObject {
 
-	protected static final int ANCHO=32;
-	protected static final int ALTO=32;
+	protected static final int ANCHO=52;
+	protected static final int ALTO=52 ;
 	
 	protected ImageIcon imagen;
 	protected JLabel etiqueta;

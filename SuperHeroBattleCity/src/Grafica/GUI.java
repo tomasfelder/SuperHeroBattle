@@ -23,7 +23,7 @@ import java.awt.event.ActionEvent;
 public class GUI {
 
 	private JFrame frame;
-	private JPanel panelMapa,panelInicio;
+	private JPanel panelMapa,panelInicio,panelFinal;
 	private JLabel labelPortada,lblMovimientoDeldiego,lblFlechas,lblEspacio,lblDisparo;
 	private JButton btnEmpezar,btnVolver;
 	private Mapa mapa;
@@ -52,23 +52,27 @@ public class GUI {
 	 * Create the application.
 	 */
 	public GUI() {
-		crearFrame(14,15);
+		crearFrame(14,19);
+		crearPanelInicio();
+	}
+	
+	protected void crearPanelInicio(){
 		panelInicio = new JPanel();
 		panelInicio.setBackground(Color.BLACK);
-		panelInicio.setBounds(frame.getBounds());
+		panelInicio.setBounds(frame.getContentPane().getX(), frame.getContentPane().getY(),988 , 728);
 		panelInicio.setLayout(null);
 		panelInicio.setFocusable(false);
 		audioInicio=Applet.newAudioClip(this.getClass().getResource("/Sonidos/Sonido_Intro.wav"));
 		audioInicio.loop();
 		panelDeInicio();
-		
+		//this.pantallaGanar(100);
 	}
 	
 	private void panelDeInicio() {
 		
-		labelPortada = new JLabel("New label");
+		labelPortada = new JLabel();
 		labelPortada.setIcon(new ImageIcon(GUI.class.getResource("/imagenes/Portada.png")));
-		labelPortada.setBounds(50, 50, 700, 300);
+		labelPortada.setBounds(144, 135, 700, 300);
 		panelInicio.add(labelPortada);
 		
 		btnEmpezar = new JButton("Empezar");
@@ -82,7 +86,7 @@ public class GUI {
 		});
 		btnEmpezar.setForeground(Color.WHITE);
 		btnEmpezar.setFont(new Font("Symtext", Font.PLAIN, 30));
-		btnEmpezar.setBounds(101, 449, 200, 50);
+		btnEmpezar.setBounds(179, 495, 200, 50);
 		btnEmpezar.setBorderPainted(false);
 		btnEmpezar.setContentAreaFilled(false);
 		btnEmpezar.setOpaque(false);
@@ -99,7 +103,7 @@ public class GUI {
 		});
 		btnOpciones.setForeground(Color.WHITE);
 		btnOpciones.setFont(new Font("Symtext", Font.PLAIN, 30));
-		btnOpciones.setBounds(504, 458, 205, 33);
+		btnOpciones.setBounds(594, 504, 205, 33);
 		btnOpciones.setBorderPainted(false);
 		btnOpciones.setContentAreaFilled(false);
 		btnOpciones.setOpaque(false);
@@ -159,7 +163,7 @@ public class GUI {
 		audioMovimiento = Applet.newAudioClip(this.getClass().getResource("/Sonidos/Sonido_Cesped.wav"));
 		audioAmbiente = Applet.newAudioClip(this.getClass().getResource("/Sonidos/Sonido_Ambiente.wav"));
 		audioAmbiente.loop();
-		mapa=new Mapa(14,15,"Mapa1.txt");
+		mapa=new Mapa(14,19,"Mapa1.txt");
 		juego=new Juego(mapa,this);
 		ponerObstaculos();
 		juego.empezar();
@@ -176,7 +180,7 @@ public class GUI {
 
 	private void ponerObstaculos() {
 		panelMapa = new PanelConFondo();
-		panelMapa.setBounds(0,0,480,448);
+		panelMapa.setBounds(0,0,19*52,14*52);
 		panelMapa.setLayout(null);
 		int pos1,pos2;
 		pos1=pos2=0;
@@ -188,10 +192,10 @@ public class GUI {
 					System.out.println(pos2+","+pos1);
 					panelMapa.add(aux.getEtiqueta());
 				}
-				pos2+=32;
+				pos2+=52;
 			}
 			pos2=0;
-			pos1+=32;
+			pos1+=52;
 		}
 		mapa.getBase().setJuego(juego);
 		frame.addKeyListener(new KeyAdapter() {
@@ -230,13 +234,11 @@ public class GUI {
 		frame.repaint();
 	}
 	
-	/**
-	 * Initialize the contents of the frame.
-	 */
 	private void crearFrame(int ancho,int largo) {
 		frame = new JFrame();
+		frame.setTitle("Maradona Soccer SuperStar");
 		
-		frame.setSize(800,600);
+		frame.setSize(1005,767);
 		
 		frame.getContentPane().setLayout(null);
 		
@@ -267,4 +269,80 @@ public class GUI {
 	public Mapa getMapa(){
 		return mapa;
 	}
+
+	public void pantallaPerder(int puntaje) {
+		panelMapa.removeAll();
+		frame.getContentPane().remove(panelMapa);
+		frame.repaint();
+		audioAmbiente.stop();
+		panelFinal=new JPanel();
+		panelFinal.setBounds(frame.getBounds());
+		panelFinal.setBackground(Color.BLACK);
+		panelFinal.setLayout(null);
+		frame.getContentPane().add(panelFinal);
+		
+		JLabel lblNewLabel = new JLabel("New label");
+		lblNewLabel.setIcon(new ImageIcon(GUI.class.getResource("/imagenes/Maradona_Pierde.png")));
+		lblNewLabel.setBounds(560, 181, 435, 550);
+		panelFinal.add(lblNewLabel);
+		
+		JLabel lblGameOver = new JLabel("Game Over");
+		lblGameOver.setForeground(Color.WHITE);
+		lblGameOver.setFont(new Font("Symtext", Font.PLAIN, 80));
+		lblGameOver.setBounds(41, 135, 527, 79);
+		panelFinal.add(lblGameOver);
+		
+		JLabel lblQuersVolverA = new JLabel("Quer\u00E9s volver a jugar?");
+		lblQuersVolverA.setForeground(Color.WHITE);
+		lblQuersVolverA.setFont(new Font("Symtext", Font.PLAIN, 35));
+		lblQuersVolverA.setBounds(41, 616, 554, 37);
+		panelFinal.add(lblQuersVolverA);
+		
+		JButton btnSi = new JButton("SI");
+		btnSi.setForeground(Color.WHITE);
+		btnSi.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				frame.getContentPane().remove(panelFinal);
+				frame.repaint();
+				crearPanelInicio();
+			}
+		});
+		btnSi.setFont(new Font("Symtext", Font.PLAIN, 25));
+		btnSi.setBounds(109, 675, 89, 23);
+		btnSi.setBorderPainted(false);
+		btnSi.setContentAreaFilled(false);
+		btnSi.setOpaque(false);
+		btnSi.setFocusable(false);
+		panelFinal.add(btnSi);
+		
+		JButton btnNo = new JButton("NO");
+		btnNo.setForeground(Color.WHITE);
+		btnNo.setFont(new Font("Symtext", Font.PLAIN, 25));
+		btnNo.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				System.exit(0);
+			}
+		});
+		btnNo.setBounds(422, 675, 89, 23);
+		btnNo.setBorderPainted(false);
+		btnNo.setContentAreaFilled(false);
+		btnNo.setOpaque(false);
+		btnNo.setFocusable(false);
+		panelFinal.add(btnNo);
+	}
+
+	public void pantallaGanar(int puntaje) {
+//		panelMapa.removeAll();
+//		frame.getContentPane().remove(panelMapa);
+//		frame.repaint();
+//		audioAmbiente.stop();
+		panelFinal=new JPanel();
+		panelFinal.setBounds(frame.getBounds());
+		panelFinal.setBackground(Color.BLACK);
+		panelFinal.setLayout(null);
+		frame.getContentPane().add(panelFinal);
+	}
+	
+	
+	
 }

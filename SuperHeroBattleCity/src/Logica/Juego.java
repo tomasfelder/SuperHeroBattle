@@ -3,6 +3,9 @@ package Logica;
 import Tanques.Disparo;
 import Tanques.Enemigo;
 import Tanques.EnemigoBasico;
+import Tanques.EnemigoBlindado;
+import Tanques.EnemigoDePoder;
+import Tanques.EnemigoRapido;
 import Tanques.Jugador;
 
 import java.awt.Rectangle;
@@ -35,7 +38,7 @@ public class Juego{
 	
 	
 	public Juego(Mapa m,GUI g){
-		jugador=new Jugador(162,388,this);
+		jugador=new Jugador(376,648,this);
 		vidasJugador=2;
 		listaEnemigos= new LinkedList<Enemigo>();
 		listaDisparos= new LinkedList<Disparo>();
@@ -77,7 +80,22 @@ public class Juego{
 	
 	public void crearEnemigo(int x,int y){
 		if(cantEnemigosActuales<4&&cantEnemigosCreados<TOTAL_ENEMIGOS){
-			Enemigo ene = new EnemigoBasico(x,y,this);
+			int tipoEnemigo=new java.util.Random().nextInt(4);
+			Enemigo ene=null;
+			switch(tipoEnemigo){
+			case(0):
+				ene=new EnemigoBasico(x,y,this);
+				break;
+			case(1):
+				ene=new EnemigoBlindado(x,y,this);
+				break;
+			case(2):
+				ene=new EnemigoDePoder(x,y,this);
+				break;
+			case(3):
+				ene=new EnemigoRapido(x,y,this);
+				break;
+			}
 			cantEnemigosActuales++;
 			cantEnemigosCreados++;
 			listaEnemigos.add(ene);
@@ -104,7 +122,6 @@ public class Juego{
 	public void disparar(){
 		Disparo disp= jugador.disparar();
 		gui.getPanelMapa().add(disp.getEtiqueta());
-		gui.getPanelMapa().setComponentZOrder(disp.getEtiqueta(), 1);
 		listaDisparos.add(disp);
 	}
 	
@@ -135,7 +152,25 @@ public class Juego{
 					auxiliar.x=new java.util.Random().nextInt(480);
 					auxiliar.y=new java.util.Random().nextInt(448);
 				}
-				PowerUp p=new PTimer(auxiliar.x,auxiliar.y);
+				PowerUp p=null;
+				int tipoPowerUp=new java.util.Random().nextInt(5);
+				switch(tipoPowerUp){
+				case(0):
+					p=new PCasco(auxiliar.x,auxiliar.y);
+					break;
+				case(1):
+					p=new PEstrella(auxiliar.x,auxiliar.y);
+					break;
+				case(2):
+					p=new PGranada(auxiliar.x,auxiliar.y);
+					break;
+				case(3):
+					p=new PTanque(auxiliar.x,auxiliar.y);
+					break;
+				case(4):
+					p=new PTimer(auxiliar.x,auxiliar.y);
+					break;
+				}
 				listaPowerUps.add(p);
 				gui.getPanelMapa().add(p.getEtiqueta());
 			}
@@ -159,15 +194,10 @@ public class Juego{
 	}
 	
 	private void ganar() {
-		gui.getPanelMapa().removeAll();
-		gui.repintar();
 		tJuego.terminate();
 		for(Enemigo e:listaEnemigos)
 			e.terminarThread();
-		JLabel gameOver = new JLabel();
-		gameOver.setBounds(gui.getPanelMapa().getBounds());
-		gameOver.setIcon(new ImageIcon(this.getClass().getResource("/imagenes/You_Win.jpg")));
-		gui.getPanelMapa().add(gameOver);
+		gui.pantallaGanar(getPuntaje());
 	}
 
 	public List<Enemigo> getEnemigos(){
@@ -205,15 +235,11 @@ public class Juego{
 	}
 
 	public void perder() {
-		gui.getPanelMapa().removeAll();
-		gui.repintar();
 		tJuego.terminate();
 		for(Enemigo e:listaEnemigos)
 			e.terminarThread();
-		JLabel gameOver = new JLabel();
-		gameOver.setBounds(gui.getPanelMapa().getBounds());
-		gameOver.setIcon(new ImageIcon(this.getClass().getResource("/imagenes/Game_Over.jpg")));
-		gui.getPanelMapa().add(gameOver);
+		tJuego.terminate();
+		gui.pantallaPerder(getPuntaje());
 	}
 
 	public void eliminarJugador() {
