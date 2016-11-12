@@ -190,9 +190,10 @@ public class Jugador extends Tanque{
 	}
 	
 	public boolean colisionarPEstrella(PEstrella e,Rectangle posNueva){
-		if (e.getRectangulo().intersects(posNueva) && miNivel.getSiguiente()!=null){
+		if (e.getRectangulo().intersects(posNueva)){
 			juego.removerPowerUp(e);
-			miNivel=miNivel.getSiguiente();
+			if(miNivel.getSiguiente()!=null)
+				miNivel=miNivel.getSiguiente();
 		}
 		return false;
 	}

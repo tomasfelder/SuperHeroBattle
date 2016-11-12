@@ -25,7 +25,7 @@ public abstract class Disparo extends gameObject implements Visitor {
 	protected InteligenciaDisparo tDisparo;
 	
 	public Disparo(int x,int y,int dir,int vel){
-		rectangulo = new Rectangle(x, y, 22, 22);
+		rectangulo = new Rectangle(x, y, 18, 18);
 		velocidadMovimiento=vel;
 		direccion=dir;
 		switch(dir){
@@ -43,12 +43,12 @@ public abstract class Disparo extends gameObject implements Visitor {
 			break;
 		}
 		etiqueta = new JLabel();
-		etiqueta.setIcon(new ImageIcon(imagen.getImage().getScaledInstance(22, 22, Image.SCALE_DEFAULT)));
+		etiqueta.setIcon(new ImageIcon(imagen.getImage().getScaledInstance(18, 18, Image.SCALE_DEFAULT)));
 		etiqueta.setBounds(rectangulo);
 	}
 	
 	public Rectangle simularMovimiento(){
-		Rectangle nuevaPos = new Rectangle(22, 22);
+		Rectangle nuevaPos = new Rectangle(18, 18);
 		switch (direccion){
 		case 0:
 			nuevaPos.x=rectangulo.x; nuevaPos.y=rectangulo.y-velocidadMovimiento;
