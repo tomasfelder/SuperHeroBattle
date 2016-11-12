@@ -47,10 +47,12 @@ public class Jugador extends Tanque{
 	}
 	
 	public Rectangle simularMovimiento(int direccion){
-		direccionQueApunta=direccion;
 		Rectangle nuevaPos = new Rectangle(48, 48);
-		miNivel.cambiarIcono(direccion);
-		etiqueta.setIcon(miNivel.getIcon());
+		if(direccion!=direccionQueApunta){
+			miNivel.cambiarIcono(direccion);
+			etiqueta.setIcon(miNivel.getIcon());
+		}
+		direccionQueApunta=direccion;
 		switch (direccion){
 		case 0:
 			nuevaPos.x=rectangulo.x; nuevaPos.y=rectangulo.y-miNivel.getVelocidadMovimiento();

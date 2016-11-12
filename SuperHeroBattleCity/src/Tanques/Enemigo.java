@@ -34,10 +34,11 @@ public abstract class Enemigo extends Tanque {
 	}
 	
 	public Rectangle simularMovimiento(int direccion){
+		if(direccionQueApunta!=direccion){
+			imagen=iconos[direccion];
+			etiqueta.setIcon(imagen);
+		}
 		direccionQueApunta=direccion;
-		imagen=iconos[direccion];
-		etiqueta.setIcon(new ImageIcon(imagen.getImage().getScaledInstance(48, 48, Image.SCALE_DEFAULT)));
-		etiqueta.setBounds(rectangulo);
 		Rectangle nuevaPos = new Rectangle(48, 48);
 		switch (direccion){
 		case 0:
@@ -72,9 +73,6 @@ public abstract class Enemigo extends Tanque {
 			this.moverDerecha();
 			break;
 		}
-		
-		imagen=iconos[direccion];
-		etiqueta.setIcon(new ImageIcon(imagen.getImage().getScaledInstance(48, 48, Image.SCALE_DEFAULT)));
 		etiqueta.setBounds(rectangulo);
 	}	
 	
