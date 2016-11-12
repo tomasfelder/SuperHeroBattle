@@ -12,9 +12,9 @@ public class EnemigoRapido extends Enemigo {
 
 	public EnemigoRapido(int x, int y,Juego j) {
 		super(x, y,j);
-		velocidadMovimiento=3;
+		velocidadMovimiento=8;
 		golpesQueResiste=1;
-		velocidadDisparo=2;
+		velocidadDisparo=4;
 		puntosQueDa=200;
 		
 		imagen=new ImageIcon(this.getClass().getResource("/imagenesEnemigo/socraDerechaGif.gif"));

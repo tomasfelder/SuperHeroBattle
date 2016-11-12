@@ -12,9 +12,9 @@ public class EnemigoDePoder extends Enemigo {
 
 	public EnemigoDePoder(int x, int y,Juego j) {
 		super(x, y,j);
-		velocidadMovimiento=2;
+		velocidadMovimiento=6;
 		golpesQueResiste=1;
-		velocidadDisparo=3;
+		velocidadDisparo=6;
 		puntosQueDa=300;
 		
 		imagen=new ImageIcon(this.getClass().getResource("/imagenesEnemigo/johanDerechaGif.gif"));

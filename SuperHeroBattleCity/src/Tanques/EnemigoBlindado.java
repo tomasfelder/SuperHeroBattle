@@ -12,9 +12,9 @@ public class EnemigoBlindado extends Enemigo {
 
 	public EnemigoBlindado(int x, int y,Juego j) {
 		super(x, y,j);
-		velocidadMovimiento=1;
+		velocidadMovimiento=2;
 		golpesQueResiste=4;
-		velocidadDisparo=2;
+		velocidadDisparo=4;
 		puntosQueDa=400;
 		
 		imagen=new ImageIcon(this.getClass().getResource("/imagenesEnemigo/franzDerechaGif.gif"));

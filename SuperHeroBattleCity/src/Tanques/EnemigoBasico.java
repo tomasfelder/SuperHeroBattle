@@ -12,9 +12,9 @@ public class EnemigoBasico extends Enemigo {
 
 	public EnemigoBasico(int x, int y,Juego j) {
 			super(x,y,j);
-			velocidadMovimiento=2;
+			velocidadMovimiento=4;
 			golpesQueResiste=1;
-			velocidadDisparo=1;
+			velocidadDisparo=2;
 			puntosQueDa=100;
 			
 			imagen=new ImageIcon(this.getClass().getResource("/imagenesEnemigo/pibeDerechaGif.gif"));
