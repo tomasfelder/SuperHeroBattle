@@ -6,6 +6,8 @@ import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.Rectangle;
 import java.awt.event.KeyEvent;
+import java.util.LinkedList;
+import java.util.List;
 import java.awt.event.KeyAdapter;
 
 import Logica.Juego;
@@ -25,11 +27,11 @@ public class GUI {
 	private JFrame frame;
 	private JPanel panelMapa,panelInicio,panelFinal;
 	private JLabel labelPortada,lblMovimientoDeldiego,lblFlechas,lblEspacio,lblDisparo;
-	private JButton btnEmpezar,btnVolver;
+	private JButton btnEmpezar,btnVolver,btnTeclas;
 	private Mapa mapa;
 	private Juego juego;
 	private AudioClip audioDisparo,audioMovimiento,audioAmbiente,audioInicio;
-	private JButton btnOpciones;
+	protected List<JLabel> listaCantEnemigosQuedan;
 	
 	/**
 	 * Launch the application.
@@ -57,7 +59,7 @@ public class GUI {
 	protected void crearPanelInicio(){
 		panelInicio = new JPanel();
 		panelInicio.setBackground(Color.BLACK);
-		panelInicio.setBounds(frame.getContentPane().getX(), frame.getContentPane().getY(),988 , 728);
+		panelInicio.setBounds(0, 0,1106 , 728);
 		panelInicio.setLayout(null);
 		panelInicio.setFocusable(false);
 		audioInicio=Applet.newAudioClip(this.getClass().getResource("/Sonidos/Sonido_Intro.wav"));
@@ -65,11 +67,11 @@ public class GUI {
 		panelDeInicio();
 	}
 	
-	private void panelDeInicio() {
+	protected void panelDeInicio() {
 		
 		labelPortada = new JLabel();
 		labelPortada.setIcon(new ImageIcon(GUI.class.getResource("/imagenes/Portada.png")));
-		labelPortada.setBounds(144, 135, 700, 300);
+		labelPortada.setBounds(203, 142, 700, 300);
 		panelInicio.add(labelPortada);
 		
 		btnEmpezar = new JButton("Empezar");
@@ -82,30 +84,30 @@ public class GUI {
 			}
 		});
 		btnEmpezar.setForeground(Color.WHITE);
-		btnEmpezar.setFont(new Font("Symtext", Font.PLAIN, 30));
-		btnEmpezar.setBounds(179, 495, 200, 50);
+		btnEmpezar.setFont(new Font("Symtext", Font.PLAIN, 40));
+		btnEmpezar.setBounds(202, 500, 286, 50);
 		btnEmpezar.setBorderPainted(false);
 		btnEmpezar.setContentAreaFilled(false);
 		btnEmpezar.setOpaque(false);
 		btnEmpezar.setFocusable(false);
 		panelInicio.add(btnEmpezar);
 		
-		btnOpciones = new JButton("Opciones");
-		btnOpciones.addActionListener(new ActionListener() {
+		btnTeclas = new JButton("Teclas");
+		btnTeclas.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				panelInicio.removeAll();
 				mostrarOpciones();
 				frame.repaint();
 			}
 		});
-		btnOpciones.setForeground(Color.WHITE);
-		btnOpciones.setFont(new Font("Symtext", Font.PLAIN, 30));
-		btnOpciones.setBounds(594, 504, 205, 33);
-		btnOpciones.setBorderPainted(false);
-		btnOpciones.setContentAreaFilled(false);
-		btnOpciones.setOpaque(false);
-		btnOpciones.setFocusable(false);
-		panelInicio.add(btnOpciones);
+		btnTeclas.setForeground(Color.WHITE);
+		btnTeclas.setFont(new Font("Symtext", Font.PLAIN, 40));
+		btnTeclas.setBounds(594, 504, 257, 42);
+		btnTeclas.setBorderPainted(false);
+		btnTeclas.setContentAreaFilled(false);
+		btnTeclas.setOpaque(false);
+		btnTeclas.setFocusable(false);
+		panelInicio.add(btnTeclas);
 		
 		frame.getContentPane().add(panelInicio);
 		
@@ -155,7 +157,7 @@ public class GUI {
 		panelInicio.add(btnVolver);
 	}
 
-	private void iniciarComponentesJuego(){
+	protected void iniciarComponentesJuego(){
 		audioDisparo = Applet.newAudioClip(this.getClass().getResource("/Sonidos/Patada_Futbol.wav"));
 		audioMovimiento = Applet.newAudioClip(this.getClass().getResource("/Sonidos/Sonido_Cesped.wav"));
 		audioAmbiente = Applet.newAudioClip(this.getClass().getResource("/Sonidos/Sonido_Ambiente.wav"));
@@ -175,7 +177,7 @@ public class GUI {
 	}
 	
 
-	private void ponerObstaculos() {
+	protected void ponerObstaculos() {
 		panelMapa = new PanelConFondo();
 		panelMapa.setBounds(0,0,19*52,14*52);
 		panelMapa.setLayout(null);
@@ -228,14 +230,39 @@ public class GUI {
 		panelMapa.add(juego.getJugador().getEtiqueta());
 		panelMapa.setFocusable(true);
 		frame.getContentPane().add(panelMapa);
+		
+		JPanel panelInfo = new JPanel();
+		panelInfo.setBounds(987, 0, 119, 728);
+		panelInfo.setLayout(null);
+		int x1=panelInfo.getX()+20; int y1=panelInfo.getY()+10;
+		boolean primeroDeFila=true;
+		listaCantEnemigosQuedan = new LinkedList<JLabel>();
+		for(int i=0;i<juego.getTotalEnemigos();i++){
+			JLabel aux= new JLabel();
+			aux.setBounds(x1,y1,32,32);
+			ImageIcon icono= new ImageIcon(this.getClass().getResource("/imagenes/Camiseta.png"));
+			aux.setIcon(new ImageIcon(icono.getImage().getScaledInstance(32, 32, Image.SCALE_DEFAULT)));
+			listaCantEnemigosQuedan.add(aux);
+			frame.getContentPane().add(aux);
+			if(primeroDeFila){
+				x1+=37;
+				primeroDeFila=false;
+			}
+			else{
+				x1-=37;
+				y1+=37;
+				primeroDeFila=true;
+			}
+		}
 		frame.repaint();
 	}
 	
-	private void crearFrame(int ancho,int largo) {
+	protected void crearFrame(int ancho,int largo) {
 		frame = new JFrame();
+		frame.getContentPane().setBackground(Color.LIGHT_GRAY);
 		frame.setTitle("Maradona Soccer SuperStar");
 		
-		frame.setSize(1005,767);
+		frame.setSize(1122,767);
 		
 		frame.getContentPane().setLayout(null);
 		
@@ -261,10 +288,6 @@ public class GUI {
 				break;
 		}
 		return direccion;
-	}
-	
-	public Mapa getMapa(){
-		return mapa;
 	}
 
 	public void pantallaPerder(int puntaje) {
@@ -401,7 +424,11 @@ public class GUI {
 		panelFinal.add(btnNo);
 		
 	}
+
+
 	
-	
-	
+	public void quitarEtiquetaDeLista() {
+		frame.getContentPane().remove(listaCantEnemigosQuedan.get(listaCantEnemigosQuedan.size()-1));
+		listaCantEnemigosQuedan.remove(listaCantEnemigosQuedan.size()-1);
+	}
 }

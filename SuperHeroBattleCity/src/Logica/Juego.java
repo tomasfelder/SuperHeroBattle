@@ -56,6 +56,10 @@ public class Juego{
 		tJuego.start();
 	}
 	
+	public int getTotalEnemigos(){
+		return TOTAL_ENEMIGOS;
+	}
+	
 	public boolean puedoMover(Rectangle nuevaPos,Visitor v){
 		boolean puedo=true;
 		for(int i=0;i<mapa.getLargo()&&puedo;i++)
@@ -105,6 +109,7 @@ public class Juego{
 			cantEnemigosCreados++;
 			listaEnemigos.add(ene);
 			gui.getPanelMapa().add(ene.getEtiqueta());
+			gui.quitarEtiquetaDeLista();
 			gui.repintar();
 		}
 	}
@@ -251,7 +256,7 @@ public class Juego{
 		vidasJugador--;
 		if(vidasJugador!=0){
 			gui.getPanelMapa().remove(jugador.getEtiqueta());
-			jugador = new Jugador(376,648,this);
+			jugador = new Jugador(366,628,this);
 			gui.getPanelMapa().add(jugador.getEtiqueta());
 		}
 		else

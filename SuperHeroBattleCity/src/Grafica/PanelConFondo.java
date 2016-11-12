@@ -7,6 +7,7 @@ import java.awt.LayoutManager;
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 
+@SuppressWarnings("serial")
 public class PanelConFondo extends JPanel {
 	
 	private Image imagen; 

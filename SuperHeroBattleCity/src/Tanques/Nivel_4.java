@@ -7,9 +7,9 @@ public class Nivel_4 extends Nivel {
 	public Nivel_4() {
 		super();
 		siguiente=null;
-		velocidadMov=2;
+		velocidadMov=4;
 		resistencia=4;
-		velDisparo=3;
+		velDisparo=8;
 		iconosNivel[0]=new ImageIcon(this.getClass().getResource("/imagenesJugador/diegoNapoliDerecha.gif"));
 		iconosNivel[1]=new ImageIcon(this .getClass().getResource("/imagenesJugador/diegoNapoliDerecha.gif"));
 		iconosNivel[2]=new ImageIcon(this.getClass().getResource("/imagenesJugador/diegoNapoliIzquierda.gif"));

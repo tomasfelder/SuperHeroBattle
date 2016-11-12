@@ -11,7 +11,6 @@ public class InteligenciaEnemigo extends Thread {
 	private Juego game;
 	private Enemigo enemigo;
 	private boolean ejecutar;
-	private InteligenciaDisparoEnemigo tDisparo;
 	private boolean pausado;
 	
 
