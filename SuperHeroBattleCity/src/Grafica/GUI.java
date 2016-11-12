@@ -292,7 +292,8 @@ public class GUI {
 
 	public void pantallaPerder(int puntaje) {
 		panelMapa.removeAll();
-		frame.getContentPane().remove(panelMapa);
+		frame.getContentPane().removeAll();
+		listaCantEnemigosQuedan.clear();
 		frame.repaint();
 		audioAmbiente.stop();
 		panelFinal=new JPanel();
@@ -353,7 +354,8 @@ public class GUI {
 
 	public void pantallaGanar(int puntaje) {
 		panelMapa.removeAll();
-		frame.getContentPane().remove(panelMapa);
+		listaCantEnemigosQuedan.clear();
+		frame.getContentPane().removeAll();
 		frame.repaint();
 		audioAmbiente.stop();
 		panelFinal=new JPanel();
