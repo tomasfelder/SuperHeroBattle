@@ -24,13 +24,13 @@ import java.awt.event.ActionEvent;
 
 public class GUI {
 
-	private JFrame frame;
-	private JPanel panelMapa,panelInicio,panelFinal;
-	private JLabel labelPortada,lblMovimientoDeldiego,lblFlechas,lblEspacio,lblDisparo;
-	private JButton btnEmpezar,btnVolver,btnTeclas;
-	private Mapa mapa;
-	private Juego juego;
-	private AudioClip audioDisparo,audioMovimiento,audioAmbiente,audioInicio;
+	protected JFrame frame;
+	protected JPanel panelMapa,panelInicio,panelFinal;
+	protected JLabel labelPortada,lblMovimientoDeldiego,lblFlechas,lblEspacio,lblDisparo;
+	protected JButton btnEmpezar,btnVolver,btnTeclas;
+	protected Mapa mapa;
+	protected Juego juego;
+	protected AudioClip audioDisparo,audioMovimiento,audioAmbiente,audioInicio;
 	protected List<JLabel> listaCantEnemigosQuedan;
 	
 	/**
@@ -261,7 +261,7 @@ public class GUI {
 		frame = new JFrame();
 		frame.getContentPane().setBackground(Color.LIGHT_GRAY);
 		frame.setTitle("Maradona Soccer SuperStar");
-		
+		frame.setResizable(false);
 		frame.setSize(1122,767);
 		
 		frame.getContentPane().setLayout(null);

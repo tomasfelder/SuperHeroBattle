@@ -4,7 +4,6 @@ import javax.swing.ImageIcon;
 
 public class Nivel_1 extends Nivel {
 	
-	
 	public Nivel_1(){
 		super();
 		siguiente=new Nivel_2();

@@ -9,7 +9,7 @@ import javax.swing.JPanel;
 @SuppressWarnings("serial")
 public class PanelConFondo extends JPanel {
 	
-	private Image imagen; 
+	protected Image imagen; 
 	
 	public PanelConFondo() {
 		super();

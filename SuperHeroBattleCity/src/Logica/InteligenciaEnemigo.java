@@ -8,10 +8,10 @@ import Tanques.Enemigo;
 
 public class InteligenciaEnemigo extends Thread {
 	
-	private Juego game;
-	private Enemigo enemigo;
-	private boolean ejecutar;
-	private boolean pausado;
+	protected Juego game;
+	protected Enemigo enemigo;
+	protected boolean ejecutar;
+	protected boolean pausado;
 	
 
 	public InteligenciaEnemigo(Enemigo e,Juego juego){
